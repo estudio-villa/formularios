@@ -5,15 +5,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Guía rápida de licencias y beneficios bancarios — CCT 18/75</title>
-    <!--
-    Módulos de licencias para bancarios con estética Villa & Asociados.
-    Cambios pedidos por Maxi (2025-08):
-    - Día del Bancario: informativo, sin cálculo.
-    - Día por Estudio: informativo, sin cálculo.
-    - Diseño de segmentos más profesional.
-    - Íconos grises discretos (inline SVG) en el menú lateral.
-    - Se quita "Agregar al resumen" y el panel Resumen.
-  -->
     <style>
         :root {
             /* Paleta tomada de tu sitio */
@@ -28,6 +19,7 @@
             --va-focus: #6f9bd2;
             --va-radius: 16px;
             --va-shadow: 0 10px 25px rgba(0, 0, 0, .10);
+            --transition: all 0.3s ease;
         }
 
         * {
@@ -38,7 +30,8 @@
             background: var(--va-bg);
             color: var(--va-ink);
             margin: 0;
-            font-family: inherit
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+            line-height: 1.5;
         }
 
         .va-calc {
@@ -54,7 +47,7 @@
             text-align: center;
             gap: 8px;
             margin-bottom: 20px;
-            padding: 24px;
+            padding: 20px 16px;
             background: linear-gradient(180deg, #efe3cc, #fff7e7);
             border: 1px solid var(--va-outline);
             border-radius: 20px;
@@ -66,25 +59,34 @@
             font-size: clamp(1.5rem, 1rem + 2vw, 2.4rem);
             letter-spacing: .4px;
             font-weight: 800;
-            text-transform: uppercase
+            text-transform: uppercase;
+            line-height: 1.2;
         }
 
         .va-sub {
-            margin: 4px 0 0;
+            margin: 12px 0 0;
             color: var(--va-muted);
-            font-size: 1rem
+            font-size: 1rem;
+            max-width: 600px;
         }
 
         .va-shell {
             display: grid;
             grid-template-columns: 300px 1fr;
             gap: 16px;
-            align-items: stretch
+            align-items: stretch;
         }
 
-        @media (max-width:880px) {
+        @media (max-width: 1024px) {
             .va-shell {
-                grid-template-columns: 1fr
+                grid-template-columns: 250px 1fr;
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 880px) {
+            .va-shell {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -93,29 +95,31 @@
             background: var(--va-surface);
             border: 1px solid var(--va-outline);
             border-radius: var(--va-radius);
-            box-shadow: var(--va-shadow)
+            box-shadow: var(--va-shadow);
+            overflow: hidden;
         }
 
         .va-card>.va-card-h {
             padding: 16px 16px 0;
             display: flex;
             align-items: center;
-            gap: 10px
+            gap: 10px;
         }
 
         .va-card>.va-card-c {
-            padding: 16px
+            padding: 16px;
         }
 
         .va-h {
             margin: 0;
             font-size: 1.1rem;
-            font-weight: 700
+            font-weight: 700;
         }
 
         .va-note {
             color: var(--va-muted);
-            font-size: .92rem
+            font-size: .92rem;
+            line-height: 1.4;
         }
 
         /* Form */
@@ -123,7 +127,7 @@
             font-weight: 600;
             font-size: .92rem;
             display: block;
-            margin: 10px 0 6px
+            margin: 10px 0 6px;
         }
 
         input[type="text"],
@@ -133,42 +137,43 @@
         select,
         textarea {
             width: 100%;
-            padding: 10px 12px;
+            padding: 12px 14px;
             border-radius: 12px;
             border: 1px solid var(--va-outline);
             background: #fffaf0;
             color: var(--va-ink);
-            outline: none
+            outline: none;
+            font-size: 16px; /* Previene zoom en iOS */
         }
 
         input:focus,
         select:focus,
         textarea:focus {
             box-shadow: 0 0 0 3px rgba(111, 155, 210, .35);
-            border-color: var(--va-focus)
+            border-color: var(--va-focus);
         }
 
         .va-row {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
-            gap: 12px
+            gap: 12px;
         }
 
         .va-col-6 {
-            grid-column: span 12
+            grid-column: span 12;
         }
 
         .va-col-4 {
-            grid-column: span 12
+            grid-column: span 12;
         }
 
         @media (min-width:760px) {
             .va-col-6 {
-                grid-column: span 6
+                grid-column: span 6;
             }
 
             .va-col-4 {
-                grid-column: span 4
+                grid-column: span 4;
             }
         }
 
@@ -176,56 +181,99 @@
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
-            margin-top: 12px
+            margin-top: 16px;
         }
 
         .btn {
             border: 1px solid var(--va-outline);
             background: #fff7e7;
             color: var(--va-ink);
-            padding: 10px 14px;
+            padding: 12px 18px;
             border-radius: 999px;
             cursor: pointer;
             font-weight: 700;
-            text-decoration: none
+            text-decoration: none;
+            font-size: 1rem;
+            transition: var(--transition);
+            min-height: 44px; /* Tamaño táctil mínimo */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .btn.primary {
             background: linear-gradient(90deg, var(--va-primary), #d2b47a);
             color: #1f1a12;
-            border: none
+            border: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .va-res {
             border: 1px dashed var(--va-outline);
             border-radius: 12px;
-            padding: 12px;
-            background: #fffaf0
+            padding: 16px;
+            background: #fffaf0;
+            line-height: 1.5;
         }
 
         .va-kpi {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 6px 10px;
+            padding: 8px 12px;
             border-radius: 999px;
             background: #fff7e7;
             border: 1px solid var(--va-outline);
-            font-weight: 700
+            font-weight: 700;
+            font-size: 0.95rem;
         }
 
         .va-divider {
             height: 1px;
             background: var(--va-outline);
-            margin: 12px 0;
-            opacity: .7
+            margin: 16px 0;
+            opacity: .7;
         }
 
-        /* Lateral */
+        /* Lateral - Menú responsive */
         .va-side {
-            position: sticky;
-            top: 16px;
-            align-self: stretch
+            position: relative;
+            align-self: stretch;
+        }
+
+        .va-nav-toggle {
+            display: none;
+            width: 100%;
+            text-align: left;
+            padding: 16px;
+            border-radius: 14px;
+            border: 1px solid var(--va-outline);
+            background: var(--va-surface-2);
+            font-weight: 600;
+            color: var(--va-ink);
+            cursor: pointer;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 880px) {
+            .va-nav-toggle {
+                display: flex;
+            }
+            
+            .va-nav {
+                display: none;
+                margin-top: 8px;
+            }
+            
+            .va-nav.active {
+                display: grid;
+            }
         }
 
         .va-nav {
@@ -233,13 +281,13 @@
             padding: 8px;
             margin: 0;
             display: grid;
-            gap: 8px
+            gap: 8px;
         }
 
         .va-nav button {
             width: 100%;
             text-align: left;
-            padding: 12px 14px;
+            padding: 14px 16px;
             border-radius: 14px;
             border: 1px solid var(--va-outline);
             background: var(--va-surface-2);
@@ -248,20 +296,21 @@
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 10px;
-            transition: transform .06s ease, box-shadow .2s ease, background .2s ease
+            gap: 12px;
+            transition: var(--transition);
+            min-height: 50px;
         }
 
         .va-nav button:hover {
             transform: translateY(-1px);
             box-shadow: 0 6px 18px rgba(0, 0, 0, .08);
             background: linear-gradient(180deg, var(--va-surface-3), #fff7e7);
-            border-color: var(--va-primary)
+            border-color: var(--va-primary);
         }
 
         .va-nav button[aria-current="page"] {
             background: linear-gradient(180deg, var(--va-surface-2), #fff7e7);
-            border-color: var(--va-primary)
+            border-color: var(--va-primary);
         }
 
         .va-ico {
@@ -272,17 +321,17 @@
             stroke-width: 2;
             stroke-linecap: round;
             stroke-linejoin: round;
-            flex-shrink: 0
+            flex-shrink: 0;
         }
 
         .va-main .va-module {
-            display: none
+            display: none;
         }
 
         .va-main .va-module.active {
             display: flex;
             flex-direction: column;
-            min-height: 100%
+            min-height: 100%;
         }
 
         .va-legal {
@@ -291,24 +340,92 @@
             border-top: 1px solid var(--va-outline);
             color: var(--va-muted);
             font-size: .85rem;
-            line-height: 1.5
+            line-height: 1.5;
         }
 
         .va-main .va-module.active .va-card-c {
             flex: 1;
             display: flex;
-            flex-direction: column
+            flex-direction: column;
         }
 
         .va-side.va-card {
             display: flex;
-            flex-direction: column
+            flex-direction: column;
         }
 
         .va-side .va-card-c {
             flex: 1;
             display: flex;
-            flex-direction: column
+            flex-direction: column;
+        }
+
+        /* Mejoras para móviles */
+        @media (max-width: 640px) {
+            .va-calc {
+                --pad: 12px;
+                margin: 16px auto 48px;
+            }
+            
+            .va-header {
+                padding: 16px 12px;
+                border-radius: 16px;
+            }
+            
+            .va-title {
+                font-size: 1.4rem;
+            }
+            
+            .va-sub {
+                font-size: 0.9rem;
+            }
+            
+            .va-card > .va-card-h,
+            .va-card > .va-card-c {
+                padding: 12px;
+            }
+            
+            .va-h {
+                font-size: 1.05rem;
+            }
+            
+            .va-row {
+                gap: 10px;
+            }
+            
+            .btn {
+                padding: 10px 16px;
+                font-size: 0.95rem;
+            }
+            
+            .va-res {
+                padding: 12px;
+            }
+            
+            input[type="text"],
+            input[type="email"],
+            input[type="date"],
+            input[type="number"],
+            select,
+            textarea {
+                padding: 10px 12px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .va-title {
+                font-size: 1.3rem;
+            }
+            
+            .va-nav button {
+                padding: 12px;
+                font-size: 0.9rem;
+            }
+            
+            .va-ico {
+                width: 16px;
+                height: 16px;
+            }
         }
     </style>
 </head>
@@ -328,6 +445,12 @@
             <!-- Lateral -->
             <aside class="va-side va-card" aria-label="Selector de módulos">
                 <div class="va-card-c">
+                    <button class="va-nav-toggle" id="navToggle" aria-expanded="false">
+                        <span>Menú de módulos</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
                     <nav>
                         <ul class="va-nav" id="vaNav">
                             <li><button type="button" data-target="modEnfermedad">
@@ -488,7 +611,7 @@
                                     <strong>período de conservación del empleo</strong> (sin goce) conforme <span
                                         class="va-note">art. 211 LCT</span>.</li>
                             </ul>
-                            <p class="va-note">Conservar certificados, diagnósticos y constancias de aviso.</p>
+                            <p class="va-note">Conservar certificados, diagnósticos and constancias de aviso.</p>
                             <p class="va-note">Nota: el antiguo <em>Instituto de Servicios Sociales Bancarios</em> fue
                                 reemplazado por la <strong>Obra Social Bancaria</strong>.</p>
                             <p class="va-note"><strong>Discrepancia médica:</strong> si el empleador o el/la
@@ -826,6 +949,20 @@
             document.getElementById(target)?.classList.add('active');
             document.querySelectorAll('.va-nav button').forEach(b => b.removeAttribute('aria-current'));
             btn.setAttribute('aria-current', 'page');
+            
+            // En móviles, cerrar el menú después de seleccionar
+            if (window.innerWidth <= 880) {
+                document.getElementById('vaNav').classList.remove('active');
+                document.getElementById('navToggle').setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Toggle para menú en móviles
+        document.getElementById('navToggle')?.addEventListener('click', function() {
+            const nav = document.getElementById('vaNav');
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            nav.classList.toggle('active');
+            this.setAttribute('aria-expanded', !isExpanded);
         });
 
         // ======= Cálculos =======
