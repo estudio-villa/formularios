@@ -1,10 +1,146 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR">
 <head>
-    <meta charset="UTF-8">
-    <title>Estudio Villa</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Formularios - Villa & Asociados</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sand: #efe2cc;
+      --sand-2: #f6eddc;
+      --charcoal: #474747;
+      --graphite: #2f2f2f;
+      --accent: #b89a72;
+      --ring: #cab28c;
+      --white: #fff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Montserrat", sans-serif;
+      background: var(--sand);
+      color: var(--graphite);
+    }
+    .topbar {
+      background: var(--sand);
+      border-bottom: 1px solid var(--ring);
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      color: var(--graphite);
+    }
+    .logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: var(--sand-2);
+      border: 1px solid var(--ring);
+      font-weight: 800;
+      color: var(--graphite);
+    }
+    .wrap {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 0 16px;
+    }
+    .hdr {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 24px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: var(--white);
+      border: 1px solid var(--ring);
+      border-radius: 18px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform .1s ease, box-shadow .2s ease;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+    }
+    .card h3 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--charcoal);
+    }
+    .card p {
+      font-size: 14px;
+      color: #555;
+      flex: 1;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 16px;
+      background: var(--charcoal);
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      transition: background .15s;
+      text-align: center;
+    }
+    .btn:hover {
+      background: #2f2f2f;
+    }
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: #666;
+      margin-top: 40px;
+    }
+  </style>
 </head>
 <body>
-    <h1>Estudio Villa</h1>
+  <!-- Encabezado -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">VA</div>
+      <div>Villa &amp; Asociados<br><small>Acceso a formularios</small></div>
+    </div>
+  </header>
+
+  <!-- Contenido principal -->
+  <main class="wrap">
+    <div class="hdr">Seleccione un formulario</div>
+    <div class="grid">
+      <div class="card">
+        <h3>Simulador de Indemnización</h3>
+        <p>Calcule la liquidación estimada en caso de despido sin causa, según la LCT y criterios jurisdiccionales.</p>
+        <a href="indemnizacion.html" class="btn">Acceder</a>
+      </div>
+      <div class="card">
+        <h3>Licencias y Beneficios</h3>
+        <p>Consulte los días de licencia, beneficios y otros derechos laborales vigentes según su antigüedad y convenio.</p>
+        <a href="licencias_y_beneficios.html" class="btn">Acceder</a>
+      </div>
+    </div>
+    <div class="footer">
+      © Villa &amp; Asociados — Herramientas profesionales orientativas. Confirmá siempre la información con la documentación del caso y la consulta profesional.
+    </div>
+  </main>
 </body>
 </html>
