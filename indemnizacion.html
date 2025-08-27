@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simulador de Indemnización - Villa & Asociados</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sand: #efe2cc;
+            --sand-2: #f6eddc;
+            --charcoal: #474747;
+            --graphite: #2f2f2f;
+            --accent: #b89a72;
+            --accent-2: #d6bf97;
+            --ring: #cab28c;
+            --white: #fff;
+            /* Esmeralda potente para badge de antigüedad */
+            --lume-1: #a7f3d0;
+            /* emerald 200 (luz) */
+            --lume-2: #10b981;
+            /* emerald 500 (intenso) */
+            --lume-border: #047857;
+            /* emerald 700 (borde sobrio) */
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, Helvetica, sans-serif;
+            color: var(--graphite);
+            background: var(--sand);
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: var(--sand);
+            border-bottom: 1px solid var(--ring);
+            padding: 14px 22px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            letter-spacing: .3px;
+            color: var(--graphite);
+        }
+
+        .logo {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            display: grid;
+            place-items: center;
+            background: var(--sand-2);
+            border: 1px solid var(--ring);
+            box-shadow: 0 1px 0 rgba(0, 0, 0, .04), 0 8px 20px rgba(0, 0, 0, .04) inset;
+            font-weight: 800;
+            color: var(--graphite);
+        }
+
+        .brand small {
+            font-weight: 600;
+            color: var(--charcoal);
+            opacity: .9;
+        }
+
+        .wrap {
+            max-width: 1100px;
+            margin: 24px auto 90px;
+            padding: 0 16px;
+        }
+
+        .card {
+            background: var(--white);
+            border: 1px solid var(--ring);
+            border-radius: 18px;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, .06);
+            margin-bottom: 18px;
+        }
+
+        .hdr {
+            background: var(--charcoal);
+            color: var(--sand-2);
+            padding: 14px 18px;
+            border-top-left-radius: 18px;
+            border-top-right-radius: 18px;
+            font-weight: 700;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .sub {
+            color: var(--sand-2);
+            opacity: .9;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .body {
+            padding: 18px;
+        }
+
+        .grid {
+            display: grid;
+            gap: 14px;
+            grid-template-columns: repeat(12, 1fr);
+        }
+
+        .col-12 {
+            grid-column: span 12;
+        }
+
+        .col-6 {
+            grid-column: span 6;
+        }
+
+        .col-4 {
+            grid-column: span 4;
+        }
+
+        @media (max-width:900px) {
+
+            .col-6,
+            .col-4 {
+                grid-column: span 12;
+            }
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--graphite);
+            margin-bottom: 6px;
+        }
+
+        .hint {
+            font-size: 12px;
+            color: #666;
+            margin-top: 6px;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select {
+            width: 100%;
+            border: 1px solid var(--ring);
+            border-radius: 12px;
+            padding: 12px;
+            font-size: 14px;
+            background: var(--sand-2);
+            outline: none;
+            transition: box-shadow .15s ease, border-color .15s ease, background .15s ease;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(184, 154, 114, .25);
+            background: #fff;
+        }
+
+        .switch {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            border-radius: 14px;
+            border: 2px dashed var(--ring);
+            background: #fff;
+            min-height: 56px;
+        }
+
+        .switch input {
+            transform: scale(1.1);
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .btn {
+            border: 1px solid var(--charcoal);
+            color: #fff;
+            background: var(--charcoal);
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 14px;
+            transition: transform .06s, box-shadow .2s, background .15s;
+        }
+
+        .btn:hover {
+            box-shadow: 0 6px 24px rgba(0, 0, 0, .12);
+            background: #3b3b3b;
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        .btn.secondary {
+            border-color: var(--accent);
+            background: var(--accent);
+            color: var(--graphite);
+        }
+
+        .btn.ghost {
+            background: transparent;
+            color: var(--charcoal);
+            border-color: var(--ring);
+        }
+
+        .bar {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .totals {
+            display: grid;
+            gap: 14px;
+            grid-template-columns: repeat(12, 1fr);
+        }
+
+        .tile {
+            grid-column: span 6;
+            border: 1px solid var(--ring);
+            border-radius: 14px;
+            padding: 14px;
+            background: #fff;
+        }
+
+        .tile h4 {
+            margin: 0 0 6px;
+            font-size: 14px;
+            color: var(--charcoal);
+        }
+
+        .tile .n {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--graphite);
+        }
+
+        @media (max-width:900px) {
+            .tile {
+                grid-column: span 12;
+            }
+        }
+
+        .grand {
+            border: 2px solid var(--charcoal);
+            background: var(--sand-2);
+        }
+
+        .grand .n {
+            font-size: 26px;
+        }
+
+        .muted {
+            color: #666;
+        }
+
+        .note {
+            background: #fff8ea;
+            border: 1px solid var(--accent-2);
+            color: #5a4a2f;
+            padding: 14px 16px;
+            border-radius: 16px;
+            line-height: 1.45;
+            font-size: 14px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .note p {
+            margin: 0;
+            text-align: justify;
+            text-justify: inter-word;
+            hyphens: auto;
+            font-weight: 800;
+        }
+
+        /* === Pastilla Antigüedad (esmeralda potente) === */
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: .2px;
+            background: linear-gradient(135deg, var(--lume-1) 0%, var(--lume-2) 100%);
+            color: #0f3d2e;
+            border: 1px solid var(--lume-border);
+            box-shadow: 0 2px 10px rgba(16, 185, 129, .35), inset 0 1px 0 rgba(255, 255, 255, .55);
+        }
+
+        .divider {
+            height: 1px;
+            background: var(--ring);
+            margin: 12px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 10px 8px;
+            border-bottom: 1px solid var(--ring);
+            font-size: 14px;
+        }
+
+        th {
+            text-align: left;
+            background: var(--sand-2);
+            color: var(--graphite);
+        }
+
+        .footer {
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            margin-top: 14px;
+        }
+
+        /* ====== ÚLTIMO MÓDULO (resumen imprimible) ====== */
+        .print-target .body {
+            padding: 16px 18px;
+        }
+
+        .prt-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .brand-mini {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-mini .logo {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+        }
+
+        .brand-mini .name {
+            line-height: 1.1;
+        }
+
+        .brand-mini .name strong {
+            font-size: 16px;
+        }
+
+        .brand-mini .name span {
+            font-size: 12px;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .prt-date {
+            font-size: 12px;
+        }
+
+        .prt-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 20px;
+            margin: 6px 0 10px;
+        }
+
+        .prt-col {
+            border: 1px solid var(--ring);
+            border-radius: 12px;
+            padding: 10px 12px;
+            background: #fff;
+        }
+
+        .prt-col h4 {
+            margin: 0 0 8px;
+            font-size: 13px;
+            color: #555;
+            letter-spacing: .2px;
+        }
+
+        .meta {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 6px;
+        }
+
+        .meta li {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            border-bottom: 1px dashed var(--ring);
+            padding-bottom: 6px;
+        }
+
+        .meta li:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .total-line span {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .prt-title {
+            margin: 2px 0 8px;
+            font-size: 16px;
+        }
+
+        .p-foot {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #666;
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .p-foot .left {
+            white-space: pre-wrap;
+        }
+
+        .p-foot .right {
+            text-align: right;
+        }
+
+        /* ====== Impresión general ====== */
+        .print-header,
+        .print-footer {
+            display: none;
+        }
+
+        @media print {
+            body {
+                background: #fff;
+            }
+
+            .topbar,
+            .bar {
+                display: none !important;
+            }
+
+            .card {
+                box-shadow: none;
+                border-color: #bbb;
+            }
+
+            .print-header,
+            .print-footer {
+                display: flex;
+            }
+
+            .print-header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                background: #fff;
+                border-bottom: 1px solid #bbb;
+                padding: 10px 20px;
+                align-items: center;
+                justify-content: space-between;
+                z-index: 1000;
+            }
+
+            .print-footer {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: #fff;
+                border-top: 1px solid #bbb;
+                padding: 6px 20px;
+                font-size: 10px;
+                color: #666;
+                align-items: center;
+                justify-content: space-between;
+                z-index: 1000;
+            }
+
+            .wrap {
+                margin-top: 140px;
+                margin-bottom: 60px;
+            }
+
+            .logo {
+                width: 36px;
+                height: 36px;
+            }
+
+            .page-num::after {
+                content: "Página " counter(page);
+            }
+        }
+
+        /* ====== Imprimir SOLO el último módulo ====== */
+        @page {
+            size: A4;
+            margin: 12mm;
+        }
+
+        @media print {
+
+            body.print-desglose .topbar,
+            body.print-desglose .print-header,
+            body.print-desglose .print-footer {
+                display: none !important;
+            }
+
+            body.print-desglose .wrap>* {
+                display: none !important;
+            }
+
+            body.print-desglose .print-target {
+                display: block !important;
+            }
+
+            body.print-desglose .print-target .body {
+                padding: 8mm 8mm;
+            }
+
+            body.print-desglose table,
+            body.print-desglose th,
+            body.print-desglose td {
+                font-size: 12px;
+                padding: 6px 6px;
+            }
+
+            body.print-desglose .prt-grid {
+                gap: 8px 12px;
+            }
+
+            body.print-desglose .total-line span {
+                font-size: 16px;
+            }
+
+            body.print-desglose .p-foot {
+                font-size: 10px;
+            }
+
+            body.print-desglose .card {
+                border-color: #bbb;
+            }
+        }
+
+        /* Utilidades */
+        .bold-just {
+            font-weight: 800;
+            text-align: justify;
+        }
+
+        .text-black {
+            color: #000 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Encabezado (web) -->
+    <header class="topbar">
+        <div class="brand">
+            <div class="logo">VA</div>
+            <div>Villa &amp; Asociados<br><small>Simula la indemnizacion que te corresponde</small></div>
+        </div>
+    </header>
+
+    <!-- Encabezado para impresión general -->
+    <div class="print-header" aria-hidden="true">
+        <div style="display:flex; align-items:center; gap:10px;">
+            <div class="logo">VA</div>
+            <div>
+                <strong>Villa &amp; Asociados</strong><br>
+                <small>Liquidación estimada por despido sin causa</small>
+            </div>
+        </div>
+        <div style="text-align:right;">
+            <div><strong>Total estimado:</strong> <span id="printTotal">—</span></div>
+            <div><small>Fecha: <span id="printDate">—</span></small></div>
+        </div>
+    </div>
+    <div class="print-footer" aria-hidden="true">
+        <div>Liquidación estimada – www.estudio-villa.com</div>
+        <div class="page-num"></div>
+    </div>
+
+    <main class="wrap">
+
+        <!-- Aviso legal -->
+        <div class="card">
+            <div class="hdr">Aviso Importante <span class="sub">Marco normativo y alcance del simulador</span></div>
+            <div class="body">
+                <div class="note">
+                    <p><strong>Indemnizaciones especiales derogadas: Ley 24.013 (arts. 8, 9, 10 y 15) y Ley 25.323
+                            (arts. 1 y 2). Nuestro estudio reclama daños y perjuicios cuando corresponda, por empleo no
+                            registrado, despidos discriminatorios y mora en el pago de la indemnización. Este simulador
+                            aplica la LCT (arts. 245, 231/232, 233, 150/155/156) para despidos. Es orientativo y cada
+                            caso requiere verificación por los letrados de nuestro estudio jurídico.</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Datos -->
+        <div class="card">
+            <div class="hdr">Datos de la relación laboral <span class="sub">Ingresá la información para el
+                    cálculo</span></div>
+            <div class="body">
+                <div class="grid">
+                    <!-- NUEVO: Nombre del trabajador -->
+                    <div class="col-12">
+                        <label for="nombreTrab">Nombre del trabajador</label>
+                        <input type="text" id="nombreTrab" placeholder="Nombre y apellido" autocomplete="name" />
+                    </div>
+
+                    <div class="col-4"><label for="fechaIngreso">Fecha de ingreso</label><input type="date"
+                            id="fechaIngreso" /></div>
+                    <div class="col-4"><label for="fechaDespido">Fecha de despido</label><input type="date"
+                            id="fechaDespido" /></div>
+                    <div class="col-4">
+                        <label for="jurisdiccion">Criterio jurisdiccional</label>
+                        <select id="jurisdiccion">
+                            <option value="caba" selected>CABA / CNAT</option>
+                            <option value="pba">Provincia de Buenos Aires / SCBA</option>
+                        </select>
+                    </div>
+
+                    <div class="col-6">
+                        <label for="mejorRemu">Mejor remuneración mensual normal y habitual (últimos 12 meses) – Base
+                            Art. 245</label>
+                        <input type="text" id="mejorRemu" placeholder="$" />
+                    </div>
+
+                    <div class="col-6">
+                        <label>Preaviso</label>
+                        <div class="row">
+                            <label class="switch"><input type="checkbox" id="omitioPreaviso" checked> <small>El
+                                    empleador <strong>omitió</strong> preaviso (se debe indemnización
+                                    sustitutiva)</small></label>
+                        </div>
+                        <div class="hint">Si hubo preaviso otorgado correctamente, desmarcá esta opción.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Criterios -->
+        <div class="card">
+            <div class="hdr">Criterios legales y opciones <span class="sub">Ajustes técnicos del cálculo</span></div>
+            <div class="body">
+                <div class="grid">
+                    <div class="col-6">
+                        <label class="switch">
+                            <input type="checkbox" id="incluyeSACen245">
+                            <small>Incluir <strong>SAC prorrateado (1/12)</strong> en la base del Art. 245</small>
+                        </label>
+                        <div class="hint">Corresponde incluirlo si la relación laboral fue en <strong>Provincia de
+                                Buenos Aires</strong>, no así en <strong>CABA</strong>.</div>
+                    </div>
+                    <div class="col-6">
+                        <label class="switch">
+                            <input type="checkbox" id="sacSobreIntegracion" checked>
+                            <small>Agregar <strong>SAC</strong> sobre integración del mes</small>
+                        </label>
+                        <div class="hint">La integración se paga como días trabajados; esta opción suma su SAC
+                            proporcional.</div>
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="bar">
+                    <button class="btn" id="calcular">Calcular</button>
+                    <button class="btn secondary" id="ctaRevisar">Solicitar revisión del cálculo</button>
+                    <button class="btn ghost" id="imprimir">Imprimir</button>
+                    <button class="btn ghost" id="reiniciar">Reiniciar</button>
+                    <span class="badge" id="antiguedadBadge">Antigüedad: —</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resultados (tiles) -->
+        <div class="card">
+            <div class="hdr">Resultados del cálculo <span class="sub">Detalle por rubro y total</span></div>
+            <div class="body">
+                <div class="totals">
+                    <div class="tile">
+                        <h4>Indemnización por antigüedad (Art. 245)</h4>
+                        <div class="n" id="outAntiguedad">$ —</div>
+                        <div class="hint" id="outAntiguedadBase">Base: —</div>
+                    </div>
+                    <div class="tile">
+                        <h4>Preaviso</h4>
+                        <div class="n" id="outPreaviso">$ —</div>
+                        <div class="hint" id="outPreavisoDetalle">—</div>
+                    </div>
+                    <div class="tile">
+                        <h4>SAC sobre preaviso</h4>
+                        <div class="n" id="outSACPrev">$ —</div>
+                        <div class="hint">Equivale a 1/12 del preaviso.</div>
+                    </div>
+                    <div class="tile">
+                        <h4>Integración del mes de despido</h4>
+                        <div class="n" id="outIntegracion">$ —</div>
+                        <div class="hint" id="outIntegracionDetalle">—</div>
+                    </div>
+                    <div class="tile">
+                        <h4>Vacaciones proporcionales no gozadas</h4>
+                        <div class="n" id="outVacaciones">$ —</div>
+                        <div class="hint" id="outVacDias">—</div>
+                    </div>
+                    <div class="tile grand">
+                        <h4>Total a percibir (suma de rubros)</h4>
+                        <div class="n" id="outTotal">$ —</div>
+                        <div class="hint bold-just text-black">No incluye multas ni otros créditos no solicitados. En
+                            determinadas circunstancias, que evaluarán nuestros abogados, esta indemnización podrá
+                            incrementarse en concepto de diferencias salariales, horas extras, adicionales impagos,
+                            daños y perjuicios por empleo en negro; discriminación; falta de pago en tiempo y forma,
+                            etc.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== ÚLTIMO MÓDULO (IMPRIMIBLE) ===== -->
+        <div class="card print-target" id="resumenPrintable">
+            <div class="body">
+                <div class="prt-head">
+                    <div class="brand-mini">
+                        <div class="logo">VA</div>
+                        <div class="name">
+                            <strong>Villa &amp; Asociados</strong><br>
+                            <span>Resumen de rubros indemnizatorios</span>
+                        </div>
+                    </div>
+                    <div class="prt-date"><strong>Fecha:</strong> <span id="pFechaGen">—</span></div>
+                </div>
+
+                <div class="prt-grid">
+                    <div class="prt-col">
+                        <h4>Datos del caso</h4>
+                        <ul class="meta">
+                            <li><strong>Trabajador:</strong> <span id="pTrab">—</span></li>
+                            <li><strong>Ingreso:</strong> <span id="pIng">—</span></li>
+                            <li><strong>Despido:</strong> <span id="pDes">—</span></li>
+                            <li><strong>Antigüedad:</strong> <span id="pAnt">—</span></li>
+                        </ul>
+                    </div>
+                    <div class="prt-col">
+                        <h4>Bases y total</h4>
+                        <ul class="meta">
+                            <li><strong>MRNH:</strong> <span id="pMRNH">—</span></li>
+                            <li><strong>Base 245:</strong> <span id="pBase245">—</span></li>
+                            <li class="total-line"><strong>Total:</strong> <span id="pTot">—</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="prt-title">Desglose completo</h3>
+                <div class="table-wrap">
+                    <table id="tablaDesglose">
+                        <thead>
+                            <tr>
+                                <th>Concepto</th>
+                                <th>Base / Cantidad</th>
+                                <th>Monto</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+                <div class="p-foot">
+                    <div class="left">Villa &amp; Asociados — Av. Roque Saenz Peña 720, Piso 4 E, CABA •
+                        info@estudio-villa.com • Tel/WhatsApp: <a href="tel:+541162577792">11 6257-7792</a></div>
+                    <div class="right">Generada en www.estudio-villa.com</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="body">
+                <div class="footer">
+                    © Villa &amp; Asociados — Herramienta profesional orientativa. Confirmá siempre el cálculo con la
+                    documentación del caso y consultá la liquidación con un profesional de nuestro estudio o uno de tu
+                    confianza. <span id="calcCountFooter"><strong>calculo realizado Nro 2.000</strong></span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const STUDIO_EMAIL = "info@estudio-villa.com";
+
+        // Contador (inicia en 2000 y persiste)
+        let calcCount = Number.parseInt(localStorage.getItem("va_calc_count") || "2000", 10);
+        const $calcCountFooter = document.getElementById("calcCountFooter");
+        function renderCount() {
+            if ($calcCountFooter) {
+                $calcCountFooter.innerHTML = "<strong>calculo realizado Nro " + calcCount.toLocaleString("es-AR") + "</strong>";
+            }
+        }
+        renderCount();
+
+        // Formateo con separadores en MRNH
+        document.addEventListener('DOMContentLoaded', () => {
+            const remu = document.getElementById('mejorRemu');
+            if (remu) {
+                remu.addEventListener('blur', () => {
+                    const n = parseMoney(remu.value);
+                    if (!isNaN(n) && n > 0) { remu.value = n.toLocaleString('es-AR', { minimumFractionDigits: 0, maximumFractionDigits: 2 }); }
+                    else { remu.value = ''; }
+                });
+            }
+        });
+
+        const fmt = (n) => isFinite(n) ? n.toLocaleString("es-AR", { style: "currency", currency: "ARS", maximumFractionDigits: 2 }) : "—";
+        function parseMoney(v) { if (!v) return 0; v = ("" + v).replace(/\s|\$|\./g, "").replace(",", "."); const n = parseFloat(v); return isNaN(n) ? 0 : n; }
+        function daysInMonth(y, m) { return new Date(y, m + 1, 0).getDate(); }
+        function diffYMD(a, b) { let y = b.getFullYear() - a.getFullYear(), m = b.getMonth() - a.getMonth(), d = b.getDate() - a.getDate(); if (d < 0) { m -= 1; d += daysInMonth(b.getFullYear(), (b.getMonth() - 1 + 12) % 12); } if (m < 0) { y -= 1; m += 12; } return { years: y, months: m, days: d }; }
+        function totalMonthsFrac(d) { return d.years * 12 + d.months + (d.days / 30); }
+        function diasVacAnuales(ant31) { const y = ant31.years; if (y < 5) return 14; if (y < 10) return 21; if (y < 20) return 28; return 35; }
+
+        function compute() {
+            const nombreTrab = document.getElementById("nombreTrab").value.trim();
+            const fIngStr = document.getElementById("fechaIngreso").value;
+            const fDesStr = document.getElementById("fechaDespido").value;
+            const jurisd = document.getElementById("jurisdiccion").value;
+            const mejorRemu = parseMoney(document.getElementById("mejorRemu").value);
+            const omitioPreaviso = document.getElementById("omitioPreaviso").checked;
+            const incluyeSACen245 = document.getElementById("incluyeSACen245").checked;
+            const sacSobreIntegracion = document.getElementById("sacSobreIntegracion").checked;
+
+            if (!fIngStr || !fDesStr || !mejorRemu) { alert("Completá al menos: nombre (opcional), ingreso, despido y mejor remuneración."); return false; }
+
+            const fIng = new Date(fIngStr + "T12:00:00");
+            const fDes = new Date(fDesStr + "T12:00:00");
+            if (fDes < fIng) { alert("La fecha de despido no puede ser anterior a la de ingreso."); return false; }
+
+            const dif = diffYMD(fIng, fDes);
+            const totalMesesFrac = totalMonthsFrac(dif);
+            const enPrueba = (totalMesesFrac < 3 - 1e-9);
+
+            // Base 245
+            const base245 = mejorRemu * (incluyeSACen245 ? (13 / 12) : 1);
+
+            // Años indemnizables
+            const fraccionMeses = dif.months + (dif.days / 30);
+            const aniosIndemnizables = Math.max(1, dif.years + (fraccionMeses > 3 ? 1 : 0));
+            const indAnt = base245 * aniosIndemnizables;
+
+            // Preaviso
+            let preavisoMonto = 0, preavisoDetalle = "—";
+            if (omitioPreaviso) {
+                let mesesPrev;
+                if (enPrueba) { mesesPrev = .5; preavisoDetalle = "15 días (período de prueba)"; }
+                else if (dif.years < 5) { mesesPrev = 1; preavisoDetalle = "1 mes (antigüedad ≤ 5 años)"; }
+                else { mesesPrev = 2; preavisoDetalle = "2 meses (antigüedad > 5 años)"; }
+                preavisoMonto = mejorRemu * mesesPrev;
+            }
+            const sacSobrePreaviso = preavisoMonto / 12;
+
+            // Integración del mes
+            let integracion = 0, integDetalle = "No corresponde";
+            const ultimoDia = daysInMonth(fDes.getFullYear(), fDes.getMonth());
+            const esUltimoDia = (fDes.getDate() === ultimoDia);
+            if (omitioPreaviso && !esUltimoDia && !enPrueba) {
+                const diasRestan = ultimoDia - fDes.getDate();
+                integracion = mejorRemu * (diasRestan / 30);
+                integDetalle = `Faltan ${diasRestan} día(s) para fin de mes (prorrateo sobre 30).`;
+            }
+            const sacIntegracion = sacSobreIntegracion ? integracion / 12 : 0;
+
+            // Vacaciones proporcionales
+            const anio = fDes.getFullYear();
+            const inicioAno = new Date(anio, 0, 1, 12, 0, 0);
+            const desdeProp = (fIng > inicioAno) ? fIng : inicioAno;
+            const diasTrabAno = Math.floor((fDes - desdeProp) / (1000 * 60 * 60 * 24)) + 1;
+            const totalDiasAno = ((new Date(anio, 1, 29).getMonth() === 1) ? 366 : 365);
+            const finDeAno = new Date(anio, 11, 31, 12, 0, 0);
+            const antigA31 = diffYMD(fIng, finDeAno);
+            const diasVac = diasVacAnuales(antigA31);
+            const diasVacProp = diasVac * (diasTrabAno / totalDiasAno);
+            const valorDiaVac = mejorRemu / 25;
+            const vacMonto = valorDiaVac * diasVacProp;
+
+            const total = indAnt + preavisoMonto + sacSobrePreaviso + integracion + vacMonto + sacIntegracion;
+
+            // Normalizo MRNH con separadores
+            const remuInput = document.getElementById('mejorRemu');
+            if (remuInput) { remuInput.value = mejorRemu.toLocaleString('es-AR', { minimumFractionDigits: 0, maximumFractionDigits: 2 }); }
+
+            // Salidas (tiles)
+            document.getElementById("antiguedadBadge").textContent = `Antigüedad: ${dif.years} a, ${dif.months} m, ${dif.days} d  •  Años indemnizables: ${aniosIndemnizables}`;
+            document.getElementById("outAntiguedad").textContent = fmt(indAnt);
+            document.getElementById("outAntiguedadBase").textContent = `Base Art. 245: ${fmt(base245)} ${incluyeSACen245 ? "(incluye SAC 1/12)" : "(sin SAC prorrateado)"} (${jurisd.toUpperCase()})`;
+            document.getElementById("outPreaviso").textContent = fmt(preavisoMonto);
+            document.getElementById("outPreavisoDetalle").textContent = preavisoDetalle;
+            document.getElementById("outSACPrev").textContent = fmt(sacSobrePreaviso);
+            document.getElementById("outIntegracion").textContent = fmt(integracion + sacIntegracion);
+            document.getElementById("outIntegracionDetalle").textContent = integDetalle + (sacSobreIntegracion && integracion > 0 ? " + SAC proporcional incluido." : "");
+            document.getElementById("outVacaciones").textContent = fmt(vacMonto);
+            document.getElementById("outVacDias").textContent = `Días anuales: ${diasVac} • Días trabajados año: ${diasTrabAno}/${totalDiasAno} → Proporcionales: ${diasVacProp.toFixed(2)} • Valor día: ${fmt(valorDiaVac)}`;
+            document.getElementById("outTotal").textContent = fmt(total);
+
+            // Encabezado impresión general
+            const pTot = document.getElementById("printTotal");
+            const pDate = document.getElementById("printDate");
+            if (pTot) pTot.textContent = document.getElementById("outTotal").textContent;
+            if (pDate) pDate.textContent = new Date().toLocaleString("es-AR");
+
+            // Completo ÚLTIMO MÓDULO (incluye Nombre del trabajador)
+            const id = (x) => document.getElementById(x);
+            id("pFechaGen").textContent = new Date().toLocaleString("es-AR");
+            id("pTrab").textContent = nombreTrab || "—";
+            id("pIng").textContent = fIng.toLocaleDateString("es-AR");
+            id("pDes").textContent = fDes.toLocaleDateString("es-AR");
+            id("pAnt").textContent = `${dif.years}a ${dif.months}m ${dif.days}d (indemnizables: ${aniosIndemnizables})`;
+            id("pMRNH").textContent = fmt(mejorRemu);
+            id("pBase245").textContent = `${fmt(base245)} ${incluyeSACen245 ? "(incluye SAC 1/12)" : "(sin SAC 1/12)"}`;
+            id("pTot").textContent = fmt(total);
+
+            // Tabla del desglose (último módulo)
+            const tbody = document.querySelector("#tablaDesglose tbody");
+            tbody.innerHTML = "";
+            const rows = [
+                ["Indemnización por antigüedad (Art. 245)", `Base ${fmt(base245)} × ${aniosIndemnizables} mes(es) (mín. 1 mes)`, indAnt],
+                ["Preaviso (Art. 232)", preavisoDetalle + (preavisoMonto ? ` • Base ${fmt(mejorRemu)}` : ""), preavisoMonto],
+                ["SAC sobre preaviso", "1/12 del preaviso", sacSobrePreaviso],
+                ["Integración del mes (Art. 233)", integDetalle + (integracion ? ` • Base ${fmt(mejorRemu)}` : ""), integracion],
+                ...(sacIntegracion ? [["SAC sobre integración", "1/12 de la integración", sacIntegracion]] : []),
+                ["Vacaciones proporcionales (Arts. 150/155/156)", `${diasVacProp.toFixed(2)} día(s) × ${fmt(valorDiaVac)} (sueldo/25)`, vacMonto],
+                ["TOTAL", "", total]
+            ];
+            for (const r of rows) {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `<td>${r[0]}</td><td class="muted">${r[1] || "—"}</td><td><strong>${fmt(r[2])}</strong></td>`;
+                if (r[0] === "TOTAL") { tr.style.background = "var(--sand-2)"; tr.style.fontWeight = "800"; }
+                tbody.appendChild(tr);
+            }
+
+            // Resumen para mail (incluye nombre + jurisdicción SOLO en el mail)
+            const jurisdLabel = (jurisd === "pba") ? "PBA / SCBA" : "CABA / CNAT";
+            window.__resumen = [
+                "SIMULADOR DE INDEMNIZACIÓN - Villa & Asociados",
+                `Trabajador: ${nombreTrab || "-"}`,
+                `Ingreso: ${id("pIng").textContent} | Despido: ${id("pDes").textContent} | Jurisdicción: ${jurisdLabel}`,
+                `Antigüedad: ${id("pAnt").textContent}`,
+                `MRNH: ${id("pMRNH").textContent} | Base 245: ${id("pBase245").textContent}`,
+                `Antigüedad (245): ${fmt(indAnt)} | Preaviso: ${fmt(preavisoMonto)} | SAC prev.: ${fmt(sacSobrePreaviso)}`,
+                `Integración: ${fmt(integracion)}${sacIntegracion ? ` | SAC integ.: ${fmt(sacIntegracion)}` : ""} | Vacaciones prop.: ${fmt(vacMonto)}`,
+                `TOTAL: ${fmt(total)}`,
+                "",
+                "Nota: Ley 24.013 (arts. 8, 9, 10, 15) y Ley 25.323 (arts. 1 y 2) derogadas. El estudio reclama daños y perjuicios (empleo no registrado, discriminación, mora). Generado en www.estudio-villa.com"
+            ].join("\n");
+
+            return true;
+        }
+
+        // Acciones
+        document.getElementById("calcular").addEventListener("click", () => {
+            const ok = compute(); if (!ok) return;
+            calcCount += 1; localStorage.setItem("va_calc_count", String(calcCount)); renderCount();
+        });
+
+        // Mail a info@estudio-villa.com
+        document.getElementById("ctaRevisar").addEventListener("click", () => {
+            const ok = compute(); if (!ok) return;
+            const subject = "Solicitud de revisión de indemnización";
+            const body = window.__resumen + "\n\nSolicito revisión del cálculo y asesoramiento para efectuar la liquidación.";
+            const mailto = `mailto:${encodeURIComponent(STUDIO_EMAIL)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = mailto;
+        });
+
+        // Imprimir: SOLO el último módulo (profesional y en una hoja)
+        document.getElementById("imprimir").addEventListener("click", () => {
+            const ok = compute(); if (!ok) return;
+            document.body.classList.add("print-desglose");
+            setTimeout(() => { window.print(); }, 50);
+        });
+        window.addEventListener("afterprint", () => { document.body.classList.remove("print-desglose"); });
+
+        // Impresión desde menú del navegador (actualizo fecha/total del encabezado de impresión)
+        window.addEventListener("beforeprint", () => {
+            const pTot = document.getElementById("printTotal");
+            const pDate = document.getElementById("printDate");
+            if (pTot) pTot.textContent = document.getElementById("outTotal").textContent || "—";
+            if (pDate) pDate.textContent = new Date().toLocaleString("es-AR");
+        });
+
+        // Reiniciar
+        document.getElementById("reiniciar").addEventListener("click", () => {
+            ["nombreTrab", "fechaIngreso", "fechaDespido", "mejorRemu"].forEach(id => document.getElementById(id).value = "");
+            document.getElementById("jurisdiccion").value = "caba";
+            document.getElementById("omitioPreaviso").checked = true;
+            document.getElementById("incluyeSACen245").checked = false;
+            document.getElementById("sacSobreIntegracion").checked = true;
+            ["outAntiguedad", "outPreaviso", "outSACPrev", "outIntegracion", "outVacaciones", "outTotal"].forEach(id => document.getElementById(id).textContent = "$ —");
+            ["outAntiguedadBase", "outPreavisoDetalle", "outIntegracionDetalle", "outVacDias"].forEach(id => document.getElementById(id).textContent = "—");
+            document.querySelector("#tablaDesglose tbody").innerHTML = "";
+            document.getElementById("antiguedadBadge").textContent = "Antigüedad: —";
+            const pTot = document.getElementById("printTotal"); const pDate = document.getElementById("printDate");
+            if (pTot) pTot.textContent = "—"; if (pDate) pDate.textContent = "—";
+        });
+
+        // SAC 1/12 automático por jurisdicción
+        document.getElementById("jurisdiccion").addEventListener("change", (e) => {
+            document.getElementById("incluyeSACen245").checked = (e.target.value === "pba");
+        });
+    </script>
+</body>
+
+</html>
