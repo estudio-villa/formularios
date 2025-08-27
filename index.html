@@ -1,146 +1,297 @@
 <!DOCTYPE html>
 <html lang="es-AR">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Formularios - Villa & Asociados</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --sand: #efe2cc;
-      --sand-2: #f6eddc;
-      --charcoal: #474747;
-      --graphite: #2f2f2f;
-      --accent: #b89a72;
-      --ring: #cab28c;
-      --white: #fff;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: "Montserrat", sans-serif;
-      background: var(--sand);
-      color: var(--graphite);
-    }
-    .topbar {
-      background: var(--sand);
-      border-bottom: 1px solid var(--ring);
-      padding: 14px 22px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 700;
-      color: var(--graphite);
-    }
-    .logo {
-      width: 42px;
-      height: 42px;
-      border-radius: 10px;
-      display: grid;
-      place-items: center;
-      background: var(--sand-2);
-      border: 1px solid var(--ring);
-      font-weight: 800;
-      color: var(--graphite);
-    }
-    .wrap {
-      max-width: 1000px;
-      margin: 30px auto;
-      padding: 0 16px;
-    }
-    .hdr {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--charcoal);
-      margin-bottom: 24px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-    }
-    .card {
-      background: var(--white);
-      border: 1px solid var(--ring);
-      border-radius: 18px;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.06);
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform .1s ease, box-shadow .2s ease;
-    }
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.12);
-    }
-    .card h3 {
-      margin: 0 0 12px;
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--charcoal);
-    }
-    .card p {
-      font-size: 14px;
-      color: #555;
-      flex: 1;
-    }
-    .btn {
-      display: inline-block;
-      margin-top: 16px;
-      background: var(--charcoal);
-      color: #fff;
-      padding: 10px 16px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 14px;
-      transition: background .15s;
-      text-align: center;
-    }
-    .btn:hover {
-      background: #2f2f2f;
-    }
-    .footer {
-      text-align: center;
-      font-size: 12px;
-      color: #666;
-      margin-top: 40px;
-    }
-  </style>
-</head>
-<body>
-  <!-- Encabezado -->
-  <header class="topbar">
-    <div class="brand">
-      <div class="logo">VA</div>
-      <div>Villa &amp; Asociados<br><small>Acceso a formularios</small></div>
-    </div>
-  </header>
 
-  <!-- Contenido principal -->
-  <main class="wrap">
-    <div class="hdr">Seleccione un formulario</div>
-    <div class="grid">
-      <div class="card">
-        <h3>Simulador de Indemnización</h3>
-        <p>Calcule la liquidación estimada en caso de despido sin causa, según la LCT y criterios jurisdiccionales.</p>
-        <a href="indemnizacion.html" class="btn">Acceder</a>
-      </div>
-      <div class="card">
-        <h3>Licencias y Beneficios</h3>
-        <p>Consulte los días de licencia, beneficios y otros derechos laborales vigentes según su antigüedad y convenio.</p>
-        <a href="licencias_y_beneficios.html" class="btn">Acceder</a>
-      </div>
-    </div>
-    <div class="footer">
-      © Villa &amp; Asociados — Herramientas profesionales orientativas. Confirmá siempre la información con la documentación del caso y la consulta profesional.
-    </div>
-  </main>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Formularios - Villa & Asociados</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sand: #efe2cc;
+            --sand-2: #f6eddc;
+            --charcoal: #474747;
+            --graphite: #2f2f2f;
+            --accent: #b89a72;
+            --ring: #cab28c;
+            --white: #fff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Montserrat", sans-serif;
+            background: var(--sand);
+            color: var(--graphite);
+            line-height: 1.6;
+        }
+
+        /* Header mejorado */
+        .topbar {
+            background: var(--sand);
+            border-bottom: 1px solid var(--ring);
+            padding: 14px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            color: var(--graphite);
+        }
+
+        .logo {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            display: grid;
+            place-items: center;
+            background: var(--sand-2);
+            border: 1px solid var(--ring);
+            font-weight: 800;
+            color: var(--graphite);
+            transition: var(--transition);
+        }
+
+        .brand:hover .logo {
+            transform: rotate(5deg);
+            background: var(--accent);
+            color: white;
+        }
+
+        .brand-text {
+            line-height: 1.2;
+        }
+
+        .brand small {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--charcoal);
+        }
+
+        /* Hero section */
+        .hero {
+            background: linear-gradient(135deg, var(--sand-2) 0%, var(--sand) 100%);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--ring);
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--graphite);
+            margin-bottom: 16px;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--charcoal);
+            font-size: 1.1rem;
+        }
+
+        /* Contenido principal */
+        .wrap {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .hdr {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .hdr::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 3px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--white);
+            border: 1px solid var(--ring);
+            border-radius: 18px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card h3 {
+            margin: 0 0 15px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--charcoal);
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #555;
+            flex: 1;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--charcoal);
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 60px;
+            padding: 25px 20px;
+            border-top: 1px solid var(--ring);
+            background: var(--sand-2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hdr {
+                font-size: 1.4rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .topbar {
+                padding: 12px 15px;
+            }
+
+            .brand-text {
+                font-size: 0.9rem;
+            }
+
+            .brand small {
+                font-size: 0.7rem;
+            }
+
+            .hero {
+                padding: 30px 15px;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Encabezado -->
+    <header class="topbar">
+        <div class="brand">
+            <div class="logo">VA</div>
+            <div class="brand-text">Villa &amp; Asociados<br><small>Acceso a formularios</small></div>
+        </div>
+    </header>
+    <main class="wrap">
+        <div class="hdr">Seleccione un formulario</div>
+        <div class="grid">
+            <div class="card">
+                <h3>Simulador de Indemnización</h3>
+                <p>Calcule la liquidación estimada en caso de despido sin causa, según la LCT y criterios
+                    jurisdiccionales.</p>
+                <a href="indemnizacion.html" class="btn">Acceder</a>
+            </div>
+            <div class="card">
+                <h3>Licencias y Beneficios</h3>
+                <p>Consulte los días de licencia, beneficios y otros derechos laborales vigentes según su antigüedad y
+                    convenio.</p>
+                <a href="licencias_y_beneficios.html" class="btn">Acceder</a>
+            </div>
+        </div>
+        <div class="footer">
+            © Villa &amp; Asociados — Herramientas profesionales orientativas. Confirmá siempre la información con la
+            documentación del caso y la consulta profesional.
+        </div>
+    </main>
 </body>
+
 </html>
