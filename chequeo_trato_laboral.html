@@ -1,540 +1,680 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es-AR">
-
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Chequeo de trato laboral (2 minutos) – Villa &amp; Asociados</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>:root{--sand:#efe2cc;--sand-2:#f6eddc;--charcoal:#474747;--graphite:#2f2f2f;--accent:#b89a72;--ring:#cab28c;--white:#fff;--transition:all 0.3s ease}*{box-sizing:border-box;margin:0;padding:0}body{font-family:"Montserrat",sans-serif;background:var(--sand);color:var(--graphite);line-height:1.6}.topbar{background:var(--sand);border-bottom:1px solid var(--ring);padding:14px 22px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,.05)}.brand{display:flex;align-items:center;gap:12px;font-weight:700;color:var(--graphite);text-decoration:none}.logo{width:42px;height:42px;border-radius:10px;display:grid;place-items:center;background:var(--sand-2);border:1px solid var(--ring);font-weight:800;color:var(--graphite);transition:var(--transition)}.brand:hover .logo{transform:rotate(5deg);background:var(--accent);color:#fff}.brand-text{line-height:1.2}.brand small{font-size:.75rem;font-weight:500;color:var(--charcoal)}.hero{background:linear-gradient(135deg,var(--sand-2) 0%,var(--sand) 100%);padding:40px 20px;text-align:center;border-bottom:1px solid var(--ring)}.hero h1{font-size:2.2rem;font-weight:700;color:var(--graphite);margin-bottom:16px}.hero p{max-width:700px;margin:0 auto;color:var(--charcoal);font-size:1.1rem}.wrap{max-width:1000px;margin:40px auto;padding:0 20px}.hdr{font-size:1.6rem;font-weight:700;color:var(--charcoal);margin-bottom:30px;position:relative;padding-bottom:10px}.hdr::after{content:'';position:absolute;bottom:0;left:0;width:60px;height:3px;background:var(--accent);border-radius:3px}.note{color:var(--charcoal);margin-bottom:25px;padding:15px;background:var(--sand-2);border-radius:12px;border-left:4px solid var(--accent)}.status{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:15px;border:1px dashed var(--ring);border-radius:12px;background:var(--sand-2);margin:20px 0}.counter{font-weight:700;color:var(--charcoal)}.panels{display:grid;gap:20px}.panel{background:var(--white);border:1px solid var(--ring);border-radius:18px;padding:25px;box-shadow:0 6px 16px rgba(0,0,0,.06);position:relative;overflow:hidden}.panel::before{content:'';position:absolute;top:0;left:0;width:100%;height:5px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s ease}.panel:hover::before{transform:scaleX(1)}.panel legend{padding:0 10px;margin-left:6px;color:var(--charcoal);font-weight:700;font-size:1.2rem}.grid{display:grid;gap:20px}.grid-2{grid-template-columns:1fr 1fr}@media(max-width:820px){.grid-2{grid-template-columns:1fr}}.field{display:grid;gap:8px}.field label{color:var(--charcoal);font-weight:600}.textarea{width:100%;min-height:110px;resize:vertical;padding:14px;border:1px solid var(--ring);border-radius:12px;background:var(--sand-2);color:var(--graphite);font-family:"Montserrat",sans-serif;transition:var(--transition)}.textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(184,154,114,.2)}.toggle{display:flex;gap:10px;flex-wrap:wrap}.toggle input{display:none}.toggle label{padding:12px 16px;border:1px solid var(--ring);border-radius:12px;background:var(--sand-2);color:var(--charcoal);cursor:pointer;font-weight:600;transition:var(--transition)}.toggle input:checked+label{background:var(--accent);border-color:var(--accent);color:var(--white)}.hint{margin-top:8px;font-size:.85rem;color:var(--charcoal);line-height:1.4}.countline{margin-top:6px;text-align:right;font-size:.85rem;color:var(--charcoal)}.countline.warn{color:var(--accent);font-weight:600}.hr{height:1px;background:var(--ring);margin:20px 0;border:0}.btns{display:flex;gap:15px;flex-wrap:wrap;margin-top:25px}.btn{appearance:none;border:none;padding:14px 24px;border-radius:12px;background:var(--charcoal);color:#fff;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;transition:var(--transition);font-family:"Montserrat",sans-serif}.btn:hover{background:var(--accent);transform:translateY(-2px)}.btn.secondary{background:var(--sand-2);color:var(--charcoal);border:1px solid var(--ring)}.btn.secondary:hover{background:var(--ring)}.result{background:var(--white);border:1px solid var(--ring);padding:25px;border-radius:18px;margin-top:25px;box-shadow:0 6px 16px rgba(0,0,0,.06);display:none}.chip{display:inline-block;padding:6px 14px;border-radius:999px;font-size:.9rem;font-weight:700}.chip.low{background:#e6f4ee;color:#137a5a;border:1px solid #a8d5c5}.chip.med{background:#fef6e6;color:#b45f06;border:1px solid #fcdc9c}.chip.high{background:#fae6e6;color:#c53030;border:1px solid #f8b4b4}.bullet{padding-left:20px;margin:15px 0}.bullet li{margin:10px 0}.table{width:100%;border-collapse:collapse;margin:15px 0}.table th,.table td{text-align:left;padding:12px;border-bottom:1px dashed var(--ring)}.table td:last-child{text-align:right;font-weight:600}details{margin:15px 0}summary{font-weight:600;color:var(--charcoal);cursor:pointer}.footer{text-align:center;font-size:.85rem;color:#666;margin-top:60px;padding:25px 20px;border-top:1px solid var(--ring);background:var(--sand-2)}@media(max-width:768px){.hero h1{font-size:1.8rem}.hero p{font-size:1rem}.hdr{font-size:1.4rem}.panel{padding:20px}}@media(max-width:480px){.topbar{padding:12px 15px}.brand-text{font-size:.9rem}.brand small{font-size:.7rem}.hero{padding:30px 15px}.hero h1{font-size:1.5rem}.btns{flex-direction:column}.btn{width:100%}}</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chequeo de trato laboral (2 minutos) – Villa &amp; Asociados</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --sand:#efe2cc;
+      --sand-2:#f6eddc;
+      --charcoal:#474747;
+      --graphite:#2f2f2f;
+      --accent:#b89a72;
+      --ring:#cab28c;
+      --white:#fff;
+      --transition:all .3s ease;
+      --radius:18px;
+      --shadow:0 6px 16px rgba(0,0,0,.08);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:"Montserrat",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,sans-serif;
+      background:var(--sand);
+      color:var(--graphite);
+      line-height:1.6;
+    }
+
+    /* Topbar (simple) */
+    .topbar{
+      background:var(--sand);
+      border-bottom:1px solid var(--ring);
+      padding:14px 22px;
+      display:flex;align-items:center;justify-content:space-between;
+      position:sticky;top:0;z-index:100;
+      box-shadow:0 2px 10px rgba(0,0,0,.05);
+    }
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700;color:var(--graphite)}
+    .logo{
+      width:40px;height:40px;border-radius:10px;display:grid;place-items:center;
+      background:var(--sand-2);border:1px solid var(--ring);font-weight:800;color:var(--graphite);
+      transition:var(--transition)
+    }
+    .brand:hover .logo{transform:rotate(5deg);background:var(--accent);color:#fff}
+    .brand small{font-size:.75rem;color:var(--charcoal);font-weight:500;display:block;line-height:1.15}
+
+    /* Hero */
+    .ev-hero{
+      background:linear-gradient(135deg,var(--sand-2) 0%,var(--sand) 100%);
+      padding:28px 22px;border-bottom:1px solid var(--ring);text-align:left
+    }
+    .ev-title{font-weight:800;letter-spacing:.2px;color:var(--graphite);font-size:1.25rem}
+    .ev-mini{font-size:.92rem;color:var(--charcoal)}
+
+    /* Wrapper / Card principal */
+    .ev-wrap{
+      max-width:1000px;margin:28px auto;background:var(--white);color:var(--graphite);
+      border:1px solid var(--ring);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)
+    }
+    .ev-body{padding:22px}
+
+    /* Paneles */
+    .ev-panels{display:grid;gap:18px}
+    .ev-panel{
+      background:var(--white);
+      border:1px solid var(--ring);
+      border-radius:16px;
+      padding:16px;
+      box-shadow:0 2px 8px rgba(0,0,0,.04);
+      position:relative;overflow:hidden
+    }
+    .ev-panel legend{
+      padding:0 8px;margin-left:6px;color:var(--charcoal);
+      font-weight:800;letter-spacing:.2px
+    }
+    .ev-note{color:var(--charcoal)}
+    .ev-hr{height:1px;background:var(--ring);margin:12px 0;border:0;opacity:.8}
+
+    /* Grid */
+    .ev-grid{display:grid;gap:12px}
+    .ev-grid-2{grid-template-columns:1fr 1fr}
+    @media (max-width:820px){.ev-grid-2{grid-template-columns:1fr}}
+
+    /* Campos */
+    .ev-field{display:grid;gap:6px}
+    .ev-field label,.ev-field span{color:var(--charcoal);font-weight:600}
+
+    .ev-textarea{
+      width:100%;min-height:110px;resize:vertical;padding:12px 14px;
+      border:1px solid var(--ring);border-radius:12px;background:#fff;color:var(--graphite)
+    }
+
+    /* Toggle (chips) */
+    .ev-toggle{display:flex;gap:8px;flex-wrap:wrap}
+    .ev-toggle input{display:none}
+    .ev-toggle label{
+      padding:10px 12px;border:1px solid var(--ring);border-radius:12px;
+      background:var(--sand-2);color:var(--graphite);cursor:pointer;font-weight:700;
+      transition:var(--transition)
+    }
+    .ev-toggle label:hover{transform:translateY(-1px)}
+    .ev-toggle input:checked+label{
+      background:var(--accent);border-color:var(--accent);color:#fff;
+      box-shadow:inset 0 0 0 1px rgba(0,0,0,.05)
+    }
+
+    /* Estado / contador */
+    .ev-status{
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      padding:12px;border:1px dashed var(--ring);border-radius:12px;background:var(--sand-2);
+      margin:12px 0 22px
+    }
+    .ev-counter{font-weight:800;color:var(--graphite)}
+
+    /* Botones */
+    .ev-btns{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .ev-btn{
+      appearance:none;border:1px solid var(--graphite);padding:12px 16px;border-radius:14px;
+      background:var(--charcoal);color:#fff;font-weight:800;cursor:pointer;text-decoration:none;
+      display:inline-flex;align-items:center;justify-content:center;transition:var(--transition)
+    }
+    .ev-btn:hover{background:var(--accent);border-color:var(--accent);transform:translateY(-2px)}
+    .ev-btn.secondary{background:var(--sand-2);color:var(--graphite);border-color:var(--ring)}
+    .ev-btn.secondary:hover{background:#fff}
+
+    /* Resultado */
+    .ev-result{
+      background:#fff;border:1px solid var(--ring);padding:14px;border-radius:12px;margin-top:12px;
+      box-shadow:0 2px 8px rgba(0,0,0,.04)
+    }
+
+    /* Chips de nivel */
+    .ev-chip{display:inline-block;padding:4px 10px;border-radius:999px;font-size:.8rem;font-weight:800;border:1px solid transparent}
+    .ev-chip.low{background:#ecfdf5;color:#065f46;border-color:#a7f3d0}
+    .ev-chip.med{background:#fffbeb;color:#92400e;border-color:#fde68a}
+    .ev-chip.high{background:#fef2f2;color:#991b1b;border-color:#fecaca}
+
+    /* Listas / tabla */
+    .ev-bullet li{margin:4px 0}
+    .ev-table{width:100%;border-collapse:collapse;margin-top:8px}
+    .ev-table th,.ev-table td{text-align:left;padding:10px;border-bottom:1px dashed rgba(0,0,0,.08)}
+    .ev-table td:last-child{text-align:right}
+
+    .ev-hint{margin-top:6px;line-height:1.35}
+    .ev-countline{margin-top:4px;text-align:right;color:var(--charcoal)}
+    .ev-countline.warn{color:var(--accent);font-weight:700}
+
+    /* Toast */
+    .ev-toast{
+      position:fixed;top:16px;left:50%;transform:translateX(-50%) translateY(-8px);
+      z-index:9999;padding:10px 14px;border-radius:12px;border:1px solid var(--ring);
+      box-shadow:var(--shadow);opacity:0;transition:opacity .25s ease, transform .25s ease;pointer-events:none
+    }
+    .ev-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+    .ev-toast.ok{background:linear-gradient(135deg,var(--accent),#a68562);border-color:var(--accent);color:#fff}
+    .ev-toast.err{background:#fef2f2;border-color:#fecaca;color:#991b1b}
+
+    /* Responsivo fino */
+    @media (max-width:600px){
+      .ev-title{font-size:1.05rem}
+      .ev-mini{font-size:.88rem}
+      .ev-body{padding:18px}
+      .ev-btn{width:100%}
+    }
+  </style>
 </head>
-
 <body>
-    <!-- Encabezado -->
-    <header class="topbar">
-        <a href="index.html" class="brand">
-            <div class="logo">VA</div>
-            <div class="brand-text">Villa &amp; Asociados<br><small>Acceso a formularios</small></div>
-        </a>
-    </header>
+  <!-- Encabezado -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">VA</div>
+      <div>Villa &amp; Asociados<small>Chequeo de trato laboral</small></div>
+    </div>
+  </header>
 
-    <section class="hero">
-        <h1>Chequeo de trato laboral (2 minutos)</h1>
-        <p>Confidencial • Sin datos personales • Resultado orientativo</p>
-    </section>
-
-    <main class="wrap">
-        <div class="hdr">Evaluación de situación laboral</div>
-
-        <div class="note">
-            Hacé el chequeo en 2 minutos. Es confidencial y orientativo. Recordá que <strong>el maltrato, el acoso y la
-                discriminación están prohibidos</strong>.
-        </div>
-
-        <div class="status">
-            <div>Completá todas las preguntas para un resultado claro.</div>
-            <div class="counter" id="count">Respondidas: 0</div>
-        </div>
-
-        <div class="panels">
-            <!-- Hechos graves -->
-            <fieldset class="panel">
-                <legend>Hechos graves</legend>
-                <div class="grid grid-2">
-                    <div class="field">
-                        <label>¿Violencia física?</label>
-                        <div class="toggle">
-                            <input type="radio" name="qR1" id="qR1s">
-                            <label for="qR1s">Sí</label>
-                            <input type="radio" name="qR1" id="qR1n">
-                            <label for="qR1n">No</label>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <label>¿Amenazas serias?</label>
-                        <div class="toggle">
-                            <input type="radio" name="qR5" id="qR5s">
-                            <label for="qR5s">Sí</label>
-                            <input type="radio" name="qR5" id="qR5n">
-                            <label for="qR5n">No</label>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <label>¿Acoso sexual (insinuaciones, requerimientos, contacto no consentido)?</label>
-                        <div class="toggle">
-                            <input type="radio" name="qR2" id="qR2s">
-                            <label for="qR2s">Sí</label>
-                            <input type="radio" name="qR2" id="qR2n">
-                            <label for="qR2n">No</label>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <label>¿Represalias por hacer un reclamo, denuncia o por actividad sindical?</label>
-                        <div class="toggle">
-                            <input type="radio" name="qR3" id="qR3s">
-                            <label for="qR3s">Sí</label>
-                            <input type="radio" name="qR3" id="qR3n">
-                            <label for="qR3n">No</label>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <label>¿Amenazas de despido por motivos discriminatorios?</label>
-                        <div class="toggle">
-                            <input type="radio" name="qR4" id="qR4s">
-                            <label for="qR4s">Sí</label>
-                            <input type="radio" name="qR4" id="qR4n">
-                            <label for="qR4n">No</label>
-                        </div>
-                    </div>
-                </div>
-            </fieldset>
-
-            <!-- Señales de acoso/maltrato -->
-            <fieldset class="panel">
-                <legend>Señales de acoso/maltrato</legend>
-                <div class="grid grid-2">
-                    <div class="field">
-                        <label>¿Malos tratos reiterados, gritos u humillaciones en público?</label>
-                        <div class="toggle">
-                            <input type="radio" name="qA1" id="qA1s">
-                            <label for="qA1s">Sí</label>
-                            <input type="radio" name="qA1" id="qA1n">
-                            <label for="qA1n">No</label>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <label>¿Discriminación (género/embarazo, edad, discapacidad, orientación sexual, origen,
-                            etc.)?</label>
-                        <div class="toggle">
-                            <input type="radio" name="qA2" id="qA2s">
-                            <label for="qA2s">Sí</label>
-                            <input type="radio" name="qA2" id="qA2n">
-                            <label for="qA2n">No</label>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <label>¿Aislamiento, tareas degradantes o cambios para hostigar?</label>
-                        <div class="toggle">
-                            <input type="radio" name="qA3" id="qA3s">
-                            <label for="qA3s">Sí</label>
-                            <input type="radio" name="qA3" id="qA3n">
-                            <label for="qA3n">No</label>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <label>¿Usted siente que sus superiores no le dirigen la palabra o hacen que sus pares no se la
-                            dirijan?</label>
-                        <div class="toggle">
-                            <input type="radio" name="qA7" id="qA7s">
-                            <label for="qA7s">Sí</label>
-                            <input type="radio" name="qA7" id="qA7n">
-                            <label for="qA7n">No</label>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <label>¿Control/vigilancia invasiva o mensajes hostiles frecuentes?</label>
-                        <div class="toggle">
-                            <input type="radio" name="qA4" id="qA4s">
-                            <label for="qA4s">Sí</label>
-                            <input type="radio" name="qA4" id="qA4n">
-                            <label for="qA4n">No</label>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <label>¿Gritos constantes/exigencias imposibles/cambio de objetivos para forzar
-                            renuncia?</label>
-                        <div class="toggle">
-                            <input type="radio" name="qA5" id="qA5s">
-                            <label for="qA5s">Sí</label>
-                            <input type="radio" name="qA5" id="qA5n">
-                            <label for="qA5n">No</label>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <label>¿Descuentos injustificados, sanciones arbitrarias o apercibimientos sin causa?</label>
-                        <div class="toggle">
-                            <input type="radio" name="qA6" id="qA6s">
-                            <label for="qA6s">Sí</label>
-                            <input type="radio" name="qA6" id="qA6n">
-                            <label for="qA6n">No</label>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <label>¿Lo inducen u obligan a realizar actividades para las que no fue contratado/a
-                            (extralaborales, políticas, gremiales, etc.)?</label>
-                        <div class="toggle">
-                            <input type="radio" name="qA8" id="qA8s">
-                            <label for="qA8s">Sí</label>
-                            <input type="radio" name="qA8" id="qA8n">
-                            <label for="qA8n">No</label>
-                        </div>
-                    </div>
-                </div>
-            </fieldset>
-
-            <!-- Duración / continuidad -->
-            <fieldset class="panel">
-                <legend>Duración / continuidad</legend>
-                <div class="grid grid-2">
-                    <div class="field">
-                        <label>¿Los malos tratos se prolongaron en el tiempo?</label>
-                        <div class="toggle">
-                            <input type="radio" name="qD1" id="qD1s">
-                            <label for="qD1s">Sí</label>
-                            <input type="radio" name="qD1" id="qD1n">
-                            <label for="qD1n">No</label>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <label>¿Duraron más de 4 meses?</label>
-                        <div class="toggle">
-                            <input type="radio" name="qD2" id="qD2s">
-                            <label for="qD2s">Sí</label>
-                            <input type="radio" name="qD2" id="qD2n">
-                            <label for="qD2n">No</label>
-                        </div>
-                    </div>
-                </div>
-            </fieldset>
-
-            <!-- Salud y soporte -->
-            <fieldset class="panel">
-                <legend>Salud y soporte</legend>
-                <div class="grid grid-2">
-                    <div class="field">
-                        <label>¿Presentás síntomas físicos/psicológicos vinculados al trabajo (insomnio, pánico,
-                            taquicardia, cefaleas, gastritis, contracturas)?</label>
-                        <div class="toggle">
-                            <input type="radio" name="qS1" id="qS1s">
-                            <label for="qS1s">Sí</label>
-                            <input type="radio" name="qS1" id="qS1n">
-                            <label for="qS1n">No</label>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <label>¿Consultaste médico/psicología/psiquiatría o tenés licencias por esta causa?</label>
-                        <div class="toggle">
-                            <input type="radio" name="qS2" id="qS2s">
-                            <label for="qS2s">Sí</label>
-                            <input type="radio" name="qS2" id="qS2n">
-                            <label for="qS2n">No</label>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <label>¿Tenés pruebas: mails, chats, notas, testigos o reportes a RR.HH./canal ético?</label>
-                        <div class="toggle">
-                            <input type="radio" name="qS3" id="qS3s">
-                            <label for="qS3s">Sí</label>
-                            <input type="radio" name="qS3" id="qS3n">
-                            <label for="qS3n">No</label>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <label>¿Hiciste un reclamo ante un superior?</label>
-                        <div class="toggle">
-                            <input type="radio" name="qS5" id="qS5s">
-                            <label for="qS5s">Sí</label>
-                            <input type="radio" name="qS5" id="qS5n">
-                            <label for="qS5n">No</label>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <label>¿RR.HH. o jefatura ignoró o respondió de modo inadecuado tu reclamo?</label>
-                        <div class="toggle">
-                            <input type="radio" name="qS4" id="qS4s">
-                            <label for="qS4s">Sí</label>
-                            <input type="radio" name="qS4" id="qS4n">
-                            <label for="qS4n">No</label>
-                        </div>
-                    </div>
-                </div>
-            </fieldset>
-
-            <!-- Observaciones -->
-            <fieldset class="panel">
-                <legend>Observaciones (opcional)</legend>
-                <div class="field">
-                    <textarea id="obs" class="textarea" maxlength="500"
-                        placeholder="Contanos en 2–3 líneas lo principal (fechas, personas, área, conductas, síntomas, testigos)."></textarea>
-                    <div class="hint">
-                        Sugerencia: <em>fechas</em> (desde/cuándo), <em>personas</em> (jefes/pares), <em>hechos</em>
-                        (gritos, aislamientos, descuentos),
-                        <em>pruebas</em> (mails/chats/testigos/RR.HH.) y <em>salud</em> (síntomas/licencias).
-                    </div>
-                    <div class="countline" id="obsCount">0/500 caracteres</div>
-                </div>
-            </fieldset>
-        </div>
-
-        <!-- Acciones -->
-        <div class="btns">
-            <button class="btn" id="runBtn">Ver resultado</button>
-            <button class="btn secondary" id="clearBtn">Limpiar</button>
-        </div>
-
-        <!-- Resultado -->
-        <div id="result" class="result"></div>
-    </main>
-
-    <div class="footer">
-        © Villa &amp; Asociados — Herramientas profesionales orientativas. Confirmá siempre la información con la
-        documentación del caso y la consulta profesional.
+  <div class="ev-wrap">
+    <!-- Hero -->
+    <div class="ev-hero">
+      <div class="ev-title">Chequeo de trato laboral (2 minutos) | <strong>Villa &amp; Asociados</strong></div>
+      <div class="ev-mini">Confidencial • Sin datos personales • Resultado orientativo</div>
     </div>
 
-    <script>
-        (function () {
-            const $ = (s, ctx = document) => ctx.querySelector(s);
-            const $$ = (s, ctx = document) => Array.from(ctx.querySelectorAll(s));
+    <div class="ev-body">
+      <p class="ev-note">Hacé el chequeo en 2 minutos. Es confidencial y orientativo. Recordá que <strong>el maltrato, el acoso y la discriminación están prohibidos</strong>.</p>
 
-            /* Contador de respuestas */
-            const names = new Set($$('input[type="radio"]').map(i => i.name));
-            const updateCounter = () => {
-                let answered = 0;
-                names.forEach(n => { if ($$('input[name="' + n + '"]').some(i => i.checked)) answered++; });
-                $('#count').textContent = 'Respondidas: ' + answered + ' / ' + names.size;
-            };
-            updateCounter();
-            $$('.toggle input[type="radio"]').forEach(r => r.addEventListener('change', updateCounter));
-
-            /* Observaciones: contador 0/500 + alerta desde 420 */
-            const MAX_OBS = 500, WARN_OBS = 420;
-            const obsTA = document.getElementById('obs');
-            const obsCount = document.getElementById('obsCount');
-            function updateObsCount() {
-                if (!obsTA || !obsCount) return;
-                const used = obsTA.value.length;
-                obsCount.textContent = `${used}/${MAX_OBS} caracteres`;
-                obsCount.classList.toggle('warn', used >= WARN_OBS);
-            }
-            if (obsTA) { obsTA.addEventListener('input', updateObsCount); updateObsCount(); }
-
-            const yes = id => { const s = $('#' + id + 's'), n = $('#' + id + 'n'); if (!s || !n) return null; return s.checked ? 'si' : n.checked ? 'no' : null; };
-
-            /* Insights desde Observaciones */
-            function insightsFromObs(text) {
-                const t = (text || '').toLowerCase();
-                const out = [];
-                const has = (...arr) => arr.some(w => t.includes(w));
-                if (has('pánico', 'ataque de panico', 'ansiedad', 'insomnio', 'taquicardia', 'cefalea', 'gastritis', 'contractura', 'estrés', 'estres')) out.push('Observás síntomas compatibles con afectación de salud. Priorizar evaluación de salud mental.');
-                if (has('discrimin', 'embarazo', 'género', 'genero', 'edad', 'discapacidad', 'orientación sexual', 'orientacion sexual', 'origen', 'relig', 'raza')) out.push('Relatás hechos con posible contenido discriminatorio.');
-                if (has('ostrac', 'no me hablan', 'no me dirigen la palabra', 'me ignoran')) out.push('Mencionás ostracismo / aislamiento social en el trabajo.');
-                if (has('politic', 'gremial', 'militan', 'extralab', 'fuera de horario', 'no fui contratado')) out.push('Indicás pedidos/órdenes extralaborales, políticas o gremiales.');
-                if (has('testigo', 'nota', 'mail', 'correo', 'whatsapp', 'mensaje', 'chat', 'canal ético', 'canal etico', 'rrhh', 'recursos humanos')) out.push('Decís contar con evidencia (testigos/soportes escritos/denuncias internas).');
-                if (has('renuncia', 'me quieren hacer renunciar', 'forzar renuncia')) out.push('Refiere intento de forzar renuncia. Evaluar medidas urgentes.');
-                if (has('4 meses', 'cuatro meses', 'desde hace', 'años', 'meses')) out.push('Describís continuidad temporal relevante; documentar cronología de hechos.');
-                return out;
-            }
-
-            /* Arma evaluación con escalamiento por reclamo ignorado (qS5 & qS4) */
-            function buildAssessment({ requireComplete = true } = {}) {
-                const reds = ['qR1', 'qR5', 'qR2', 'qR3', 'qR4'];                 // 5 graves
-                const ambs = ['qA1', 'qA2', 'qA3', 'qA7', 'qA4', 'qA5', 'qA6', 'qA8'];
-                const dur = ['qD1', 'qD2'];
-                const supp = ['qS1', 'qS2', 'qS3', 'qS5', 'qS4'];                 // qS5 antes de qS4
-
-                const rVals = reds.map(yes), aVals = ambs.map(yes), dVals = dur.map(yes), sVals = supp.map(yes);
-                if (requireComplete && [...rVals, ...aVals, ...dVals, ...sVals].some(v => v === null)) {
-                    alert('Completá todas las preguntas.'); return null;
-                }
-
-                const severe = rVals.some(v => v === 'si');
-                const symptoms = yes('qS1') === 'si');
-                const prolonged = yes('qD1') === 'si');
-                const more4m = yes('qD2') === 'si');
-                const reclamo = yes('qS5') === 'si');
-                const ignorado = yes('qS4') === 'si');
-                const obs = (obsTA && obsTA.value || '').trim();
-
-                /* Base: 0 bajo / 1 medio / 2 alto (alto por graves + síntomas) */
-                let level = 0;
-                if (severe && symptoms) { level = 2; }
-                else if ([...rVals, ...aVals, ...sVals].some(v => v === 'si')) { level = 1; }
-
-                /* Escalamiento por reclamo formal ignorado */
-                const mustEscalate = (reclamo && ignorado);
-                if (mustEscalate && level < 2) level += 1;
-
-                let nivel, chip, bullets, cta;
-
-                if (level === 2) {
-                    if (severe && symptoms) {
-                        nivel = 'Grave con impacto en salud'; chip = 'high';
-                        bullets = [
-                            'Recurrir urgente a consulta con profesional lic. en psicología y/o psiquiatría.',
-                            'Preservar evidencia (mails, chats, testigos) y evitar confrontaciones directas.',
-                            'Cuando estabilicen los síntomas, solicitar entrevista con un abogado de nuestro estudio o de su confianza.'
-                        ];
-                        cta = 'Contactanos cuando te estabilices';
-                    } else {
-                        nivel = 'Grave por inacción ante reclamo'; chip = 'high';
-                        bullets = [
-                            'Agendar entrevista legal urgente para evaluar medidas inmediatas.',
-                            'El reclamo formal no fue atendido o fue respondido inadecuadamente: escalar por vía legal/administrativa.',
-                            'Preservar y reunir evidencia (nota presentada, acuse de recibo, mails, testigos, canal ético).'
-                        ];
-                        if (symptoms) {
-                            bullets.unshift('Si hay síntomas, priorizar evaluación con psicología/psiquiatría.');
-                        }
-                        cta = 'Agendar entrevista urgente';
-                    }
-                } else if (level === 1) {
-                    nivel = 'Usted podría estar sufriendo una situación de maltrato / acoso laboral'; chip = 'med';
-                    bullets = [
-                        'Agendá entrevista con un abogado para analizar medidas.',
-                        'Documentá incidencias por escrito y guardá evidencias.'
-                    ];
-                    if (mustEscalate) {
-                        bullets.unshift('Tu reclamo ante un superior y la respuesta inadecuada agravan el caso.');
-                    } else if (reclamo) {
-                        bullets.push('Si ya hiciste un reclamo, conservá la constancia (correo/nota/ticket).');
-                    }
-                    cta = 'Agendar entrevista legal';
-                } else {
-                    nivel = 'No se vislumbra acoso'; chip = 'low';
-                    bullets = [
-                        'Seguí monitoreando la situación y guardá cualquier evidencia nueva.',
-                        'Si aparece un hecho nuevo o escala el conflicto, consultanos.'
-                    ];
-                    cta = 'Consultar';
-                }
-
-                if (prolonged && more4m) { bullets.push('La continuidad (>4 meses) refuerza la necesidad de asesoramiento legal cuanto antes.'); }
-                else if (prolonged) { bullets.push('La continuidad en el tiempo sugiere documentar y consultar para prevenir escalamiento.'); }
-
-                insightsFromObs(obs).forEach(t => { if (!bullets.includes(t)) bullets.push(t); });
-
-                const yesOf = (ids, arrVals) => ids.filter((_, i) => arrVals[i] === 'si');
-                const rYes = yesOf(reds, rVals), aYes = yesOf(ambs, aVals), dYes = yesOf(dur, dVals), sYes = yesOf(supp, sVals);
-
-                const resumen = [
-                    `Chequeo de trato laboral — Resultado: ${nivel}.`,
-                    `Hechos graves: ${rYes.length}/${reds.length} · Señales: ${aYes.length}/${ambs.length} · Duración: ${dYes.length}/${dur.length} · Salud/soporte: ${sYes.length}/${supp.length}.`,
-                    `Recomendación: ${bullets.join(' | ')}`,
-                    obs ? `Observaciones: ${obs}` : ''
-                ].filter(Boolean).join(' ');
-
-                const fechaHoraBA = new Intl.DateTimeFormat('es-AR', { dateStyle: 'short', timeStyle: 'short', timeZone: 'America/Argentina/Buenos_Aires' }).format(new Date());
-
-                /* Prefijo [GRAVE] SOLO cuando es "Grave por inacción ante reclamo" */
-                const graveFlag = (nivel === 'Grave por inacción ante reclamo') ? '[GRAVE] ' : '';
-                const subject = `${graveFlag}[Villa & Asociados] Chequeo de trato laboral — ${nivel} — ${fechaHoraBA}`;
-
-                const body = [
-                    'Chequeo de trato laboral',
-                    '',
-                    'Por favor completá tus datos para poder responderte:',
-                    '• Nombre y apellido:',
-                    '• Teléfono / WhatsApp:',
-                    '• Horario preferido de contacto:',
-                    '',
-                    `Resultado: ${nivel}`,
-                    `Hechos graves: ${rYes.length}/${reds.length} · Señales: ${aYes.length}/${ambs.length} · Duración: ${dYes.length}/${dur.length} · Salud/soporte: ${sYes.length}/${supp.length}`,
-                    'Conclusiones:',
-                    ...bullets.map(b => '- ' + b),
-                    obs ? ('\nObservaciones:\n' + obs) : '',
-                    '',
-                    'Enviado desde el sitio.'
-                ].join('\n');
-
-                const detalleRows = `
-      <table class="table">
-        <thead><tr><th>Bloque</th><th>Marcados</th></tr></thead>
-        <tbody>
-          <tr><td>Hechos graves</td><td>${rYes.length} / ${reds.length}</td></tr>
-          <tr><td>Señales</td><td>${aYes.length} / ${ambs.length}</td></tr>
-          <tr><td>Duración / continuidad</td><td>${dYes.length} / ${dur.length}</td></tr>
-          <tr><td>Salud y soporte</td><td>${sYes.length} / ${supp.length}</td></tr>
-        </tbody>
-      </table>`;
-
-                return {
-                    nivel, chip, bullets, cta, obs, resumen, subject, body, fechaHoraBA,
-                    detalleRows,
-                    lists: { reds: rYes, ambs: aYes, dur: dYes, supp: sYes },
-                    counts: { reds: rYes.length, ambs: aYes.length, dur: dYes.length, supp: sYes.length }
-                };
-            }
-
-            /* Ver resultado (render + contador + ping opcional) */
-            $('#runBtn').addEventListener('click', () => {
-                const data = buildAssessment({ requireComplete: true });
-                if (!data) return;
-
-                const LABELS = {
-                    qR1: 'Violencia física', qR5: 'Amenazas serias', qR2: 'Acoso sexual',
-                    qR3: 'Represalias por hacer un reclamo, denuncia o por actividad sindical',
-                    qR4: 'Amenazas de despido discriminatorias',
-                    qA1: 'Malos tratos, gritos u humillaciones',
-                    qA2: 'Discriminación (género/embarazo, edad, discapacidad, orientación sexual, origen, etc.)',
-                    qA3: 'Aislamiento / tareas degradantes / cambios para hostigar',
-                    qA4: 'Control/vigilancia invasiva o mensajes hostiles',
-                    qA5: 'Gritos constantes / exigencias imposibles / cambio de objetivos',
-                    qA6: 'Descuentos injustificados o sanciones arbitrarias',
-                    qA7: 'Superiores/pares no le dirigen la palabra (ostracismo)',
-                    qA8: 'Actividades extralaborales/políticas/gremiales obligadas o inducidas',
-                    qD1: 'Malos tratos prolongados en el tiempo', qD2: 'Duraron más de 4 meses',
-                    qS1: 'Síntomas físicos/psicológicos', qS2: 'Consultas médicas/psico/psiquiatría o licencias',
-                    qS3: 'Pruebas (mails, chats, canal ético, testigos)',
-                    qS5: 'Reclamo ante un superior',
-                    qS4: 'RR.HH./jefatura ignoró o respondió de modo inadecuado tu reclamo'
-                };
-                const list = (ids) => ids.length ? '<ul class="bullet">' + ids.map(id => `<li>${LABELS[id]}</li>`).join('') + '</ul>' : '<p class="hint">Sin ítems marcados.</p>';
-
-                const EMAIL_DEST = 'info@estudio-villa.com';
-                const WPP_NUMBER = '5491162577792';
-
-                const mailtoHref = `mailto:${EMAIL_DEST}?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(data.body)}`;
-                const box = $('#result'); box.style.display = 'block';
-                box.innerHTML = `
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-        <div><strong>Resultado del chequeo:</strong> <span class="chip ${data.chip}">${data.nivel}</span></div>
-        <div class="btns">
-          <a class="btn" href="https://wa.me/${WPP_NUMBER}?text=${encodeURIComponent(data.resumen)}" target="_blank" rel="noopener">${data.cta} por WhatsApp</a>
-          <a class="btn secondary" href="${mailtoHref}" target="_blank" rel="noopener">Agendar entrevista por Email</a>
-        </div>
+      <div class="ev-status">
+        <div class="ev-mini">Completá todas las preguntas para un resultado claro.</div>
+        <div class="ev-counter" id="evCount">Respondidas: 0</div>
       </div>
-      <hr class="hr" />
-      <ul class="bullet">${data.bullets.map(t => `<li>${t}</li>`).join('')}</ul>
-      <h4 class="hint" style="margin-top:20px;font-weight:700">Detalle del autodiagnóstico</h4>
-      ${data.detalleRows}
-      <details style="margin-top:15px">
-        <summary><strong>Ver ítems marcados</strong></summary>
-        <div class="grid grid-2" style="margin-top:15px">
-          <div><p class="hint" style="font-weight:700">Hechos graves</p>${list(data.lists.reds)}</div>
-          <div><p class="hint" style="font-weight:700">Señales</p>${list(data.lists.ambs)}</div>
-          <div><p class="hint" style="font-weight:700">Duración / continuidad</p>${list(data.lists.dur)}</div>
-          <div><p class="hint" style="font-weight:700">Salud y soporte</p>${list(data.lists.supp)}</div>
-        </div>
-      </details>
-    `;
-                box.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
 
-            /* Limpiar */
-            $('#clearBtn').addEventListener('click', () => {
-                names.forEach(n => $$('input[name="' + n + '"]').forEach(i => i.checked = false));
-                if (obsTA) obsTA.value = '';
-                const box = $('#result'); box.style.display = 'none'; box.innerHTML = '';
-                updateCounter(); updateObsCount();
-            });
-        })();
-    </script>
+      <div class="ev-panels">
+        <!-- Hechos graves -->
+        <fieldset class="ev-panel">
+          <legend>Hechos graves</legend>
+          <div class="ev-grid ev-grid-2" style="margin-top:8px">
+            <div class="ev-field">
+              <label>¿Violencia física?</label>
+              <div class="ev-toggle">
+                <input type="radio" name="qR1" id="qR1s"><label for="qR1s">Sí</label>
+                <input type="radio" name="qR1" id="qR1n"><label for="qR1n">No</label>
+              </div>
+            </div>
+
+            <div class="ev-field">
+              <label>¿Amenazas serias?</label>
+              <div class="ev-toggle">
+                <input type="radio" name="qR5" id="qR5s"><label for="qR5s">Sí</label>
+                <input type="radio" name="qR5" id="qR5n"><label for="qR5n">No</label>
+              </div>
+            </div>
+
+            <div class="ev-field">
+              <label>¿Acoso sexual (insinuaciones, requerimientos, contacto no consentido)?</label>
+              <div class="ev-toggle">
+                <input type="radio" name="qR2" id="qR2s"><label for="qR2s">Sí</label>
+                <input type="radio" name="qR2" id="qR2n"><label for="qR2n">No</label>
+              </div>
+            </div>
+
+            <div class="ev-field">
+              <label>¿Represalias por hacer un reclamo, denuncia o por actividad sindical?</label>
+              <div class="ev-toggle">
+                <input type="radio" name="qR3" id="qR3s"><label for="qR3s">Sí</label>
+                <input type="radio" name="qR3" id="qR3n"><label for="qR3n">No</label>
+              </div>
+            </div>
+
+            <div class="ev-field">
+              <label>¿Amenazas de despido por motivos discriminatorios?</label>
+              <div class="ev-toggle">
+                <input type="radio" name="qR4" id="qR4s"><label for="qR4s">Sí</label>
+                <input type="radio" name="qR4" id="qR4n"><label for="qR4n">No</label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Señales -->
+        <fieldset class="ev-panel">
+          <legend>Señales de acoso/maltrato</legend>
+          <div class="ev-grid ev-grid-2" style="margin-top:8px">
+            <div class="ev-field">
+              <label>¿Malos tratos reiterados, gritos u humillaciones en público?</label>
+              <div class="ev-toggle">
+                <input type="radio" name="qA1" id="qA1s"><label for="qA1s">Sí</label>
+                <input type="radio" name="qA1" id="qA1n"><label for="qA1n">No</label>
+              </div>
+            </div>
+            <div class="ev-field">
+              <label>¿Discriminación (género/embarazo, edad, discapacidad, orientación sexual, origen, etc.)?</label>
+              <div class="ev-toggle">
+                <input type="radio" name="qA2" id="qA2s"><label for="qA2s">Sí</label>
+                <input type="radio" name="qA2" id="qA2n"><label for="qA2n">No</label>
+              </div>
+            </div>
+            <div class="ev-field">
+              <label>¿Aislamiento, tareas degradantes o cambios para hostigar?</label>
+              <div class="ev-toggle">
+                <input type="radio" name="qA3" id="qA3s"><label for="qA3s">Sí</label>
+                <input type="radio" name="qA3" id="qA3n"><label for="qA3n">No</label>
+              </div>
+            </div>
+            <div class="ev-field">
+              <label>¿Usted siente que sus superiores no le dirigen la palabra o hacen que sus pares no se la dirijan?</label>
+              <div class="ev-toggle">
+                <input type="radio" name="qA7" id="qA7s"><label for="qA7s">Sí</label>
+                <input type="radio" name="qA7" id="qA7n"><label for="qA7n">No</label>
+              </div>
+            </div>
+            <div class="ev-field">
+              <label>¿Control/vigilancia invasiva o mensajes hostiles frecuentes?</label>
+              <div class="ev-toggle">
+                <input type="radio" name="qA4" id="qA4s"><label for="qA4s">Sí</label>
+                <input type="radio" name="qA4" id="qA4n"><label for="qA4n">No</label>
+              </div>
+            </div>
+            <div class="ev-field">
+              <label>¿Gritos constantes/exigencias imposibles/cambio de objetivos para forzar renuncia?</label>
+              <div class="ev-toggle">
+                <input type="radio" name="qA5" id="qA5s"><label for="qA5s">Sí</label>
+                <input type="radio" name="qA5" id="qA5n"><label for="qA5n">No</label>
+              </div>
+            </div>
+            <div class="ev-field">
+              <label>¿Descuentos injustificados, sanciones arbitrarias o apercibimientos sin causa?</label>
+              <div class="ev-toggle">
+                <input type="radio" name="qA6" id="qA6s"><label for="qA6s">Sí</label>
+                <input type="radio" name="qA6" id="qA6n"><label for="qA6n">No</label>
+              </div>
+            </div>
+            <div class="ev-field">
+              <label>¿Lo inducen u obligan a realizar actividades para las que no fue contratado/a (extralaborales, políticas, gremiales, etc.)?</label>
+              <div class="ev-toggle">
+                <input type="radio" name="qA8" id="qA8s"><label for="qA8s">Sí</label>
+                <input type="radio" name="qA8" id="qA8n"><label for="qA8n">No</label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Duración -->
+        <fieldset class="ev-panel">
+          <legend>Duración / continuidad</legend>
+          <div class="ev-grid ev-grid-2" style="margin-top:8px">
+            <div class="ev-field">
+              <label>¿Los malos tratos se prolongaron en el tiempo?</label>
+              <div class="ev-toggle">
+                <input type="radio" name="qD1" id="qD1s"><label for="qD1s">Sí</label>
+                <input type="radio" name="qD1" id="qD1n"><label for="qD1n">No</label>
+              </div>
+            </div>
+            <div class="ev-field">
+              <label>¿Duraron más de 4 meses?</label>
+              <div class="ev-toggle">
+                <input type="radio" name="qD2" id="qD2s"><label for="qD2s">Sí</label>
+                <input type="radio" name="qD2" id="qD2n"><label for="qD2n">No</label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Salud y soporte -->
+        <fieldset class="ev-panel">
+          <legend>Salud y soporte</legend>
+          <div class="ev-grid ev-grid-2" style="margin-top:8px">
+            <div class="ev-field">
+              <label>¿Presentás síntomas físicos/psicológicos vinculados al trabajo (insomnio, pánico, taquicardia, cefaleas, gastritis, contracturas)?</label>
+              <div class="ev-toggle">
+                <input type="radio" name="qS1" id="qS1s"><label for="qS1s">Sí</label>
+                <input type="radio" name="qS1" id="qS1n"><label for="qS1n">No</label>
+              </div>
+            </div>
+
+            <div class="ev-field">
+              <label>¿Consultaste médico/psicología/psiquiatría o tenés licencias por esta causa?</label>
+              <div class="ev-toggle">
+                <input type="radio" name="qS2" id="qS2s"><label for="qS2s">Sí</label>
+                <input type="radio" name="qS2" id="qS2n"><label for="qS2n">No</label>
+              </div>
+            </div>
+
+            <div class="ev-field">
+              <label>¿Tenés pruebas: mails, chats, notas, testigos o reportes a RR.HH./canal ético?</label>
+              <div class="ev-toggle">
+                <input type="radio" name="qS3" id="qS3s"><label for="qS3s">Sí</label>
+                <input type="radio" name="qS3" id="qS3n"><label for="qS3n">No</label>
+              </div>
+            </div>
+
+            <div class="ev-field">
+              <label>¿Hiciste un reclamo ante un superior?</label>
+              <div class="ev-toggle">
+                <input type="radio" name="qS5" id="qS5s"><label for="qS5s">Sí</label>
+                <input type="radio" name="qS5" id="qS5n"><label for="qS5n">No</label>
+              </div>
+            </div>
+
+            <div class="ev-field">
+              <label>¿RR.HH. o jefatura ignoró o respondió de modo inadecuado tu reclamo?</label>
+              <div class="ev-toggle">
+                <input type="radio" name="qS4" id="qS4s"><label for="qS4s">Sí</label>
+                <input type="radio" name="qS4" id="qS4n"><label for="qS4n">No</label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Observaciones -->
+        <fieldset class="ev-panel">
+          <legend>Observaciones (opcional)</legend>
+          <div class="ev-field">
+            <textarea id="vadObs" class="ev-textarea" maxlength="500" aria-describedby="obsHint obsCount" placeholder="Contanos en 2–3 líneas lo principal (fechas, personas, área, conductas, síntomas, testigos)."></textarea>
+            <div class="ev-mini ev-hint" id="obsHint">
+              Sugerencia: <em>fechas</em> (desde/cuándo), <em>personas</em> (jefes/pares), <em>hechos</em> (gritos, aislamientos, descuentos),
+              <em>pruebas</em> (mails/chats/testigos/RR.HH.) y <em>salud</em> (síntomas/licencias).
+            </div>
+            <div class="ev-mini ev-countline" id="obsCount">0/500 caracteres</div>
+          </div>
+        </fieldset>
+      </div>
+
+      <!-- Acciones -->
+      <div class="ev-btns" style="margin-top:12px">
+        <button class="ev-btn" id="evVADRun">Ver resultado</button>
+        <button class="ev-btn secondary" id="evVADClear">Limpiar</button>
+      </div>
+
+      <!-- Resultado -->
+      <div id="evVADOut" class="ev-result" style="display:none;margin-top:12px"></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const $ = (s, ctx = document) => ctx.querySelector(s);
+      const $$ = (s, ctx = document) => Array.from(ctx.querySelectorAll(s));
+
+      /* ===== Config ===== */
+      const EMAIL_DEST = 'info@estudio-villa.com';
+      const WPP_NUMBER = '5491162577792';
+      const USES_KEY = 'ev_vad_uses';
+      const BASE_START = 2002;
+      const PING_URL = '';
+
+      /* Mailto robusto */
+      function buildMailtoHref(to, subject, body) {
+        const CRLF = '\r\n';
+        let b = (body || '').replace(/\n/g, CRLF);
+        const MAX = 1900;
+        if (b.length > MAX) {
+          b = b.slice(0, MAX - 140) + CRLF + CRLF +
+            '(Resumen abreviado: el detalle completo excede el límite del cliente de correo.)';
+        }
+        return `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(b)}`;
+      }
+
+      /* Toast */
+      function showToast(msg, type = 'ok') {
+        const t = document.createElement('div');
+        t.className = 'ev-toast ' + (type === 'err' ? 'err' : 'ok');
+        t.textContent = msg;
+        document.body.appendChild(t);
+        requestAnimationFrame(() => t.classList.add('show'));
+        setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 250); }, 3500);
+      }
+
+      /* Contador de respuestas */
+      const names = new Set($$('input[type="radio"]').map(i => i.name));
+      const updateCounter = () => {
+        let answered = 0;
+        names.forEach(n => { if ($$('input[name="' + n + '"]').some(i => i.checked)) answered++; });
+        $('#evCount').textContent = 'Respondidas: ' + answered + ' / ' + names.size;
+      };
+      updateCounter();
+      $$('.ev-toggle input[type="radio"]').forEach(r => r.addEventListener('change', updateCounter));
+
+      /* Observaciones: contador 0/500 + alerta desde 420 */
+      const MAX_OBS = 500, WARN_OBS = 420;
+      const obsTA = document.getElementById('vadObs');
+      const obsCount = document.getElementById('obsCount');
+      function updateObsCount() {
+        if (!obsTA || !obsCount) return;
+        const used = obsTA.value.length;
+        obsCount.textContent = `${used}/${MAX_OBS} caracteres`;
+        obsCount.classList.toggle('warn', used >= WARN_OBS);
+      }
+      if (obsTA) { obsTA.addEventListener('input', updateObsCount); updateObsCount(); }
+
+      const yes = id => { const s = $('#' + id + 's'), n = $('#' + id + 'n'); if (!s || !n) return null; return s.checked ? 'si' : n.checked ? 'no' : null; };
+
+      /* Insights desde Observaciones */
+      function insightsFromObs(text) {
+        const t = (text || '').toLowerCase();
+        const out = [];
+        const has = (...arr) => arr.some(w => t.includes(w));
+        if (has('pánico', 'ataque de panico', 'ansiedad', 'insomnio', 'taquicardia', 'cefalea', 'gastritis', 'contractura', 'estrés', 'estres')) out.push('Observás síntomas compatibles con afectación de salud. Priorizar evaluación de salud mental.');
+        if (has('discrimin', 'embarazo', 'género', 'genero', 'edad', 'discapacidad', 'orientación sexual', 'orientacion sexual', 'origen', 'relig', 'raza')) out.push('Relatás hechos con posible contenido discriminatorio.');
+        if (has('ostrac', 'no me hablan', 'no me dirigen la palabra', 'me ignoran')) out.push('Mencionás ostracismo / aislamiento social en el trabajo.');
+        if (has('politic', 'gremial', 'militan', 'extralab', 'fuera de horario', 'no fui contratado')) out.push('Indicás pedidos/órdenes extralaborales, políticas o gremiales.');
+        if (has('testigo', 'nota', 'mail', 'correo', 'whatsapp', 'mensaje', 'chat', 'canal ético', 'canal etico', 'rrhh', 'recursos humanos')) out.push('Decís contar con evidencia (testigos/soportes escritos/denuncias internas).');
+        if (has('renuncia', 'me quieren hacer renunciar', 'forzar renuncia')) out.push('Refiere intento de forzar renuncia. Evaluar medidas urgentes.');
+        if (has('4 meses', 'cuatro meses', 'desde hace', 'años', 'meses')) out.push('Describís continuidad temporal relevante; documentar cronología de hechos.');
+        return out;
+      }
+
+      /* Evaluación */
+      function buildAssessment({ requireComplete = true } = {}) {
+        const reds = ['qR1', 'qR5', 'qR2', 'qR3', 'qR4'];
+        const ambs = ['qA1', 'qA2', 'qA3', 'qA7', 'qA4', 'qA5', 'qA6', 'qA8'];
+        const dur = ['qD1', 'qD2'];
+        const supp = ['qS1', 'qS2', 'qS3', 'qS5', 'qS4'];
+
+        const rVals = reds.map(yes), aVals = ambs.map(yes), dVals = dur.map(yes), sVals = supp.map(yes);
+        if (requireComplete && [...rVals, ...aVals, ...dVals, ...sVals].some(v => v === null)) {
+          alert('Completá todas las preguntas.'); return null;
+        }
+
+        const severe = rVals.some(v => v === 'si');
+        const symptoms = yes('qS1') === 'si';
+        const prolonged = yes('qD1') === 'si';
+        const more4m = yes('qD2') === 'si';
+        const reclamo = yes('qS5') === 'si';
+        const ignorado = yes('qS4') === 'si';
+        const obs = (obsTA && obsTA.value || '').trim();
+
+        let level = 0;
+        if (severe && symptoms) { level = 2; }
+        else if ([...rVals, ...aVals, ...sVals].some(v => v === 'si')) { level = 1; }
+
+        const mustEscalate = (reclamo && ignorado);
+        if (mustEscalate && level < 2) level += 1;
+
+        let nivel, chip, bullets, cta;
+
+        if (level === 2) {
+          if (severe && symptoms) {
+            nivel = 'Grave con impacto en salud'; chip = 'high';
+            bullets = [
+              'Recurrir urgente a consulta con profesional lic. en psicología y/o psiquiatría.',
+              'Preservar evidencia (mails, chats, testigos) y evitar confrontaciones directas.',
+              'Cuando estabilicen los síntomas, solicitar entrevista con un abogado de nuestro estudio o de su confianza.'
+            ];
+            cta = 'Contactanos cuando te estabilices';
+          } else {
+            nivel = 'Grave por inacción ante reclamo'; chip = 'high';
+            bullets = [
+              'Agendar entrevista legal urgente para evaluar medidas inmediatas.',
+              'El reclamo formal no fue atendido o fue respondido inadecuadamente: escalar por vía legal/administrativa.',
+              'Preservar y reunir evidencia (nota presentada, acuse de recibo, mails, testigos, canal ético).'
+            ];
+            if (symptoms) bullets.unshift('Si hay síntomas, priorizar evaluación con psicología/psiquiatría.');
+            cta = 'Agendar entrevista urgente';
+          }
+        } else if (level === 1) {
+          nivel = 'Usted podría estar sufriendo una situación de maltrato / acoso laboral'; chip = 'med';
+          bullets = [
+            'Agendá entrevista con un abogado para analizar medidas.',
+            'Documentá incidencias por escrito y guardá evidencias.'
+          ];
+          if (mustEscalate) bullets.unshift('Tu reclamo ante un superior y la respuesta inadecuada agravan el caso.');
+          else if (reclamo) bullets.push('Si ya hiciste un reclamo, conservá la constancia (correo/nota/ticket).');
+          cta = 'Agendar entrevista legal';
+        } else {
+          nivel = 'No se vislumbra acoso'; chip = 'low';
+          bullets = [
+            'Seguí monitoreando la situación y guardá cualquier evidencia nueva.',
+            'Si aparece un hecho nuevo o escala el conflicto, consultanos.'
+          ];
+          cta = 'Consultar';
+        }
+
+        if (prolonged && more4m) bullets.push('La continuidad (>4 meses) refuerza la necesidad de asesoramiento legal cuanto antes.');
+        else if (prolonged) bullets.push('La continuidad en el tiempo sugiere documentar y consultar para prevenir escalamiento.');
+
+        insightsFromObs(obs).forEach(t => { if (!bullets.includes(t)) bullets.push(t); });
+
+        const yesOf = (ids, arrVals) => ids.filter((_, i) => arrVals[i] === 'si');
+        const rYes = yesOf(reds, rVals), aYes = yesOf(ambs, aVals), dYes = yesOf(dur, dVals), sYes = yesOf(supp, sVals);
+
+        const resumen = [
+          `Chequeo de trato laboral — Resultado: ${nivel}.`,
+          `Hechos graves: ${rYes.length}/${reds.length} · Señales: ${aYes.length}/${ambs.length} · Duración: ${dYes.length}/${dur.length} · Salud/soporte: ${sYes.length}/${supp.length}.`,
+          `Recomendación: ${bullets.join(' | ')}`,
+          obs ? `Observaciones: ${obs}` : ''
+        ].filter(Boolean).join(' ');
+
+        const fechaHoraBA = new Intl.DateTimeFormat('es-AR', { dateStyle: 'short', timeStyle: 'short', timeZone: 'America/Argentina/Buenos_Aires' }).format(new Date());
+
+        const graveFlag = (nivel === 'Grave por inacción ante reclamo') ? '[GRAVE] ' : '';
+        const subject = `${graveFlag}[Villa & Asociados] Chequeo de trato laboral — ${nivel} — ${fechaHoraBA}`;
+
+        const body = [
+          'Chequeo de trato laboral',
+          '',
+          'Por favor completá tus datos para poder responderte:',
+          '• Nombre y apellido:',
+          '• Teléfono / WhatsApp:',
+          '• Horario preferido de contacto:',
+          '',
+          `Resultado: ${nivel}`,
+          `Hechos graves: ${rYes.length}/${reds.length} · Señales: ${aYes.length}/${ambs.length} · Duración: ${dYes.length}/${dur.length} · Salud/soporte: ${sYes.length}/${supp.length}`,
+          'Conclusiones:',
+          ...bullets.map(b => '- ' + b),
+          obs ? ('\nObservaciones:\n' + obs) : '',
+          '',
+          'Enviado desde el sitio.'
+        ].join('\n');
+
+        const detalleRows = `
+          <table class="ev-table">
+            <thead><tr><th>Bloque</th><th>Marcados</th></tr></thead>
+            <tbody>
+              <tr><td>Hechos graves</td><td>${rYes.length} / ${reds.length}</td></tr>
+              <tr><td>Señales</td><td>${aYes.length} / ${ambs.length}</td></tr>
+              <tr><td>Duración / continuidad</td><td>${dYes.length} / ${dur.length}</td></tr>
+              <tr><td>Salud y soporte</td><td>${sYes.length} / ${supp.length}</td></tr>
+            </tbody>
+          </table>`;
+
+        return {
+          nivel, chip, bullets, cta, obs, resumen, subject, body, fechaHoraBA,
+          detalleRows,
+          lists: { reds: rYes, ambs: aYes, dur: dYes, supp: sYes },
+          counts: { reds: rYes.length, ambs: aYes.length, dur: dYes.length, supp: sYes.length }
+        };
+      }
+
+      /* Ver resultado */
+      $('#evVADRun').addEventListener('click', () => {
+        const data = buildAssessment({ requireComplete: true });
+        if (!data) return;
+
+        const LABELS = {
+          qR1:'Violencia física', qR5:'Amenazas serias', qR2:'Acoso sexual',
+          qR3:'Represalias por hacer un reclamo, denuncia o por actividad sindical',
+          qR4:'Amenazas de despido discriminatorias',
+          qA1:'Malos tratos, gritos u humillaciones',
+          qA2:'Discriminación (género/embarazo, edad, discapacidad, orientación sexual, origen, etc.)',
+          qA3:'Aislamiento / tareas degradantes / cambios para hostigar',
+          qA4:'Control/vigilancia invasiva o mensajes hostiles',
+          qA5:'Gritos constantes / exigencias imposibles / cambio de objetivos',
+          qA6:'Descuentos injustificados o sanciones arbitrarias',
+          qA7:'Superiores/pares no le dirigen la palabra (ostracismo)',
+          qA8:'Actividades extralaborales/políticas/gremiales obligadas o inducidas',
+          qD1:'Malos tratos prolongados en el tiempo', qD2:'Duraron más de 4 meses',
+          qS1:'Síntomas físicos/psicológicos', qS2:'Consultas médicas/psico/psiquiatría o licencias',
+          qS3:'Pruebas (mails, chats, canal ético, testigos)',
+          qS5:'Reclamo ante un superior',
+          qS4:'RR.HH./jefatura ignoró o respondió de modo inadecuado tu reclamo'
+        };
+        const list = (ids) => ids.length ? '<ul class="ev-bullet">' + ids.map(id => `<li>${LABELS[id]}</li>`).join('') + '</ul>' : '<p class="ev-mini">Sin ítems marcados.</p>';
+
+        const mailtoHref = buildMailtoHref(EMAIL_DEST, data.subject, data.body);
+        const box = $('#evVADOut'); box.style.display = 'block';
+        box.innerHTML = `
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+            <div><strong>Resultado del chequeo:</strong> <span class="ev-chip ${data.chip}">${data.nivel}</span></div>
+            <div class="ev-btns">
+              <a class="ev-btn" href="https://wa.me/${WPP_NUMBER}?text=${encodeURIComponent(data.resumen)}" target="_blank" rel="noopener">${data.cta} por WhatsApp</a>
+              <a class="ev-btn secondary" href="${mailtoHref}" target="_blank" rel="noopener">Agendar entrevista por Email</a>
+            </div>
+          </div>
+          <hr class="ev-hr" />
+          <ul class="ev-bullet">${data.bullets.map(t => `<li>${t}</li>`).join('')}</ul>
+          <h4 class="ev-mini" style="margin-top:10px">Detalle del autodiagnóstico</h4>
+          ${data.detalleRows}
+          <details style="margin-top:8px">
+            <summary class="ev-mini"><strong>Ver ítems marcados</strong></summary>
+            <div class="ev-grid ev-grid-2" style="margin-top:8px">
+              <div><p class="ev-mini"><strong>Hechos graves</strong></p>${list(data.lists.reds)}</div>
+              <div><p class="ev-mini"><strong>Señales</strong></p>${list(data.lists.ambs)}</div>
+              <div><p class="ev-mini"><strong>Duración / continuidad</strong></p>${list(data.lists.dur)}</div>
+              <div><p class="ev-mini"><strong>Salud y soporte</strong></p>${list(data.lists.supp)}</div>
+            </div>
+          </details>
+          <p class="ev-mini" style="margin-top:8px">Uso de este dispositivo: <span id="evLocalUses"></span> veces</p>
+        `;
+        box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        /* Contador local */
+        const prev = parseInt(localStorage.getItem(USES_KEY) || '0', 10);
+        const base = Math.max(prev, BASE_START - 1);
+        const localUses = base + 1;
+        localStorage.setItem(USES_KEY, String(localUses));
+        const usesEl = $('#evLocalUses'); if (usesEl) usesEl.textContent = localUses.toLocaleString('es-AR');
+
+        /* Ping opcional */
+        if (PING_URL) {
+          const payload = {
+            ts: new Date().toISOString(),
+            result: data.nivel, counts: data.counts, bullets: data.bullets, obs: data.obs,
+            resumen: data.resumen, subject: data.subject, body: data.body, fechaHoraBA: data.fechaHoraBA
+          };
+          const controller = new AbortController();
+          const to = setTimeout(() => controller.abort(), 5000);
+          fetch(PING_URL, {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload), keepalive: true, signal: controller.signal
+          })
+          .then(async res => {
+            clearTimeout(to); let d = {}; try { d = await res.json(); } catch (e) { };
+            if (res.ok && (d.ok === undefined || d.ok === true)) showToast('Gracias, recibimos tu consulta.', 'ok');
+            else showToast('No pudimos confirmar la recepción.', 'err');
+          })
+          .catch(() => { showToast('No pudimos confirmar la recepción.', 'err'); });
+        }
+      });
+
+      /* Limpiar */
+      $('#evVADClear').addEventListener('click', () => {
+        names.forEach(n => $$('input[name="' + n + '"]').forEach(i => i.checked = false));
+        if (obsTA) obsTA.value = '';
+        const box = $('#evVADOut'); box.style.display = 'none'; box.innerHTML = '';
+        updateCounter(); updateObsCount();
+      });
+    })();
+  </script>
 </body>
-
 </html>
