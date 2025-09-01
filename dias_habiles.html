@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contador de días hábiles judiciales — Villa & Asociados</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* ===== Línea gráfica base Villa & Asociados ===== */
+  :root{
+    --sand:#efe2cc;
+    --sand-2:#f6eddc;
+    --charcoal:#474747;
+    --graphite:#2f2f2f;
+    --accent:#b89a72;
+    --ring:#cab28c;
+    --white:#fff;
+    --transition:all .3s ease;
+    --radius:18px;
+
+    /* extras locales */
+    --lume-1:#a7f3d0; --lume-2:#10b981; --lume-border:#047857;
+  }
+
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{margin:0;background:var(--sand);font-family:"Montserrat",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--graphite);line-height:1.6}
+
+  /* Topbar base */
+  .topbar{position:sticky;top:0;z-index:100;background:var(--sand);border-bottom:1px solid var(--ring);padding:14px 22px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:700;color:var(--graphite)}
+  .logo{width:42px;height:42px;border-radius:10px;display:grid;place-items:center;background:var(--sand-2);border:1px solid var(--ring);font-weight:800;color:var(--graphite);transition:var(--transition)}
+  .brand:hover .logo{transform:rotate(5deg);background:var(--accent);color:#fff}
+  .brand small{font-size:.75rem;font-weight:600;color:var(--charcoal);opacity:.95}
+
+  /* Contenedor */
+  .wrap{max-width:980px;margin:28px auto;padding:0 20px}
+
+  /* Card y encabezado de card al estilo base */
+  .card{background:var(--white);border:1px solid var(--ring);border-radius:var(--radius);box-shadow:0 10px 24px rgba(0,0,0,.06);margin-bottom:16px;overflow:hidden}
+  .hdr{background:linear-gradient(135deg,var(--sand-2) 0%,var(--sand) 100%);color:var(--graphite);padding:14px 18px;font-weight:800;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--ring)}
+  .body{padding:16px 18px}
+
+  /* Grid */
+  .grid{display:grid;gap:12px;grid-template-columns:repeat(12,1fr)}
+  .col-4{grid-column:span 4}.col-6{grid-column:span 6}.col-12{grid-column:span 12}
+  @media(max-width:900px){.col-4,.col-6{grid-column:span 12}}
+
+  /* Formularios */
+  label{font-size:13px;font-weight:800;margin-bottom:6px;display:block;color:var(--graphite)}
+  input,select{width:100%;padding:12px;border:1.5px solid var(--ring);border-radius:12px;background:var(--sand-2);outline:none;font-size:14px;transition:box-shadow .15s ease,border-color .15s ease,background .15s ease}
+  input:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(0,0,0,.06);background:#fff}
+
+  /* Botones */
+  .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .btn{appearance:none;border:1.5px solid var(--ring);background:#fff;color:var(--graphite);padding:12px 16px;border-radius:12px;font-weight:800;cursor:pointer;transition:transform .05s,background .15s,color .15s,border .15s}
+  .btn:hover{border-color:var(--accent)}
+  .btn:active{transform:translateY(1px)}
+  .btn.primary{background:var(--charcoal);color:#fff;border-color:rgba(0,0,0,.1)}
+  .btn.primary:hover{background:var(--accent)}
+  .btn.ghost{background:transparent;color:var(--charcoal)}
+
+  /* Badges */
+  .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--sand-2);border:1px solid var(--ring);font-weight:800}
+  .badge-lume{background:linear-gradient(135deg,var(--lume-1) 0%,var(--lume-2) 100%);color:#0f3d2e;border:1px solid var(--lume-border);box-shadow:0 2px 10px rgba(16,185,129,.35), inset 0 1px 0 rgba(255,255,255,.55)}
+
+  /* Tabla */
+  table{width:100%;border-collapse:collapse}
+  th,td{padding:8px;border-bottom:1px solid var(--ring);text-align:left;font-size:14px}
+  th{background:var(--sand-2);color:var(--graphite)}
+
+  /* Details */
+  details#detalleBox{border:1px solid var(--ring);border-radius:12px;background:var(--sand-2);margin-top:10px}
+  details#detalleBox[open]{background:#fff}
+  summary#detalleSum{cursor:pointer;padding:10px 12px;font-weight:800;list-style:none;display:flex;justify-content:space-between;align-items:center}
+  summary#detalleSum::-webkit-details-marker{display:none}
+  .caret{font-weight:900;transform:rotate(0deg);transition:.2s}
+  details[open] .caret{transform:rotate(90deg)}
+
+  /* Print */
+  .only-print{display:none}
+  @page{size:A4;margin:12mm}
+  @media print{
+    body{background:#fff}
+    .no-print{display:none !important}
+    .topbar{display:none !important}
+    body.print-desglose .wrap>*{display:none !important}
+    body.print-desglose #hbCard{display:block !important}
+    #hbCard{box-shadow:none;border-color:#bbb}
+    .only-print{display:block}
+    .hdr{background:#fff;color:#000;border-bottom:1px solid #bbb}
+    table th,table td{font-size:12px;padding:6px}
+  }
+</style>
+</head>
+<body>
+  <!-- Topbar base -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">VA</div>
+      <div>Villa &amp; Asociados<br><small>Contador de días hábiles judiciales</small></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="card" id="hbCard">
+      <div class="hdr">
+        <div>Contador de días hábiles judiciales</div>
+        <div class="badge badge-lume" id="resumen">Vence: —</div>
+      </div>
+      <div class="body">
+        <div class="grid">
+          <div class="col-4">
+            <label for="startDate">Fecha de inicio (p. ej., notificación)</label>
+            <input type="date" id="startDate">
+          </div>
+          <div class="col-4">
+            <label for="cantidad">Sumar días hábiles</label>
+            <input type="number" id="cantidad" min="1" step="1" value="5">
+          </div>
+          <div class="col-4">
+            <label for="jurisdiccion">Jurisdicción</label>
+            <select id="jurisdiccion">
+              <option value="nacional">Justicia Nacional</option>
+              <option value="pba">Pcia de Buenos Aires</option>
+            </select>
+          </div>
+
+          <div class="col-12 row" style="margin-top:6px">
+            <label class="row"><input type="checkbox" id="incFines" checked> Excluir fines de semana</label>
+            <label class="row"><input type="checkbox" id="incFeriados" checked> Excluir feriados nacionales (fijos)</label>
+            <label class="row"><input type="checkbox" id="incFeria" checked> Excluir ferias judiciales</label>
+          </div>
+        </div>
+
+        <div class="grid" style="margin-top:12px">
+          <div class="col-6">
+            <label for="extraInhabil" class="section-title">Día inhábil adicional (opcional)</label>
+            <input type="date" id="extraInhabil" placeholder="aaaa-mm-dd">
+            <div style="margin-top:6px;font-size:12px;text-align:justify">
+              <strong>Orientativo:</strong> el cómputo puede no ser exacto. Ante dudas, consultá con los abogados de <strong>Villa &amp; Asociados</strong>.
+            </div>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:14px">
+          <button class="btn primary no-print" id="calcular">Calcular</button>
+          <button class="btn ghost no-print" id="imprimir">Imprimir / Guardar PDF</button>
+        </div>
+
+        <details id="detalleBox" style="margin-top:12px">
+          <summary id="detalleSum">
+            Detalle del cómputo — hábiles: 0 • excluidos: 0
+            <span class="caret">▸</span>
+          </summary>
+          <div style="padding:10px 12px">
+            <table>
+              <thead><tr><th>Detalle</th></tr></thead>
+              <tbody id="detalleBody"><tr><td>—</td></tr></tbody>
+            </table>
+          </div>
+        </details>
+
+        <div id="paramsPrint" class="only-print" style="margin-top:8px">
+          <table>
+            <thead><tr><th>Parámetros del cálculo</th></tr></thead>
+            <tbody id="paramsPrintBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+<script>
+/* ===== Utilidades seguras (compatibles) ===== */
+function two(n){ return (n<10?'0':'')+n; }
+function fmtFechaLarga(d){
+  var dias=['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+  var f=new Date(d);
+  return dias[f.getDay()]+', '+two(f.getDate())+'/'+two(f.getMonth()+1)+'/'+f.getFullYear();
+}
+function isWeekend(date){ var n=date.getDay(); return (n===0||n===6); }
+function ymdLocal(date){ return new Date(date.getFullYear(),date.getMonth(),date.getDate()); }
+function isoYMD(date){ var d=ymdLocal(date); return d.getFullYear()+'-'+two(d.getMonth()+1)+'-'+two(d.getDate()); }
+function parseISO(str){
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(str)) return null;
+  var p=str.split('-'); return new Date(parseInt(p[0],10),parseInt(p[1],10)-1,parseInt(p[2],10),12,0,0,0);
+}
+function addRangeToSet(set, y,m1,d1, m2,d2){
+  var a=new Date(y,m1-1,d1), b=new Date(y,m2-1,d2);
+  for(var d=a; d<=b; d=new Date(d.getFullYear(),d.getMonth(),d.getDate()+1)){ set[isoYMD(d)] = true; }
+}
+function thirdMondayOfJuly(year){
+  var d=new Date(year,6,1);
+  while(d.getDay()!==1) d.setDate(d.getDate()+1); // primer lunes
+  d.setDate(d.getDate()+14); // tercer lunes
+  return d;
+}
+
+/* ===== Calendarios OFFLINE =====
+   - Feriados fijos: 01/01, 24/03, 02/04, 01/05, 25/05, 20/06, 09/07, 08/12, 25/12
+   - Ferias: enero completo + 2 semanas desde 3er lunes de julio
+*/
+function fixedHolidaysForYear(year){
+  var md=["01-01","03-24","04-02","05-01","05-25","06-20","07-09","12-08","12-25"];
+  var set={}; for(var i=0;i<md.length;i++){ set[year+"-"+md[i]]=true; }
+  return set;
+}
+function feriasForYear(year){
+  var set={};
+  addRangeToSet(set, year, 1,1, 1,31);
+  var start=thirdMondayOfJuly(year);
+  var end=new Date(start.getFullYear(),start.getMonth(),start.getDate()+12); // hasta sábado 2da semana
+  for(var d=new Date(start); d<=end; d=new Date(d.getFullYear(),d.getMonth(),d.getDate()+1)){
+    set[isoYMD(d)]=true;
+  }
+  return set;
+}
+
+/* ===== Cómputo ===== */
+function sumarDiasHabiles(opts){
+  var desde=opts.desde, cantidad=opts.cantidad;
+  var exclFines=opts.excluirFines, exclFeriados=opts.excluirFeriados, exclFerias=opts.excluirFerias;
+  var feriados=opts.feriados, ferias=opts.ferias, extra=opts.extraInhabil;
+
+  var d=new Date(desde.getFullYear(),desde.getMonth(),desde.getDate()+1); // día posterior
+  var cont=0, excluidos=[], usados=[];
+  while(cont<cantidad){
+    var iso=isoYMD(d);
+    if(extra && iso===extra){
+      excluidos.push(iso+" — Inhábil adicional (usuario)");
+    } else if(exclFines && isWeekend(d)){
+      excluidos.push(iso+" — Fin de semana");
+    } else if(exclFerias && ferias[iso]){
+      excluidos.push(iso+" — Feria judicial");
+    } else if(exclFeriados && feriados[iso]){
+      excluidos.push(iso+" — Feriado nacional (fijo)");
+    } else {
+      cont++; usados.push(iso+" ✓ Hábil");
+      if(cont===cantidad) break;
+    }
+    d.setDate(d.getDate()+1);
+  }
+  return {vencimiento:d, excluidos:excluidos, usados:usados};
+}
+
+/* ===== Render ===== */
+function calcularYRender(){
+  try{
+    var f=document.getElementById("startDate").value;
+    var cant=parseInt(document.getElementById("cantidad").value,10);
+    if(!f){ alert("Indicá la fecha de inicio."); return; }
+    if(!(cant>0)){ alert("Indicá la cantidad de días hábiles (entero ≥ 1)."); return; }
+
+    var jurSel=document.getElementById("jurisdiccion");
+    var jurLabel=jurSel.options[jurSel.selectedIndex].text;
+
+    var exclFines=document.getElementById("incFines").checked;
+    var exclFeriados=document.getElementById("incFeriados").checked;
+    var exclFerias=document.getElementById("incFeria").checked;
+
+    var extraStr=document.getElementById("extraInhabil").value;
+    var extraDate=extraStr? parseISO(extraStr): null;
+
+    var desde=parseISO(f);
+    if(!desde){ alert("Fecha inválida."); return; }
+    var year=desde.getFullYear();
+
+    var feriados=fixedHolidaysForYear(year);
+    var ferias=feriasForYear(year);
+
+    var res=sumarDiasHabiles({
+      desde:desde,
+      cantidad:cant,
+      excluirFines:exclFines,
+      excluirFeriados:exclFeriados,
+      excluirFerias:exclFerias,
+      feriados:feriados,
+      ferias:ferias,
+      extraInhabil: extraDate? isoYMD(extraDate): null
+    });
+
+    document.getElementById("resumen").textContent="Vence: "+fmtFechaLarga(res.vencimiento);
+
+    var sumEl=document.getElementById("detalleSum");
+    sumEl.innerHTML="Detalle del cómputo — hábiles: "+res.usados.length+" • excluidos: "+res.excluidos.length+" <span class=\"caret\">▸</span>";
+
+    var body=document.getElementById("detalleBody");
+    var html="";
+    html += "<tr><td><strong>Hábiles contados ("+res.usados.length+"):</strong><br>"+(res.usados.length? res.usados.join("<br>"):"—")+"</td></tr>";
+    html += "<tr><td style='border-top:1px solid var(--ring)'><strong>Fechas excluidas ("+res.excluidos.length+"):</strong><br>"+(res.excluidos.length? res.excluidos.join("<br>"):"—")+"</td></tr>";
+    body.innerHTML=html;
+
+    var pbody=document.getElementById("paramsPrintBody");
+    var reglas=(exclFines?"excluir fines de semana; ":"")+(exclFeriados?"excluir feriados nacionales (fijos); ":"")+(exclFerias?"excluir ferias judiciales":"");
+    pbody.innerHTML=""
+      +"<tr><td><strong>Inicio:</strong> "+two(desde.getDate())+"/"+two(desde.getMonth()+1)+"/"+desde.getFullYear()+"</td></tr>"
+      +"<tr><td><strong>Días hábiles a sumar:</strong> "+cant+"</td></tr>"
+      +"<tr><td><strong>Jurisdicción:</strong> "+jurLabel+"</td></tr>"
+      +"<tr><td><strong>Reglas:</strong> "+reglas+"</td></tr>"
+      +"<tr><td><strong>Día inhábil adicional:</strong> "+(extraDate? two(extraDate.getDate())+"/"+two(extraDate.getMonth()+1)+"/"+extraDate.getFullYear():"—")+"</td></tr>"
+      +"<tr><td><strong>Nota:</strong> cálculo orientativo (feriados fijos + ferias por heurística). Ante dudas, consultá con Villa &amp; Asociados.</td></tr>";
+  }catch(e){
+    alert("Hubo un inconveniente con el cálculo. Si ves este mensaje, reenviame el archivo exacto que estás usando.");
+  }
+}
+
+/* ===== Botones ===== */
+document.getElementById("calcular").addEventListener("click", calcularYRender);
+document.getElementById("imprimir").addEventListener("click", function(){
+  calcularYRender();
+  document.body.classList.add("print-desglose");
+  setTimeout(function(){ window.print(); }, 30);
+});
+window.addEventListener("afterprint", function(){ document.body.classList.remove("print-desglose"); });
+</script>
+</body>
+</html>
