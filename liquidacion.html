@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Liquidación Final — Villa & Asociados</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ===== Línea gráfica base Villa & Asociados ===== */
+    :root{
+      --sand:#efe2cc;
+      --sand-2:#f6eddc;
+      --charcoal:#474747;
+      --graphite:#2f2f2f;
+      --accent:#b89a72;
+      --ring:#cab28c;
+      --white:#fff;
+      --transition:all .3s ease;
+      --radius:18px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{font-family:"Montserrat",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--sand);color:var(--graphite);line-height:1.6}
+
+    /* Topbar */
+    .topbar{position:sticky;top:0;z-index:100;background:var(--sand);border-bottom:1px solid var(--ring);padding:14px 22px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700;color:var(--graphite)}
+    .logo{width:42px;height:42px;border-radius:10px;display:grid;place-items:center;background:var(--sand-2);border:1px solid var(--ring);font-weight:800;color:var(--graphite);transition:var(--transition)}
+    .brand:hover .logo{transform:rotate(5deg);background:var(--accent);color:#fff}
+    .brand small{font-size:.75rem;font-weight:600;color:var(--charcoal);opacity:.95}
+
+    /* Contenedor */
+    .wrap{max-width:1100px;margin:24px auto 90px;padding:0 20px}
+
+    /* Cards base */
+    .card{background:var(--white);border:1px solid var(--ring);border-radius:var(--radius);box-shadow:0 10px 24px rgba(0,0,0,.06);margin-bottom:18px;overflow:hidden}
+    .hdr{background:linear-gradient(135deg,var(--sand-2) 0%,var(--sand) 100%);color:var(--graphite);padding:14px 18px;font-weight:800;font-size:18px;display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid var(--ring)}
+    .sub{color:#5a5a5a;opacity:.9;font-size:12px;font-weight:600}
+    .body{padding:18px}
+
+    /* Grid */
+    .grid{display:grid;gap:14px;grid-template-columns:repeat(12,1fr)}
+    .col-12{grid-column:span 12}.col-6{grid-column:span 6}.col-4{grid-column:span 4}
+    @media (max-width:900px){.col-6,.col-4{grid-column:span 12}}
+
+    /* Inputs */
+    label{display:block;font-size:13px;font-weight:700;color:var(--graphite);margin-bottom:6px}
+    .hint{font-size:12px;color:#666;margin-top:6px}
+    input[type="text"],input[type="date"],select,input[type="number"]{
+      width:100%;border:1.5px solid var(--ring);border-radius:12px;padding:12px;font-size:14px;background:var(--sand-2);
+      outline:none;transition:box-shadow .15s ease,border-color .15s ease,background .15s ease
+    }
+    input:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(0,0,0,.06);background:#fff}
+
+    .switch{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;border:2px dashed var(--ring);background:#fff;min-height:56px}
+    .switch input{transform:scale(1.1)}
+
+    /* Botones */
+    .bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .btn{appearance:none;border:1.5px solid var(--ring);border-radius:12px;padding:12px 16px;font-weight:700;cursor:pointer;background:#fff;color:var(--graphite);transition:transform .05s ease,background .15s ease,color .15s ease,border .15s ease;text-align:center}
+    .btn:hover{border-color:var(--accent)}
+    .btn:active{transform:translateY(1px)}
+    .btn.primary{background:var(--charcoal);color:#fff;border-color:rgba(0,0,0,.1)}
+    .btn.primary:hover{background:var(--accent)}
+    .btn.secondary{background:var(--accent);color:var(--graphite)}
+    .btn.ghost{background:transparent;color:var(--charcoal);border-color:var(--ring)}
+
+    /* Tiles / Totales */
+    .tile{border:1px solid var(--ring);border-radius:14px;padding:14px;background:#fff}
+    .tile h4{margin:0 0 6px;font-size:14px;color:var(--charcoal)}
+    .tile .n{font-size:22px;font-weight:800;color:var(--graphite)}
+    .totals{display:grid;gap:14px;grid-template-columns:repeat(12,1fr)}
+    .totals .tile{grid-column:span 6}
+    @media (max-width:900px){.totals .tile{grid-column:span 12}}
+    .grand{border:2px solid var(--charcoal);background:var(--sand-2)}
+    .grand .n{font-size:26px}
+
+    /* Badge */
+    .badge{display:inline-block;padding:6px 12px;border-radius:999px;font-size:14px;font-weight:800;letter-spacing:.2px;background:#eafaf2;color:#0f3d2e;border:1px solid #9bd7be}
+
+    .note{background:#fff8ea;border:1px solid #d6bf97;color:#5a4a2f;padding:14px 16px;border-radius:16px;line-height:1.45;font-size:14px;max-width:900px;margin:0 auto}
+    .note p{margin:0;text-align:justify;text-justify:inter-word;hyphens:auto;font-weight:800}
+
+    /* Tabla */
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:10px 8px;border-bottom:1px solid var(--ring);font-size:14px}
+    th{text-align:left;background:var(--sand-2);color:var(--graphite)}
+
+    .footer{text-align:center;color:#666;font-size:12px;margin-top:14px}
+    .divider{height:1px;background:var(--ring);margin:12px 0}
+    .bold-just{font-weight:800;text-align:justify}
+    .text-black{color:#000!important}
+
+    /* Módulo imprimible */
+    .print-target .body{padding:16px 18px}
+    .prt-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
+    .brand-mini{display:flex;align-items:center;gap:10px}
+    .brand-mini .logo{width:32px;height:32px;border-radius:8px}
+    .brand-mini .name strong{font-size:16px}
+    .brand-mini .name span{font-size:12px;color:#666;font-weight:600}
+    .prt-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 20px;margin:6px 0 10px}
+    .prt-col{border:1px solid var(--ring);border-radius:12px;padding:10px 12px;background:#fff}
+    .prt-col h4{margin:0 0 8px;font-size:13px;color:#555;letter-spacing:.2px}
+    .meta{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+    .meta li{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed var(--ring);padding-bottom:6px}
+    .meta li:last-child{border-bottom:none;padding-bottom:0}
+    .total-line span{font-size:18px;font-weight:800}
+    .prt-title{margin:2px 0 8px;font-size:16px}
+    .p-foot{margin-top:10px;font-size:12px;color:#666;display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+    .p-foot .left{white-space:pre-wrap}.p-foot .right{text-align:right}
+
+    /* Print */
+    @page{size:A4;margin:12mm}
+    @media print{
+      body{background:#fff}
+      .topbar,.bar{display:none!important}
+      .card{box-shadow:none;border-color:#bbb}
+      .prt-grid{gap:8px 12px}
+      table,th,td{font-size:12px}
+    }
+    /* Modo imprimir solo desglose */
+    .print-header,.print-footer{display:none}
+    @media print{
+      body.print-desglose .topbar{display:none!important}
+      body.print-desglose .wrap>*{display:none!important}
+      body.print-desglose #lfPrintable{display:block!important}
+      body.print-desglose #lfPrintable .body{padding:8mm}
+      body.print-desglose table,
+      body.print-desglose th,
+      body.print-desglose td{font-size:12px;padding:6px}
+      body.print-desglose .total-line span{font-size:16px}
+      body.print-desglose .card{border-color:#bbb}
+    }
+  </style>
+</head>
+<body>
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">VA</div>
+      <div>Villa &amp; Asociados<br><small>Liquidación final (trabajadores y empleadores)</small></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- Aviso -->
+    <div class="card">
+      <div class="hdr">
+        Alcance
+        <span class="sub">Montos brutos · válido para trabajadores y empleadores · aplica en despido o renuncia</span>
+      </div>
+      <div class="body">
+        <div class="note">
+          <p><strong>
+            Este módulo calcula la <u>liquidación final</u> (salario del mes, SAC proporcional, vacaciones proporcionales,
+            vacaciones pendientes y otros haberes). El cálculo podrá ser realizado tanto por trabajadores como por empleadores.
+            <u>Estos conceptos se abonan tanto en hipótesis de despido como de renuncia</u>, conforme a la LCT y usos del sector.
+            No calcula indemnizaciones por despido (para despido sin causa, usá el simulador específico).
+            Cada caso requiere verificación por los letrados del estudio.
+          </strong></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Datos -->
+    <div class="card">
+      <div class="hdr">Datos de la relación laboral <span class="sub">Completá para calcular</span></div>
+      <div class="body">
+        <div class="grid">
+          <div class="col-12">
+            <label for="nombreTrab">Nombre del trabajador</label>
+            <input type="text" id="nombreTrab" placeholder="Nombre y apellido" autocomplete="name">
+          </div>
+
+          <div class="col-4">
+            <label for="fechaIngreso">Fecha de ingreso</label>
+            <input type="date" id="fechaIngreso">
+          </div>
+          <div class="col-4">
+            <label for="fechaEgreso">Fecha de egreso</label>
+            <input type="date" id="fechaEgreso">
+          </div>
+          <div class="col-4">
+            <label for="mrnh">Remuneración mensual normal y habitual</label>
+            <input type="text" id="mrnh" placeholder="$">
+            <div class="hint">Ej.: sueldo bruto habitual mensual.</div>
+          </div>
+
+          <div class="col-6">
+            <label for="mejorSemestre">Mejor remuneración mensual del semestre (para SAC)</label>
+            <input type="text" id="mejorSemestre" placeholder="$ (si lo dejás vacío, se usa la remuneración mensual)">
+            <div class="hint">SAC = (mejor sueldo del semestre / 2) × (días trabajados en el semestre / días del semestre).</div>
+          </div>
+
+          <div class="col-6">
+            <label for="otrosHaberes">Otros haberes adeudados (monto opcional)</label>
+            <div class="grid" style="grid-template-columns:1fr;gap:10px">
+              <input type="text" id="otrosHaberes" placeholder="$ 0">
+              <input type="text" id="otrosConcepto" list="otrosConceptoSugerencias" placeholder="Concepto (p. ej., comisiones, horas extras, diferencias salariales, premios)">
+              <datalist id="otrosConceptoSugerencias">
+                <option value="Comisiones"></option>
+                <option value="Horas extras"></option>
+                <option value="Diferencias salariales"></option>
+                <option value="Premios / Bonificaciones"></option>
+                <option value="Adicionales impagos"></option>
+                <option value="Viáticos"></option>
+                <option value="Feriados trabajados"></option>
+                <option value="No remunerativos"></option>
+                <option value="Plus convenio / título"></option>
+                <option value="A cuenta de futuros aumentos"></option>
+              </datalist>
+            </div>
+            <div class="hint">Indicá el monto y el concepto del haber adeudado (aplica para trabajadores y empleadores).</div>
+          </div>
+
+          <div class="col-6">
+            <label for="vacPend">Vacaciones pendientes de años anteriores (días)</label>
+            <input type="number" id="vacPend" min="0" step="1" value="0">
+            <div class="hint">Se liquidan a valor sueldo/25 por cada día pendiente.</div>
+          </div>
+
+          <div class="col-6">
+            <label class="switch">
+              <input type="checkbox" id="contarDias30" checked>
+              <small>Prorratear mes por regla de 30 días</small>
+            </label>
+            <div class="hint">Para salarios mensuales, usualmente se prorratea sobre 30 (LCT/uso).</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+        <div class="bar">
+          <button class="btn primary" id="calcular">Calcular</button>
+          <button class="btn secondary" id="ctaRevisar">Solicitar revisión del cálculo</button>
+          <button class="btn ghost" id="imprimir">Imprimir / Guardar PDF</button>
+          <button class="btn ghost" id="reiniciar">Reiniciar</button>
+          <span class="badge" id="antiguedadBadge">Antigüedad: —</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Resultados -->
+    <div class="card">
+      <div class="hdr">Resultados <span class="sub">Detalle y total</span></div>
+      <div class="body">
+        <div class="totals">
+          <div class="tile">
+            <h4>Salario del mes (días trabajados)</h4>
+            <div class="n" id="outMes">$ —</div>
+            <div class="hint" id="detMes">—</div>
+          </div>
+          <div class="tile">
+            <h4>SAC proporcional</h4>
+            <div class="n" id="outSAC">$ —</div>
+            <div class="hint" id="detSAC">—</div>
+          </div>
+          <div class="tile">
+            <h4>Vacaciones proporcionales (Art. 156)</h4>
+            <div class="n" id="outVacProp">$ —</div>
+            <div class="hint" id="detVacProp">—</div>
+          </div>
+          <div class="tile">
+            <h4>Vacaciones pendientes (años anteriores)</h4>
+            <div class="n" id="outVacPend">$ —</div>
+            <div class="hint" id="detVacPend">—</div>
+          </div>
+          <div class="tile">
+            <h4>Otros haberes</h4>
+            <div class="n" id="outOtros">$ —</div>
+            <div class="hint" id="detOtros">—</div>
+          </div>
+          <div class="tile grand">
+            <h4>Total liquidación final</h4>
+            <div class="n" id="outTotal">$ —</div>
+            <div class="hint bold-just text-black">
+              Montos <strong>brutos</strong>. La determinación puede variar por convenio o particularidades del caso.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Módulo imprimible -->
+    <div class="card print-target" id="lfPrintable">
+      <div class="body">
+        <div class="prt-head">
+          <div class="brand-mini">
+            <div class="logo">VA</div>
+            <div class="name">
+              <strong>Villa &amp; Asociados</strong><br>
+              <span>Resumen de Liquidación Final</span>
+            </div>
+          </div>
+          <div><strong>Fecha:</strong> <span id="pFechaGen">—</span></div>
+        </div>
+
+        <div class="prt-grid">
+          <div class="prt-col">
+            <h4>Datos del caso</h4>
+            <ul class="meta">
+              <li><strong>Trabajador:</strong> <span id="pTrab">—</span></li>
+              <li><strong>Ingreso:</strong> <span id="pIng">—</span></li>
+              <li><strong>Egreso:</strong> <span id="pEgr">—</span></li>
+              <li><strong>Antigüedad:</strong> <span id="pAnt">—</span></li>
+            </ul>
+          </div>
+          <div class="prt-col">
+            <h4>Bases</h4>
+            <ul class="meta">
+              <li><strong>Remuneración mensual:</strong> <span id="pMRNH">—</span></li>
+              <li><strong>Mejor sueldo semestre (SAC):</strong> <span id="pMejorSem">—</span></li>
+              <li class="total-line"><strong>Total:</strong> <span id="pTot">—</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <h3 class="prt-title">Desglose</h3>
+        <div class="table-wrap">
+          <table id="tablaDesglose">
+            <thead>
+              <tr><th>Concepto</th><th>Base / Cantidad</th><th>Monto</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <div class="p-foot">
+          <div class="left">
+            Villa &amp; Asociados — Av. Roque Saenz Peña 720, Piso 4 E, CABA • info@estudio-villa.com • Tel/WhatsApp:
+            <a href="tel:+541162577792">11 6257-7792</a>
+            <br>
+            <em>Estos conceptos se abonan tanto en hipótesis de despido como de renuncia.</em>
+          </div>
+          <div class="right">Generada en www.estudio-villa.com</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card"><div class="body">
+      <div class="footer">
+        © Villa &amp; Asociados — Herramienta profesional orientativa. Confirmá siempre el cálculo con la documentación del caso y consultá la liquidación con un profesional de nuestro estudio o uno de tu confianza. <span id="calcCountFooter"><strong>calculo realizado Nro 2.000</strong></span>
+      </div>
+    </div></div>
+  </main>
+
+  <script>
+    const STUDIO_EMAIL="info@estudio-villa.com";
+
+    // Utilidades
+    const fmt=(n)=>isFinite(n)?n.toLocaleString("es-AR",{style:"currency",currency:"ARS",maximumFractionDigits:2}):"—";
+    function parseMoney(v){if(!v)return 0;v=(""+v).replace(/\s|\$|\./g,"").replace(",",".");const n=parseFloat(v);return isNaN(n)?0:n;}
+    function daysInMonth(y,m){return new Date(y,m+1,0).getDate();}
+    function diffYMD(a,b){let y=b.getFullYear()-a.getFullYear(),m=b.getMonth()-a.getMonth(),d=b.getDate()-a.getDate();if(d<0){m-=1;d+=daysInMonth(b.getFullYear(),(b.getMonth()-1+12)%12);}if(m<0){y-=1;m+=12;}return{years:y,months:m,days:d};}
+    function daysBetweenInclusive(a,b){const ms=86400000;return Math.floor((b-a)/ms)+1;}
+    function diasVacAnuales(ant31){const y=ant31.years;if(y<5)return 14;if(y<10)return 21;if(y<20)return 28;return 35;}
+    function semestreDe(fecha){const y=fecha.getFullYear();return (fecha.getMonth()<=5)?{ini:new Date(y,0,1,12),fin:new Date(y,5,30,12)}:{ini:new Date(y,6,1,12),fin:new Date(y,11,31,12)};}
+
+    // Contador
+    let lfCount=Number.parseInt(localStorage.getItem("va_lf_count")||"2000",10);
+    const $calcCountFooter=document.getElementById("calcCountFooter");
+    function renderCount(){if($calcCountFooter){$calcCountFooter.innerHTML="<strong>calculo realizado Nro "+lfCount.toLocaleString("es-AR")+"</strong>";}}
+    renderCount();
+
+    // Formato amable al perder foco
+    document.addEventListener('DOMContentLoaded',()=>{
+      ["mrnh","mejorSemestre","otrosHaberes"].forEach(id=>{
+        const el=document.getElementById(id);if(!el)return;
+        el.addEventListener('blur',()=>{const n=parseMoney(el.value);if(!isNaN(n)&&n>0){el.value=n.toLocaleString('es-AR',{minimumFractionDigits:0,maximumFractionDigits:2});}else{if(id==="otrosHaberes")el.value="";}});
+      });
+    });
+
+    function compute(){
+      const nombre=(document.getElementById("nombreTrab").value||"").trim();
+      const fIngStr=document.getElementById("fechaIngreso").value;
+      const fEgrStr=document.getElementById("fechaEgreso").value;
+      const mrnh=parseMoney(document.getElementById("mrnh").value);
+      let mejorSem=parseMoney(document.getElementById("mejorSemestre").value);
+      const otros=parseMoney(document.getElementById("otrosHaberes").value);
+      const otrosConcepto=(document.getElementById("otrosConcepto").value||"").trim();
+      const vacPendDias=parseFloat(document.getElementById("vacPend").value||"0");
+      const prorr30=document.getElementById("contarDias30").checked;
+
+      if(!fIngStr||!fEgrStr||!mrnh){alert("Completá al menos: ingreso, egreso y remuneración mensual.");return false;}
+      const fIng=new Date(fIngStr+"T12:00:00");const fEgr=new Date(fEgrStr+"T12:00:00");
+      if(fEgr<fIng){alert("La fecha de egreso no puede ser anterior a la de ingreso.");return false;}
+
+      const dif=diffYMD(fIng,fEgr);const antStr=`${dif.years} a, ${dif.months} m, ${dif.days} d`;
+
+      // 1) Salario del mes
+      const diaEgr=fEgr.getDate();
+      const diasMes=prorr30?30:daysInMonth(fEgr.getFullYear(),fEgr.getMonth());
+      const salarioMes=mrnh*(diaEgr/diasMes);
+      const detMes=`Trabajados ${diaEgr} día(s) / ${diasMes} • Base ${fmt(mrnh)}`;
+
+      // 2) SAC proporcional
+      if(!mejorSem)mejorSem=mrnh;
+      const {ini:semIni,fin:semFin}=semestreDe(fEgr);
+      const desdeSem=new Date(Math.max(semIni.getTime(),fIng.getTime()));
+      const diasTrabSem=daysBetweenInclusive(desdeSem,fEgr);
+      const diasSemTotal=daysBetweenInclusive(semIni,semFin);
+      const sacFull=mejorSem/2;
+      const sacProp=sacFull*(diasTrabSem/diasSemTotal);
+      const detSAC=`Mejor semestre ${fmt(mejorSem)} → SAC semestral ${fmt(sacFull)} × ${diasTrabSem}/${diasSemTotal}`;
+
+      // 3) Vacaciones proporcionales
+      const anio=fEgr.getFullYear();
+      const a31=new Date(anio,11,31,12);
+      const ant31=diffYMD(fIng,a31);
+      const diasVacAnio=diasVacAnuales(ant31);
+      const inicioAno=new Date(anio,0,1,12);
+      const desdeProp=(fIng>inicioAno)?fIng:inicioAno;
+      const diasTrabAno=daysBetweenInclusive(desdeProp,fEgr);
+      const totalDiasAno=(new Date(anio,1,29).getMonth()===1)?366:365;
+      const diasVacProp=diasVacAnio*(diasTrabAno/totalDiasAno);
+      const valorDiaVac=mrnh/25;
+      const vacPropMonto=valorDiaVac*diasVacProp;
+      const detVacProp=`Días anuales ${diasVacAnio} • Dev.: ${diasTrabAno}/${totalDiasAno} → ${diasVacProp.toFixed(2)} día(s) × ${fmt(valorDiaVac)} (sueldo/25)`;
+
+      // 4) Vacaciones pendientes
+      const vacPendMonto=(vacPendDias>0?valorDiaVac*vacPendDias:0);
+      const detVacPend=(vacPendDias>0?`${vacPendDias} día(s) × ${fmt(valorDiaVac)} (sueldo/25)`:"Sin pendientes");
+
+      // 5) Otros
+      const otrosMonto=otros||0;
+      const detOtros=otrosMonto>0?(otrosConcepto?`Concepto: ${otrosConcepto}`:"Concepto no informado"):"Sin otros haberes";
+
+      const total=salarioMes+sacProp+vacPropMonto+vacPendMonto+otrosMonto;
+
+      // UI
+      document.getElementById("antiguedadBadge").textContent=`Antigüedad: ${antStr}`;
+      document.getElementById("outMes").textContent=fmt(salarioMes);document.getElementById("detMes").textContent=detMes;
+      document.getElementById("outSAC").textContent=fmt(sacProp);document.getElementById("detSAC").textContent=detSAC;
+      document.getElementById("outVacProp").textContent=fmt(vacPropMonto);document.getElementById("detVacProp").textContent=detVacProp;
+      document.getElementById("outVacPend").textContent=fmt(vacPendMonto);document.getElementById("detVacPend").textContent=detVacPend;
+      document.getElementById("outOtros").textContent=fmt(otrosMonto);document.getElementById("detOtros").textContent=detOtros;
+      document.getElementById("outTotal").textContent=fmt(total);
+
+      // Normalizo inputs
+      ["mrnh","mejorSemestre","otrosHaberes"].forEach(id=>{const el=document.getElementById(id);if(!el)return;const n=parseMoney(el.value);if(!isNaN(n)&&n>0){el.value=n.toLocaleString('es-AR',{minimumFractionDigits:0,maximumFractionDigits:2});}});
+
+      // Printable
+      const id=(x)=>document.getElementById(x);
+      id("pFechaGen").textContent=new Date().toLocaleString("es-AR");
+      id("pTrab").textContent=nombre||"—";
+      id("pIng").textContent=new Date(fIngStr+"T12:00:00").toLocaleDateString("es-AR");
+      id("pEgr").textContent=new Date(fEgrStr+"T12:00:00").toLocaleDateString("es-AR");
+      id("pAnt").textContent=antStr;
+      id("pMRNH").textContent=fmt(mrnh);
+      id("pMejorSem").textContent=fmt(mejorSem);
+      id("pTot").textContent=fmt(total);
+
+      const tbody=document.querySelector("#tablaDesglose tbody");
+      tbody.innerHTML="";
+      const rows=[
+        ["Salario del mes",detMes,salarioMes],
+        ["SAC proporcional",detSAC,sacProp],
+        ["Vacaciones proporcionales (Art. 156)",detVacProp,vacPropMonto],
+        ["Vacaciones pendientes",detVacPend,vacPendMonto],
+        ["Otros haberes",detOtros,otrosMonto],
+        ["TOTAL","",total]
+      ];
+      for(const r of rows){
+        const tr=document.createElement("tr");
+        tr.innerHTML=`<td>${r[0]}</td><td class="hint">${r[1]||"—"}</td><td><strong>${fmt(r[2])}</strong></td>`;
+        if(r[0]==="TOTAL"){tr.style.background="var(--sand-2)";tr.style.fontWeight="800";}
+        tbody.appendChild(tr);
+      }
+
+      // Resumen mail
+      window.__resumenLF=[
+        "LIQUIDACIÓN FINAL - Villa & Asociados",
+        `Trabajador: ${nombre||"-"}`,
+        `Ingreso: ${id("pIng").textContent} | Egreso: ${id("pEgr").textContent}`,
+        `Antigüedad: ${antStr}`,
+        `Remuneración mensual: ${fmt(mrnh)} | Mejor sueldo semestre (SAC): ${fmt(mejorSem)}`,
+        `Salario del mes: ${fmt(salarioMes)} | SAC prop.: ${fmt(sacProp)}`,
+        `Vacaciones prop.: ${fmt(vacPropMonto)} | Vac. pendientes: ${fmt(vacPendMonto)}`,
+        `Otros haberes: ${fmt(otrosMonto)}`,
+        `TOTAL: ${fmt(total)}`,
+        "",
+        "Nota: Los conceptos de liquidación final se abonan tanto en despido como en renuncia.",
+        "Generada en www.estudio-villa.com"
+      ].join("\n");
+
+      return true;
+    }
+
+    document.getElementById("calcular").addEventListener("click",()=>{
+      const ok=compute();if(!ok)return;
+      let lfCount=Number.parseInt(localStorage.getItem("va_lf_count")||"2000",10);
+      lfCount+=1;localStorage.setItem("va_lf_count",String(lfCount));
+      const $calcCountFooter=document.getElementById("calcCountFooter");
+      if($calcCountFooter){$calcCountFooter.innerHTML="<strong>calculo realizado Nro "+lfCount.toLocaleString("es-AR")+"</strong>";}
+    });
+
+    document.getElementById("ctaRevisar").addEventListener("click",()=>{
+      const ok=compute();if(!ok)return;
+      const subject="Solicitud de revisión - Liquidación Final";
+      const body=window.__resumenLF+"\n\nSolicito revisión del cálculo y asesoramiento.";
+      const mailto=`mailto:${encodeURIComponent(STUDIO_EMAIL)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href=mailto;
+    });
+
+    document.getElementById("imprimir").addEventListener("click",()=>{
+      const ok=compute();if(!ok)return;
+      document.body.classList.add("print-desglose");setTimeout(()=>{window.print();},50);
+    });
+    window.addEventListener("afterprint",()=>{document.body.classList.remove("print-desglose");});
+
+    document.getElementById("reiniciar").addEventListener("click",()=>{
+      ["nombreTrab","fechaIngreso","fechaEgreso","mrnh","mejorSemestre","otrosHaberes","otrosConcepto","vacPend"].forEach(id=>{
+        const el=document.getElementById(id);if(!el)return;
+        if(el.type==="checkbox")el.checked=false;else el.value=(id==="vacPend"?"0":"");
+      });
+      document.getElementById("contarDias30").checked=true;
+      ["outMes","outSAC","outVacProp","outVacPend","outOtros","outTotal"].forEach(id=>document.getElementById(id).textContent="$ —");
+      ["detMes","detSAC","detVacProp","detVacPend","detOtros"].forEach(id=>document.getElementById(id).textContent="—");
+      document.getElementById("antiguedadBadge").textContent="Antigüedad: —";
+      document.querySelector("#tablaDesglose tbody").innerHTML="";
+      ["pFechaGen","pTrab","pIng","pEgr","pAnt","pMRNH","pMejorSem","pTot"].forEach(id=>document.getElementById(id).textContent="—");
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calculadora de prorrateo de honorarios — Villa & Asociados</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ===== Línea gráfica base Villa & Asociados ===== */
+    :root{
+      --sand:#efe2cc;
+      --sand-2:#f6eddc;
+      --charcoal:#474747;
+      --graphite:#2f2f2f;
+      --accent:#b89a72;
+      --ring:#cab28c;
+      --white:#fff;
+      --transition:all .3s ease;
+      --radius:18px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{font-family:"Montserrat",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--sand);color:var(--graphite);line-height:1.6}
+
+    /* Topbar (base) */
+    .topbar{background:var(--sand);border-bottom:1px solid var(--ring);padding:14px 22px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700;color:var(--graphite)}
+    .logo{width:42px;height:42px;border-radius:10px;display:grid;place-items:center;background:var(--sand-2);border:1px solid var(--ring);font-weight:800;color:var(--graphite);transition:var(--transition)}
+    .brand:hover .logo{transform:rotate(5deg);background:var(--accent);color:#fff}
+    .brand-text{line-height:1.2}
+    .brand small{font-size:.75rem;font-weight:500;color:var(--charcoal)}
+
+    /* Contenedor base */
+    .wrap{max-width:1100px;margin:28px auto 40px;padding:0 20px}
+
+    /* Título sección (base) */
+    .hdr{font-size:1.6rem;font-weight:700;color:var(--charcoal);margin-bottom:18px;position:relative;padding-bottom:10px}
+    .hdr::after{content:'';position:absolute;bottom:0;left:0;width:60px;height:3px;background:var(--accent);border-radius:3px}
+
+    /* ===== Mapeo visual del calculador al estilo base ===== */
+    /* Paleta derivada desde la base */
+    :root{
+      --bg:var(--sand);
+      --card:var(--white);
+      --header:var(--charcoal);
+      --primary:var(--charcoal);
+      --accent-2:var(--accent);
+      --text:var(--graphite);
+      --muted:#666;
+      --ring-2:var(--ring);
+      --chip:var(--sand-2);
+      --inputBg:var(--sand-2);
+    }
+
+    /* Bloques/secciones (cards del sistema) */
+    .section{background:var(--card);border-radius:var(--radius);box-shadow:0 6px 16px rgba(0,0,0,.06);overflow:hidden;border:1px solid var(--ring-2);margin-top:18px}
+    .section .head{background:linear-gradient(135deg,var(--sand-2) 0%,var(--sand) 100%);border-bottom:1px solid var(--ring-2);color:var(--graphite);padding:16px 18px;display:flex;align-items:center;justify-content:space-between}
+    .section .head h2{margin:0;font-size:18px;font-weight:800}
+    .pill{background:#fff;border:1px solid var(--ring-2);padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700;color:var(--charcoal)}
+    .section .body{padding:20px}
+
+    /* Grid responsivo */
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    @media (max-width:860px){.grid{grid-template-columns:1fr}}
+
+    label{font-weight:800;font-size:14px;color:var(--graphite)}
+    label span.req{color:#b91c1c;margin-left:3px}
+
+    input[type="text"],input[type="number"]{
+      width:100%;padding:14px;border:1.5px solid var(--ring-2);border-radius:12px;background:var(--inputBg);
+      font-size:16px;outline:none;transition:border .15s ease,box-shadow .15s ease,background .15s ease
+    }
+    input[type="text"]:focus,input[type="number"]:focus{border-color:var(--accent-2);box-shadow:0 0 0 4px rgba(0,0,0,.06);background:#fff}
+
+    .calc-box{width:100%;padding:12px 14px;border:1.5px solid var(--ring-2);border-radius:12px;background:var(--inputBg);font-weight:800}
+
+    .row{display:flex;gap:10px;align-items:center}
+    .muted{color:var(--muted);font-size:13px}
+
+    /* Tabla resultado con cabecera base */
+    table{width:100%;border-collapse:collapse;margin-top:14px}
+    thead th{background:var(--header);color:#fff;padding:12px 10px;text-align:right;font-weight:800}
+    thead th:first-child{text-align:left;border-top-left-radius:12px}
+    thead th:last-child{border-top-right-radius:12px}
+    td{padding:12px 8px;border-bottom:1px solid #efe9df;text-align:right;font-variant-numeric:tabular-nums;background:#fff}
+    td:first-child{text-align:left}
+    tfoot td{font-weight:900;background:#faf6ef}
+
+    /* Definiciones (lista de datos) */
+    .deflist{margin:0;padding:0;list-style:none}
+    .defitem{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:16px 0;border-bottom:1px solid #efe9df}
+    .defitem:last-child{border-bottom:none}
+    .deflabel{font-weight:800;color:var(--graphite)}
+    .defvalue{font-weight:700}
+
+    /* Botones con look & feel base */
+    .btn{appearance:none;border:1.5px solid var(--ring-2);border-radius:12px;padding:12px 16px;font-weight:700;cursor:pointer;background:#fff;color:var(--text);transition:transform .05s ease,background .15s ease,color .15s ease,border .15s ease;text-align:center}
+    .btn:hover{border-color:var(--accent-2)}
+    .btn:active{transform:translateY(1px)}
+    .btn-primary{background:var(--primary);color:#fff;border-color:rgba(0,0,0,.1)}
+    .btn-primary:hover{background:var(--accent-2)}
+    .btn-plain{background:var(--sand-2)}
+
+    .actions{display:flex;gap:12px;justify-content:center;margin-top:12px}
+    .addbar{border:2px dashed var(--ring-2);border-radius:12px;padding:14px;display:flex;align-items:center;gap:10px;color:var(--muted);margin-top:10px}
+    .addbar .btn{margin-left:auto}
+
+    .toast{margin-top:8px;color:#7f1d1d;background:#fee2e2;border:1px solid #fecaca;padding:8px 12px;border-radius:10px;display:none}
+
+    /* Nota explicativa */
+    .explain{margin-top:16px;background:#fbf7f0;border:1px solid var(--ring-2);border-radius:12px;padding:14px;font-size:14px}
+    .explain b{font-weight:800}
+    .explain ul{margin:8px 0 0 18px;padding:0}
+    .explain li{margin:4px 0}
+
+    /* Accesibilidad */
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+    /* Print (manteniendo estética limpia) */
+    @page{size:A4 portrait;margin:12mm}
+    @media print{
+      body{background:#fff}
+      .wrap{max-width:none;margin:0;padding:0}
+      .topbar,.addbar,.actions,.toast,.no-print{display:none !important}
+      .section{box-shadow:none;border:1px solid #ddd;break-inside:avoid}
+      .section .head{padding:8px 10px;background:#f7f2e6;border-bottom:1px solid #ddd}
+      .section .body{padding:8px 10px}
+      table{font-size:11px}
+      thead th{padding:6px}
+      td{padding:6px}
+      .explain{font-size:11px;padding:8px 10px}
+    }
+  </style>
+</head>
+<body>
+  <!-- Encabezado del sistema -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">VA</div>
+      <div class="brand-text">Villa &amp; Asociados<br><small>Calculadora de prorrateo de honorarios</small></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="hdr">Parámetros y cálculo</div>
+
+    <section class="section form">
+      <div class="head">
+        <h2>Parámetros del caso</h2>
+        <div class="pill">Montos en AR$ · IVA incluido cuando corresponda</div>
+      </div>
+      <div class="body">
+        <div class="grid">
+          <div>
+            <label>Carátula del expediente</label>
+            <input type="text" id="caratula" placeholder="Actor c/ Demandado s/ …" />
+          </div>
+          <div>
+            <label>Límite de prorrateo % <span class="req">*</span></label>
+            <input type="number" id="limite" value="25" min="1" max="25" step="0.01" />
+            <div class="muted">Máximo legal: 25%. Si ingresás más, se ajusta.</div>
+          </div>
+          <div>
+            <label>Capital $ <span class="req">*</span></label>
+            <input type="number" id="capital" placeholder="0,00" step="0.01" min="0" />
+          </div>
+          <div>
+            <label>Gastos $</label>
+            <input type="number" id="gastos" placeholder="Tasa, aportes, etc." step="0.01" min="0" />
+          </div>
+          <div>
+            <label>Base prorrateable $</label>
+            <div id="baseView" class="calc-box" aria-live="polite">—</div>
+            <div class="muted">Se calcula automáticamente: Capital + Gastos.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section form">
+      <div class="head">
+        <h2>Datos y montos</h2>
+        <div class="pill">Completá para calcular</div>
+      </div>
+      <div class="body">
+        <div id="profesionales"></div>
+        <div class="addbar">
+          <div>Agregá a cada beneficiario de honorarios (Nombre y Apellido / <b>Letrado</b> / Perito / Mediador). La regulación se ingresa <b>sin IVA</b>.</div>
+          <button type="button" class="btn btn-plain" id="addPro">+ Añadir profesional</button>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary" id="calcBtn">Calcular</button>
+          <button class="btn btn-plain" id="clearBtn">Limpiar</button>
+        </div>
+        <div class="toast" id="toast"></div>
+      </div>
+    </section>
+
+    <!-- Datos ingresados -->
+    <section class="section" id="resultCard" style="display:none">
+      <div class="head">
+        <h2>Datos ingresados</h2>
+        <div class="pill" id="expInfo"></div>
+      </div>
+      <div class="body" id="datosIngresados"></div>
+    </section>
+
+    <!-- Resultado -->
+    <section class="section" id="resultadoBox" style="display:none">
+      <div class="head">
+        <h2>Resultado</h2>
+        <div class="row" style="gap:10px">
+          <div class="pill">Distribución proporcional al tope</div>
+          <button type="button" class="btn btn-primary no-print" id="printBtn">Imprimir</button>
+        </div>
+      </div>
+      <div class="body">
+        <table id="tabla"></table>
+        <div class="explain" id="explicacion"></div>
+        <details>
+          <summary>Detalle del cómputo y fundamentos</summary>
+          <div class="muted">
+            <p><strong>Regla:</strong> Si la suma de las costas de 1ª/única instancia <em>(honorarios profesionales, con IVA cuando corresponda)</em> supera el <strong>límite</strong> fijado sobre la <strong>base prorrateable</strong>, se prorratea en forma proporcional entre todos los beneficiarios hasta ese tope.</p>
+            <ul>
+              <li><b>Base prorrateable</b> = Capital + Gastos <span class="muted">(editable)</span>.</li>
+              <li><b>Límite</b> = Base × (% tope). Tope usual: 25%.</li>
+              <li><b>IVA</b>: cuando el profesional es responsable inscripto, se adiciona 21% al honorario prorrateado y ese monto se incluye dentro del tope.</li>
+              <li><b>Honorarios del letrado de la parte perdidosa</b> no integran el tope del art. 730.</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // ===== Config =====
+    const IVA_RATE = 0.21; // Cambiar si varía el IVA
+    const LS_KEY = 'va_prorrateo_v1';
+
+    // ===== Utils =====
+    function fmtMoney(n){
+      const val = Number.isFinite(n) ? n : 0;
+      return new Intl.NumberFormat('es-AR',{style:'currency',currency:'ARS',minimumFractionDigits:2}).format(val);
+    }
+    function fmtPct(n){ return (n*100).toFixed(2).replace('.', ',') + '%'; }
+    function toNum(v){
+      if(typeof v === 'number') return Number.isFinite(v) ? v : 0;
+      if(v == null) return 0;
+      let s = String(v).trim();
+      if(!s) return 0;
+      const hasComma = s.includes(',');
+      const hasDot = s.includes('.');
+      if(hasComma && hasDot){ s = s.replace(/\./g,'').replace(',', '.'); }
+      else if(hasComma && !hasDot){ s = s.replace(',', '.'); }
+      s = s.replace(/[^0-9+\-.eE]/g,'');
+      const n = parseFloat(s);
+      return Number.isFinite(n) ? n : 0;
+    }
+
+    // ===== DOM =====
+    const capital = document.getElementById('capital');
+    const gastos = document.getElementById('gastos');
+    const baseView = document.getElementById('baseView');
+    const limite = document.getElementById('limite');
+    const cont = document.getElementById('profesionales');
+    const addPro = document.getElementById('addPro');
+    const calcBtn = document.getElementById('calcBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const tabla = document.getElementById('tabla');
+    const resultCard = document.getElementById('resultCard');
+    const resultadoBox = document.getElementById('resultadoBox');
+    const toast = document.getElementById('toast');
+    const expInfo = document.getElementById('expInfo');
+    const caratula = document.getElementById('caratula');
+    const datosIngresados = document.getElementById('datosIngresados');
+    const explicacion = document.getElementById('explicacion');
+    const printBtn = document.getElementById('printBtn');
+
+    function showToast(msg){ toast.textContent = msg; toast.style.display = 'block'; setTimeout(()=>toast.style.display='none', 3200);}    
+
+    function updateBase(){
+      const b = toNum(capital.value) + toNum(gastos.value);
+      if(baseView) baseView.textContent = fmtMoney(b);
+      return b;
+    }
+    capital.addEventListener('input', ()=>{ updateBase(); saveState(); });
+    gastos.addEventListener('input', ()=>{ updateBase(); saveState(); });
+    limite.addEventListener('input', saveState);
+    caratula.addEventListener('input', saveState);
+
+    // ===== Filas profesionales =====
+    function proRowTemplate(obj={}){
+      const row = document.createElement('div');
+      row.className = 'grid';
+      row.style.gridTemplateColumns = '1.2fr .8fr .38fr 40px';
+      row.style.alignItems = 'center';
+      row.style.gap = '12px';
+      row.style.marginTop = '10px';
+      row.innerHTML = `
+        <input type="text" placeholder="Nombre y Apellido / Letrado / Perito / Mediador" class="pro-nombre" />
+        <input type="number" placeholder="Regulación $ (sin IVA)" class="pro-monto" step="0.01" min="0" />
+        <label class="row" style="justify-content:center; gap:8px">
+          <input type="checkbox" class="pro-iva" checked />
+          <span class="muted">Aplica IVA 21%</span>
+        </label>
+        <button type="button" class="btn btn-plain pro-del" title="Quitar">🗑️</button>
+      `;
+      const $nom = row.querySelector('.pro-nombre');
+      const $mon = row.querySelector('.pro-monto');
+      const $iva = row.querySelector('.pro-iva');
+      if(obj){
+        if(obj.nombre) $nom.value = obj.nombre;
+        if(obj.monto!=null) $mon.value = obj.monto;
+        if(obj.aplicaIVA!=null) $iva.checked = !!obj.aplicaIVA;
+      }
+      row.querySelector('.pro-del').addEventListener('click', ()=>{ row.remove(); saveState(); });
+      $nom.addEventListener('input', saveState);
+      $mon.addEventListener('input', saveState);
+      $iva.addEventListener('change', saveState);
+      return row;
+    }
+
+    function ensureRow(){ if(!cont.children.length){ cont.appendChild(proRowTemplate()); } }
+    addPro.addEventListener('click', ()=>{ cont.appendChild(proRowTemplate()); saveState(); });
+
+    clearBtn.addEventListener('click', ()=>{
+      caratula.value = '';
+      capital.value = '';
+      gastos.value = '';
+      limite.value = 25;
+      updateBase();
+      cont.innerHTML = '';
+      ensureRow();
+      tabla.innerHTML='';
+      resultCard.style.display='none';
+      resultadoBox.style.display='none';
+      datosIngresados.innerHTML='';
+      explicacion.innerHTML='';
+      localStorage.removeItem(LS_KEY);
+      showToast('Limpio.');
+    });
+
+    ensureRow();
+
+    function clampLimite(){
+      let v = toNum(limite.value);
+      if(v>25){ v=25; limite.value = 25; showToast('El límite legal es 25%. Se ajustó.'); }
+      if(v<=0){ v=25; limite.value = 25; }
+      return v/100;
+    }
+
+    calcBtn.addEventListener('click', (e)=>{
+      e.preventDefault();
+      calcular();
+    });
+
+    if (printBtn) {
+      printBtn.addEventListener('click', ()=>{
+        if (resultadoBox.style.display === 'none') { showToast('Calculá primero.'); return; }
+        window.print();
+      });
+    }
+
+    function calcular(){
+      const b = updateBase();
+      if(b<=0){ showToast('Ingresá Capital y, si corresponde, Gastos.'); return; }
+      const LIM = clampLimite();
+      const rows = [...cont.querySelectorAll('.grid')];
+      const pros = rows.map(r=>{
+        const nombre = (r.querySelector('.pro-nombre')?.value || '').trim() || 'Profesional';
+        const monto = toNum(r.querySelector('.pro-monto')?.value); // sin IVA
+        const aplicaIVA = !!(r.querySelector('.pro-iva')?.checked);
+        return {nombre, monto, aplicaIVA};
+      }).filter(p=>p.monto>0);
+      if(!pros.length){ showToast('Agregá al menos un profesional con monto regulado.'); return; }
+
+      // Suma para tope: incluye IVA cuando corresponda
+      const pesos = pros.map(p=> p.monto * (p.aplicaIVA ? (1+IVA_RATE) : 1));
+      const sumaPesos = pesos.reduce((a,x)=>a+x,0);
+      const tope = b * LIM;
+      const factor = sumaPesos>0 ? Math.min(1, tope / sumaPesos) : 1;
+
+      const result = pros.map(p=>{
+        const prorr = p.monto * factor;          // prorrateo sin IVA
+        const iva = p.aplicaIVA ? prorr * IVA_RATE : 0; // IVA sobre prorrata
+        const total = prorr + iva;               // total a cargo del condenado
+        return {nombre:p.nombre, regulado:p.monto, prorr, iva, total};
+      });
+
+      renderDatosIngresados({b, LIM, tope});
+      renderTabla(result);
+      renderExplicacion(result, b, LIM, sumaPesos, tope, factor);
+      resultCard.style.display = 'block';
+      resultadoBox.style.display = 'block';
+      expInfo.textContent = caratula.value ? caratula.value.toUpperCase() : '';
+      saveState();
+    }
+
+    function renderDatosIngresados({b, LIM, tope}){
+      const dl = document.createElement('ul');
+      dl.className = 'deflist';
+      const rows = [
+        ['Capital', fmtMoney(toNum(capital.value))],
+        ['Límite de prorrateo', (LIM*100).toFixed(2).replace('.', ',') + '%'],
+        ['Gastos', fmtMoney(toNum(gastos.value))],
+        ['Base prorrateable', fmtMoney(b)]
+      ];
+      rows.forEach(([k,v])=>{
+        const li = document.createElement('li');
+        li.className='defitem';
+        li.innerHTML = `<div class="deflabel">${k}</div><div class="defvalue">${v}</div>`;
+        dl.appendChild(li);
+      });
+      datosIngresados.innerHTML='';
+      datosIngresados.appendChild(dl);
+    }
+
+    function renderTabla(result){
+      const head = `
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Honorario Total</th>
+            <th>Honorario Prorrateado</th>
+            <th>IVA sobre Prorrata</th>
+            <th>Total</th>
+          </tr>
+        </thead>`;
+
+      const rowsHtml = result.map(p=>`
+        <tr>
+          <td style="text-align:left">${p.nombre}</td>
+          <td>${fmtMoney(p.regulado)}</td>
+          <td>${fmtMoney(p.prorr)}</td>
+          <td>${fmtMoney(p.iva)}</td>
+          <td>${fmtMoney(p.total)}</td>
+        </tr>`).join('');
+
+      const tot = result.reduce((a,p)=>({
+        regulado:a.regulado+p.regulado, prorr:a.prorr+p.prorr, iva:a.iva+p.iva, total:a.total+p.total
+      }),{regulado:0,prorr:0,iva:0,total:0});
+
+      const foot = `
+        <tfoot>
+          <tr>
+            <td style="text-align:left">Totales</td>
+            <td>${fmtMoney(tot.regulado)}</td>
+            <td>${fmtMoney(tot.prorr)}</td>
+            <td>${fmtMoney(tot.iva)}</td>
+            <td>${fmtMoney(tot.total)}</td>
+          </tr>
+        </tfoot>`;
+
+      tabla.innerHTML = head + '<tbody>' + rowsHtml + '</tbody>' + foot;
+    }
+
+    function renderExplicacion(result, b, LIM, sumaPesos, tope, factor){
+      const baseTxt = `Base prorrateable = Capital + Gastos = ${fmtMoney(toNum(capital.value))} + ${fmtMoney(toNum(gastos.value))} = ${fmtMoney(b)}.`;
+      const limTxt = `Límite aplicado = ${fmtPct(LIM)} de la base = ${fmtMoney(tope)}.`;
+      const sumTxt = `Suma regulada con IVA = ${fmtMoney(sumaPesos)}.`;
+      const prorrTxt = sumaPesos>tope ? `Como la suma supera el límite, se prorratea con factor F = tope / suma = ${fmtMoney(tope)} / ${fmtMoney(sumaPesos)} = ${factor.toFixed(6)}.` : `Como la suma no supera el límite, F = 1 (no hay prorrateo).`;
+      const items = result.map(p=>`<li><b>${p.nombre}:</b> ${fmtMoney(p.regulado)} × F = ${fmtMoney(p.prorr)}${p.iva>0?` · IVA ${Math.round(IVA_RATE*100)}% = ${fmtMoney(p.iva)}`:''} · Total = ${fmtMoney(p.total)}.</li>`).join('');
+      explicacion.innerHTML = `<div><b>Explicación breve</b></div>
+      <p>${baseTxt} ${limTxt} ${sumTxt} ${prorrTxt}</p>
+      <ul>${items}</ul>`;
+    }
+
+    // ===== Persistencia =====
+    function saveState(){
+      const rows = [...cont.querySelectorAll('.grid')].map(r=>({
+        nombre: r.querySelector('.pro-nombre')?.value || '',
+        monto: r.querySelector('.pro-monto')?.value || '',
+        aplicaIVA: !!(r.querySelector('.pro-iva')?.checked)
+      }));
+      const data = {
+        caratula: caratula.value,
+        capital: capital.value,
+        gastos: gastos.value,
+        limite: limite.value,
+        pros: rows
+      };
+      try{ localStorage.setItem(LS_KEY, JSON.stringify(data)); }catch{}
+    }
+
+    function loadState(){
+      try{
+        const raw = localStorage.getItem(LS_KEY);
+        if(!raw) { updateBase(); return; }
+        const d = JSON.parse(raw);
+        caratula.value = d.caratula||'';
+        capital.value = d.capital||'';
+        gastos.value = d.gastos||'';
+        limite.value = d.limite!=null? d.limite:25;
+        cont.innerHTML = '';
+        (d.pros && d.pros.length? d.pros : [{}]).forEach(p=> cont.appendChild(proRowTemplate(p)));
+        updateBase();
+      }catch{ updateBase(); }
+    }
+
+    // ===== Init =====
+    loadState();
+  </script>
+</body>
+</html>
