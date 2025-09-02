@@ -36,7 +36,7 @@
       position:sticky;top:0;z-index:100;
       box-shadow:0 2px 10px rgba(0,0,0,.05);
     }
-    .brand{display:flex;align-items:center;gap:12px;font-weight:700;color:var(--graphite)}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700;color:var(--graphite);cursor:pointer;text-decoration:none;}
     .logo{
       width:40px;height:40px;border-radius:10px;display:grid;place-items:center;
       background:var(--sand-2);border:1px solid var(--ring);font-weight:800;color:var(--graphite);
@@ -168,10 +168,10 @@
 <body>
   <!-- Encabezado -->
   <header class="topbar">
-    <div class="brand">
+    <a class="brand" href="https://estudio-villa.com" aria-label="Ir a Estudio Villa">
       <div class="logo">VA</div>
       <div>Villa &amp; Asociados<small>Chequeo de trato laboral</small></div>
-    </div>
+    </a>
   </header>
 
   <div class="ev-wrap">
