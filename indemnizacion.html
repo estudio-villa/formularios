@@ -831,7 +831,7 @@
         const STUDIO_EMAIL = "info@estudio-villa.com";
 
         // Contador (inicia en 2000 y persiste)
-        let calcCount = Number.parseInt(localStorage.getItem("va_calc_count") || "0", 10);
+        let calcCount = Number.parseInt(localStorage.getItem("va_calc_count") || "2000", 10);
         const $calcCountFooter = document.getElementById("calcCountFooter");
         function renderCount() {
             if ($calcCountFooter) {
