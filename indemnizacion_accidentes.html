@@ -1,166 +1,86 @@
 <!DOCTYPE html>
-<html lang="es-AR">
+<html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Calculadora Incapacidad Laboral — Villa & Asociados</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8" />
+  <title></title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet" />
   <style>
-    /* ===== Línea gráfica Villa & Asociados ===== */
     :root{
-      --sand:#efe2cc;
-      --sand-2:#f6eddc;
-      --charcoal:#474747;
-      --graphite:#2f2f2f;
-      --accent:#b89a72;
-      --ring:#cab28c;
-      --white:#fff;
-      --transition:all .3s ease;
-      --radius:18px;
+      --accent:#C6A67A; /* dorado/arena del logo (botones / resaltes) */
+      --ink:#333333;   /* gris oscuro del texto */
+      --muted:#666666; /* gris suave */
+      --bg:#F4EEDB;    /* fondo cálido (como el screenshot del estudio) */
+      --panel:#FFFFFF; /* tarjetas y formularios en blanco */
+      --border:#D6CBB4; /* borde en tono arena claro */
     }
-
     *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      background:var(--sand);
-      font-family:"Montserrat",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--graphite);
-      line-height:1.6;
-    }
+    body{font-family:'Roboto',sans-serif;background:var(--bg);margin:0;padding:0;color:var(--ink)}
 
-    /* Topbar */
-    .topbar{
-      position:sticky;top:0;z-index:10;
-      background:var(--sand);
-      border-bottom:1px solid var(--ring);
-      padding:14px 22px;
-      display:flex;align-items:center;gap:12px;
-      box-shadow:0 2px 10px rgba(0,0,0,.05)
-    }
-    .brand{display:flex;align-items:center;gap:12px;font-weight:800;color:var(--graphite);text-decoration:none}
-    .logo{
-      width:42px;height:42px;border-radius:10px;display:grid;place-items:center;
-      background:var(--sand-2);border:1px solid var(--ring);font-weight:800;color:var(--graphite);
-      transition:var(--transition)
-    }
-    .brand:hover .logo{transform:rotate(5deg);background:var(--accent);color:#fff}
-    .brand small{font-size:.75rem;font-weight:600;color:var(--charcoal);opacity:.95}
-
-    /* Contenedor */
-    .wrap{max-width:980px;margin:28px auto;padding:0 20px}
-
-    /* Card principal */
-    .card{
-      background:var(--white);
-      border:1px solid var(--ring);
-      border-radius:var(--radius);
-      box-shadow:0 10px 24px rgba(0,0,0,.06);
-      padding:20px
-    }
-
-    /* Formularios */
-    label{display:block;font-weight:800;margin-bottom:6px;color:var(--graphite);font-size:14px}
-    input[type="number"], input[type="date"]{
-      width:100%;
-      padding:12px;
-      border:1.5px solid var(--ring);
-      border-radius:12px;
-      background:var(--sand-2);
-      outline:none;font-size:14px;
-      transition:box-shadow .15s ease,border-color .15s ease,background .15s ease;
-      margin-bottom:14px;
-    }
-    input[type="number"]:focus, input[type="date"]:focus{
-      border-color:var(--accent);
-      box-shadow:0 0 0 4px rgba(0,0,0,.06);
-      background:#fff;
-    }
+    /* ===== Contenedor app ===== */
+    .wrap{max-width:820px;margin:28px auto;padding:0 16px}
+    .card{background:var(--panel);padding:20px;border-radius:6px;max-width:520px;margin:0 auto}
+    label{display:block;font-weight:500;margin-bottom:6px}
+    input[type="number"],input[type="date"]{width:100%;padding:10px;margin-bottom:14px;border:1px solid #ccc;border-radius:4px}
     input[type="checkbox"]{margin-right:8px;vertical-align:middle}
+    button{background:var(--accent);color:#fff;padding:12px 16px;border:none;border-radius:6px;font-size:16px;cursor:pointer;width:100%}
+    button:hover{filter:brightness(.95)}
 
-    button{
-      appearance:none;border:1.5px solid var(--ring);
-      background:var(--charcoal);color:#fff;
-      padding:12px 16px;border-radius:12px;
-      font-weight:800;cursor:pointer;
-      transition:transform .05s,background .15s,color .15s,border .15s;
-      width:100%;
-      margin-top:6px
-    }
-    button:hover{background:var(--accent)}
-    button:active{transform:translateY(1px)}
+    .resultado{background:#fff;padding:18px;margin-top:22px;border-radius:8px;border:1px solid var(--border)}
+    .resultado h3{margin:.2rem 0 1rem 0}
+    .res-dato{margin:.25rem 0;color:var(--ink)}
+    .res-resaltado{background:#fff7e6;border:2px solid var(--accent);padding:10px;border-radius:6px;margin-top:12px;font-weight:700}
 
-    /* Resultado */
-    .resultado{
-      background:#fff;
-      padding:18px;
-      margin-top:22px;
-      border-radius:12px;
-      border:1px solid var(--ring)
-    }
-    .resultado h3{margin:.2rem 0 1rem 0;font-weight:900}
-    .res-dato{margin:.25rem 0;color:var(--graphite)}
-    .res-resaltado{
-      background:#fff7e6;border:2px solid var(--accent);
-      padding:10px;border-radius:10px;margin-top:12px;font-weight:800
-    }
-
-    /* Área imprimible */
-    #print-surface{background:#fff;border:1px solid var(--ring);border-radius:12px;padding:20px}
-
-    /* Encabezado de marca para impresión */
+    /* ===== Encabezado / pie exclusivos para imprimir ===== */
     .print-chrome{display:none}
     .brand-header{display:flex;align-items:center;gap:14px}
     .brand-mark{display:flex;align-items:center;gap:10px}
-    .brand-logo{
-      width:50px;height:50px;border-radius:10px;background:var(--accent);
-      color:#333;display:flex;align-items:center;justify-content:center;
-      font-size:20px;font-weight:800;border:1px solid var(--ring)
-    }
+    .brand-logo{width:44px;height:44px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#ff9440);box-shadow:0 4px 10px rgba(0,0,0,.08)}
     .brand-title{font-weight:800;letter-spacing:.5px}
-    .brand-sub{color:#666;font-size:13px;margin-top:2px}
+    .brand-sub{color:var(--muted);font-size:13px;margin-top:2px}
+    .print-footer{font-size:12px;color:var(--muted);margin-top:14px}
 
-    /* Print */
-    @page{size:A4;margin:16mm}
+    /* Zona imprimible ensamblada */
+    #print-surface{background:#fff;border:1px solid var(--border);border-radius:10px;padding:20px;}
+
+    #printBtn{margin-top:14px}
+
+    /* ===== Estilos de impresión ===== */
     @media print{
       body{background:#fff}
+      /* Ocultamos solo el FORMULARIO, no el resultado */
       #ippForm, #printBtn {display:none !important}
+      /* NO ocultar .card completa, así se imprime el cálculo */
       .wrap{max-width:100%;margin:0;padding:0}
       .print-chrome{display:block}
       #print-surface{border:none;border-radius:0;padding:24mm 18mm}
+      .brand-logo{width:50px;height:50px}
       .brand-title{font-size:20px}
       .res-resaltado{border-width:2px}
+      @page{size:A4;margin:16mm}
     }
+
   </style>
 </head>
 <body>
-  <!-- Topbar -->
-  <header class="topbar">
-    <a class="brand" href="https://estudio-villa.com" aria-label="Ir a Estudio Villa">
-      <div class="logo">VA</div>
-      <div>Villa &amp; Asociados<br><small>Calculadora Incapacidad Laboral</small></div>
-    </a>
-  </header>
-
-  <!-- Chrome de marca solo para imprimir -->
-  <header class="print-chrome" id="print-header">
-    <div class="brand-header" style="padding:14px 20px;">
-      <div class="brand-logo">VA</div>
-      <div class="brand-mark">
-        <div>
-          <div class="brand-title" style="color:#333;">Calculadora Incapacidad Laboral</div>
-          <div class="brand-sub">Derecho laboral · Accidentes de trabajo · Enfermedades profesionales</div>
-          <div class="brand-sub">Avenida Roque Sáenz Peña 720, Piso 4° E · CABA · +54 9 11 6257-7792 · estudio-villa.com</div>
+  <div class="wrap">
+    <!-- Chrome de marca que solo aparece al imprimir / exportar PDF -->
+    <header class="print-chrome" id="print-header">
+      <div class="brand-header" style="padding:14px 0;">
+        <div class="brand-logo" style="width:50px;height:50px;border-radius:10px;background:#C6A67A;color:#333;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;">VA</div>
+        <div class="brand-mark">
+          <div>
+            <div class="brand-title" style="font-size:22px;font-weight:800;color:#333;">Calculadora Incapacidad Laboral</div>
+            <div class="brand-sub" style="color:#666;font-size:14px;">Derecho laboral · Accidentes de trabajo · Enfermedades profesionales</div>
+            <div class="brand-sub" style="color:#666;font-size:13px;">Avenida Roque Sáenz Peña 720, Piso 4° E · CABA · +54 9 11 6257‑7792 · estudio-villa.com</div>
+          </div>
         </div>
       </div>
-    </div>
-    <hr style="margin:10px 0;border:none;border-top:2px solid var(--accent)">
-  </header>
+      <hr style="margin:10px 0;border:none;border-top:2px solid #C6A67A">
+    </header>
+    </header>
 
-  <!-- Contenido -->
-  <main class="wrap">
+    <!-- Formulario interactivo -->
     <div class="card">
-      <!-- ====== FORMULARIO (IDs y textos intactos) ====== -->
       <form id="ippForm">
         <label for="baseIncome">Ingreso base</label>
         <input type="number" id="baseIncome" step="0.01" required />
@@ -177,14 +97,11 @@
         <label><input type="checkbox" id="itinere" /> Accidente in itinere (+20%)</label>
         <button type="submit">Calcular</button>
       </form>
-
-      <!-- Resultado -->
       <div id="result"></div>
     </div>
-  </main>
+  </div>
 
   <script>
-    /* ===== LÓGICA INTACTA (del archivo original) ===== */
     const pisos=[
       {desde:'2025-09-01',monto:87629423},
       {desde:'2025-03-01',monto:71799818},
@@ -199,6 +116,9 @@
       {desde:'2020-09-01',monto:3483482},
       {desde:'2020-03-01',monto:2958970}
     ];
+
+    const $wrap=document.querySelector('.wrap');
+    const $result=document.getElementById('result');
 
     document.getElementById('ippForm').addEventListener('submit',function(e){
       e.preventDefault();
@@ -221,26 +141,29 @@
       const fAcc=fecha.toLocaleDateString('es-AR');
       const hoy=new Date().toLocaleDateString('es-AR');
 
-      // Render conservando textos del original
-      document.getElementById('result').innerHTML=`
+      // Contenido normal (pantalla)
+      $result.innerHTML=`
         <div class="resultado" id="print-surface">
           <h3>DATOS CONSIDERADOS</h3>
           <div class="res-dato"><strong>Salario base:</strong> $ ${ingreso.toLocaleString('es-AR')}</div>
           <div class="res-dato"><strong>Edad del trabajador:</strong> ${edad} años</div>
           <div class="res-dato"><strong>Porcentaje de incapacidad:</strong> ${porcentaje} %</div>
           <div class="res-dato"><strong>Fecha de accidente / toma de conocimiento:</strong> ${fAcc}</div>
-          <hr style="border:none;border-top:1px solid var(--ring);margin:12px 0">
+          <hr style="border:none;border-top:1px solid var(--border);margin:12px 0">
           <h3>INDEMNIZACIÓN RESULTANTE</h3>
           <div class="res-dato">$ ${ingreso.toLocaleString('es-AR')} × 53 × (coef ${coef.toFixed(4)}) × ${itinere? '1.20 × ':''}${porcentaje}%</div>
           <div class="res-dato"><strong>Piso indemnizatorio a la fecha del accidente:</strong> $ ${piso.toLocaleString('es-AR')}</div>
           <div class="res-dato"><strong>Piso proporcional al ${porcentaje}%:</strong> $ ${pisoProp.toLocaleString('es-AR')}</div>
           <div class="res-resaltado">TOTAL INDEMNIZACIÓN (${usarPiso? 'PISO APLICADO':'CÁLCULO BASE'}):<br>$ ${final.toLocaleString('es-AR',{minimumFractionDigits:2})}</div>
-          <div class="res-dato" style="margin-top:10px;color:#666;font-size:13px">Liquidación efectuada el día ${hoy}</div>
+          <div class="res-dato" style="margin-top:10px;color:var(--muted);font-size:13px">Liquidación efectuada el día ${hoy}</div>
           <button id="printBtn" type="button">Imprimir / Guardar PDF</button>
         </div>`;
 
-      // Botón de impresión (misma funcionalidad)
-      document.getElementById('printBtn').onclick=()=>{ window.print(); };
+      // Handler de impresión con armado de cabecera/pie (marca fuera del recuadro final)
+      document.getElementById('printBtn').onclick=()=>{
+        // Mostrar cabecera/pie de marca (ya están en DOM con clase print-chrome)
+        window.print();
+      };
     });
   </script>
 </body>
