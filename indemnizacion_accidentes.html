@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calculadora Incapacidad Laboral — Villa & Asociados</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== Línea gráfica Villa & Asociados ===== */
+    :root{
+      --sand:#efe2cc;
+      --sand-2:#f6eddc;
+      --charcoal:#474747;
+      --graphite:#2f2f2f;
+      --accent:#b89a72;
+      --ring:#cab28c;
+      --white:#fff;
+      --transition:all .3s ease;
+      --radius:18px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:var(--sand);
+      font-family:"Montserrat",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--graphite);
+      line-height:1.6;
+    }
+
+    /* Topbar */
+    .topbar{
+      position:sticky;top:0;z-index:10;
+      background:var(--sand);
+      border-bottom:1px solid var(--ring);
+      padding:14px 22px;
+      display:flex;align-items:center;gap:12px;
+      box-shadow:0 2px 10px rgba(0,0,0,.05)
+    }
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;color:var(--graphite);text-decoration:none}
+    .logo{
+      width:42px;height:42px;border-radius:10px;display:grid;place-items:center;
+      background:var(--sand-2);border:1px solid var(--ring);font-weight:800;color:var(--graphite);
+      transition:var(--transition)
+    }
+    .brand:hover .logo{transform:rotate(5deg);background:var(--accent);color:#fff}
+    .brand small{font-size:.75rem;font-weight:600;color:var(--charcoal);opacity:.95}
+
+    /* Contenedor */
+    .wrap{max-width:980px;margin:28px auto;padding:0 20px}
+
+    /* Card principal */
+    .card{
+      background:var(--white);
+      border:1px solid var(--ring);
+      border-radius:var(--radius);
+      box-shadow:0 10px 24px rgba(0,0,0,.06);
+      padding:20px
+    }
+
+    /* Formularios */
+    label{display:block;font-weight:800;margin-bottom:6px;color:var(--graphite);font-size:14px}
+    input[type="number"], input[type="date"]{
+      width:100%;
+      padding:12px;
+      border:1.5px solid var(--ring);
+      border-radius:12px;
+      background:var(--sand-2);
+      outline:none;font-size:14px;
+      transition:box-shadow .15s ease,border-color .15s ease,background .15s ease;
+      margin-bottom:14px;
+    }
+    input[type="number"]:focus, input[type="date"]:focus{
+      border-color:var(--accent);
+      box-shadow:0 0 0 4px rgba(0,0,0,.06);
+      background:#fff;
+    }
+    input[type="checkbox"]{margin-right:8px;vertical-align:middle}
+
+    button{
+      appearance:none;border:1.5px solid var(--ring);
+      background:var(--charcoal);color:#fff;
+      padding:12px 16px;border-radius:12px;
+      font-weight:800;cursor:pointer;
+      transition:transform .05s,background .15s,color .15s,border .15s;
+      width:100%;
+      margin-top:6px
+    }
+    button:hover{background:var(--accent)}
+    button:active{transform:translateY(1px)}
+
+    /* Resultado */
+    .resultado{
+      background:#fff;
+      padding:18px;
+      margin-top:22px;
+      border-radius:12px;
+      border:1px solid var(--ring)
+    }
+    .resultado h3{margin:.2rem 0 1rem 0;font-weight:900}
+    .res-dato{margin:.25rem 0;color:var(--graphite)}
+    .res-resaltado{
+      background:#fff7e6;border:2px solid var(--accent);
+      padding:10px;border-radius:10px;margin-top:12px;font-weight:800
+    }
+
+    /* Área imprimible */
+    #print-surface{background:#fff;border:1px solid var(--ring);border-radius:12px;padding:20px}
+
+    /* Encabezado de marca para impresión */
+    .print-chrome{display:none}
+    .brand-header{display:flex;align-items:center;gap:14px}
+    .brand-mark{display:flex;align-items:center;gap:10px}
+    .brand-logo{
+      width:50px;height:50px;border-radius:10px;background:var(--accent);
+      color:#333;display:flex;align-items:center;justify-content:center;
+      font-size:20px;font-weight:800;border:1px solid var(--ring)
+    }
+    .brand-title{font-weight:800;letter-spacing:.5px}
+    .brand-sub{color:#666;font-size:13px;margin-top:2px}
+
+    /* Print */
+    @page{size:A4;margin:16mm}
+    @media print{
+      body{background:#fff}
+      #ippForm, #printBtn {display:none !important}
+      .wrap{max-width:100%;margin:0;padding:0}
+      .print-chrome{display:block}
+      #print-surface{border:none;border-radius:0;padding:24mm 18mm}
+      .brand-title{font-size:20px}
+      .res-resaltado{border-width:2px}
+    }
+  </style>
+</head>
+<body>
+  <!-- Topbar -->
+  <header class="topbar">
+    <a class="brand" href="https://estudio-villa.com" aria-label="Ir a Estudio Villa">
+      <div class="logo">VA</div>
+      <div>Villa &amp; Asociados<br><small>Calculadora Incapacidad Laboral</small></div>
+    </a>
+  </header>
+
+  <!-- Chrome de marca solo para imprimir -->
+  <header class="print-chrome" id="print-header">
+    <div class="brand-header" style="padding:14px 20px;">
+      <div class="brand-logo">VA</div>
+      <div class="brand-mark">
+        <div>
+          <div class="brand-title" style="color:#333;">Calculadora Incapacidad Laboral</div>
+          <div class="brand-sub">Derecho laboral · Accidentes de trabajo · Enfermedades profesionales</div>
+          <div class="brand-sub">Avenida Roque Sáenz Peña 720, Piso 4° E · CABA · +54 9 11 6257-7792 · estudio-villa.com</div>
+        </div>
+      </div>
+    </div>
+    <hr style="margin:10px 0;border:none;border-top:2px solid var(--accent)">
+  </header>
+
+  <!-- Contenido -->
+  <main class="wrap">
+    <div class="card">
+      <!-- ====== FORMULARIO (IDs y textos intactos) ====== -->
+      <form id="ippForm">
+        <label for="baseIncome">Ingreso base</label>
+        <input type="number" id="baseIncome" step="0.01" required />
+
+        <label for="accDate">Fecha del accidente</label>
+        <input type="date" id="accDate" required />
+
+        <label for="age">Edad al momento del daño</label>
+        <input type="number" id="age" required />
+
+        <label for="percent">Porcentaje de incapacidad (%)</label>
+        <input type="number" id="percent" step="0.1" min="0" max="100" required />
+
+        <label><input type="checkbox" id="itinere" /> Accidente in itinere (+20%)</label>
+        <button type="submit">Calcular</button>
+      </form>
+
+      <!-- Resultado -->
+      <div id="result"></div>
+    </div>
+  </main>
+
+  <script>
+    /* ===== LÓGICA INTACTA (del archivo original) ===== */
+    const pisos=[
+      {desde:'2025-09-01',monto:87629423},
+      {desde:'2025-03-01',monto:71799818},
+      {desde:'2024-09-01',monto:55699217},
+      {desde:'2024-03-01',monto:28906583},
+      {desde:'2023-09-01',monto:18059225},
+      {desde:'2023-03-01',monto:11589837},
+      {desde:'2022-09-01',monto:8433218},
+      {desde:'2022-03-01',monto:6123338},
+      {desde:'2021-09-01',monto:5044408},
+      {desde:'2021-03-01',monto:3991300},
+      {desde:'2020-09-01',monto:3483482},
+      {desde:'2020-03-01',monto:2958970}
+    ];
+
+    document.getElementById('ippForm').addEventListener('submit',function(e){
+      e.preventDefault();
+      const ingreso=parseFloat(document.getElementById('baseIncome').value);
+      const edad=parseFloat(document.getElementById('age').value);
+      const porcentaje=parseFloat(document.getElementById('percent').value);
+      const itinere=document.getElementById('itinere').checked;
+      const fecha=new Date(document.getElementById('accDate').value);
+
+      let coef=(65-edad)/65; coef=Math.max(0.10,Math.min(1.00,coef));
+      const base=ingreso*53*coef;
+      let total=base; if(itinere) total*=1.20; // adicional 20% antes de aplicar % incapacidad
+      const resultado=total*(porcentaje/100);
+
+      let piso=0; for(let i=0;i<pisos.length;i++){const d=new Date(pisos[i].desde); if(fecha>=d){piso=pisos[i].monto; break;}}
+      const pisoProp=piso*(porcentaje/100);
+      const usarPiso = resultado < pisoProp;
+      const final = usarPiso ? pisoProp : resultado;
+
+      const fAcc=fecha.toLocaleDateString('es-AR');
+      const hoy=new Date().toLocaleDateString('es-AR');
+
+      // Render conservando textos del original
+      document.getElementById('result').innerHTML=`
+        <div class="resultado" id="print-surface">
+          <h3>DATOS CONSIDERADOS</h3>
+          <div class="res-dato"><strong>Salario base:</strong> $ ${ingreso.toLocaleString('es-AR')}</div>
+          <div class="res-dato"><strong>Edad del trabajador:</strong> ${edad} años</div>
+          <div class="res-dato"><strong>Porcentaje de incapacidad:</strong> ${porcentaje} %</div>
+          <div class="res-dato"><strong>Fecha de accidente / toma de conocimiento:</strong> ${fAcc}</div>
+          <hr style="border:none;border-top:1px solid var(--ring);margin:12px 0">
+          <h3>INDEMNIZACIÓN RESULTANTE</h3>
+          <div class="res-dato">$ ${ingreso.toLocaleString('es-AR')} × 53 × (coef ${coef.toFixed(4)}) × ${itinere? '1.20 × ':''}${porcentaje}%</div>
+          <div class="res-dato"><strong>Piso indemnizatorio a la fecha del accidente:</strong> $ ${piso.toLocaleString('es-AR')}</div>
+          <div class="res-dato"><strong>Piso proporcional al ${porcentaje}%:</strong> $ ${pisoProp.toLocaleString('es-AR')}</div>
+          <div class="res-resaltado">TOTAL INDEMNIZACIÓN (${usarPiso? 'PISO APLICADO':'CÁLCULO BASE'}):<br>$ ${final.toLocaleString('es-AR',{minimumFractionDigits:2})}</div>
+          <div class="res-dato" style="margin-top:10px;color:#666;font-size:13px">Liquidación efectuada el día ${hoy}</div>
+          <button id="printBtn" type="button">Imprimir / Guardar PDF</button>
+        </div>`;
+
+      // Botón de impresión (misma funcionalidad)
+      document.getElementById('printBtn').onclick=()=>{ window.print(); };
+    });
+  </script>
+</body>
+</html>
